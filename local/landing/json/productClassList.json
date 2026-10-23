@@ -1,0 +1,28 @@
+{
+    "productClassListItems": [
+        {
+            "id": 1,
+            "title": "鎢鋼銑刀",
+            "src": "indexBanner01.jpg",
+            "productSrc": "productBanner01.jpg"
+        },
+        {
+            "id": 2,
+            "title": "木工刀具",
+            "src": "indexBanner02.jpg",
+            "productSrc": "productBanner02.jpg"
+        },
+        {
+            "id": 4,
+            "title": "特製刀具",
+            "src": "indexBanner04.jpg",
+            "productSrc": "productBanner04.jpg"
+        },
+        {
+            "id": 3,
+            "title": "微型鑽頭",
+            "src": "indexBanner03.jpg",
+            "productSrc": "productBanner03.jpg"
+        }
+    ]
+}

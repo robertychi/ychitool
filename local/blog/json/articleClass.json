@@ -1,0 +1,22 @@
+{
+    "articleClassItems": [
+        {
+            "id": 1,
+            "title": "記事",
+            "src": "",
+            "productSrc": ""
+        },
+        {
+            "id": 2,
+            "title": "產品介紹",
+            "src": "",
+            "productSrc": ""
+        },
+        {
+            "id": 3,
+            "title": "科技技術",
+            "src": "",
+            "productSrc": ""
+        }
+    ]
+}

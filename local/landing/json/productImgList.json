@@ -1,0 +1,29 @@
+{
+    "productImgItems": [
+        {
+            "id": 1,
+            "productId": 1,
+            "src": "M03H.jpg"
+        },
+        {
+            "id": 2,
+            "productId": 1,
+            "src": "M02H.jpg"
+        },
+        {
+            "id": 3,
+            "productId": 1,
+            "src": "M01H.jpg"
+        },
+        {
+            "id": 4,
+            "productId": 2,
+            "src": "M01H.jpg"
+        },
+        {
+            "id": 5,
+            "productId": 3,
+            "src": "M01H.jpg"
+        }
+    ]
+}

@@ -1,0 +1,278 @@
+.paperPrint * {
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-size: 14px;
+    font-family: 微軟正黑體;
+}
+
+/* headerArea */
+.headerArea {
+    height: 49mm;
+    position: relative;
+}
+
+.companyName .name {
+    line-height: 1;
+    font-size: 19pt;
+}
+
+.companyName .companyMeg {
+    margin-left: 5px;
+    position: relative;
+}
+
+.companyName .companyMeg .tel span {
+    line-height: 1;
+    width: 100mm;
+    position: absolute;
+    font-size: 9pt;
+}
+
+.companyName .companyMeg .add {
+    line-height: 1;
+    top: 8px;
+    width: 100mm;
+    position: absolute;
+    font-size: 9pt;
+}
+
+.pageName {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 23pt;
+    letter-spacing: 0.1em;
+    font-family: 標楷體;
+}
+
+.printTitle {
+    display: inline-block;
+    width: 70px;
+}
+
+.firmName {
+    position: absolute;
+    top: 12mm;
+}
+
+.firmContactPerson {
+    position: absolute;
+    top: 17mm;
+}
+
+.firmVat {
+    position: absolute;
+    top: 22mm;
+}
+
+.firmNumber {
+    position: absolute;
+    top: 27mm;
+}
+
+.firmTel {
+    position: absolute;
+    top: 32mm;
+}
+
+.firmFax {
+    position: absolute;
+    top: 37mm;
+}
+
+.firmAddress {
+    position: absolute;
+    top: 42mm;
+}
+
+/* 右邊 */
+.docNumber {
+    position: absolute;
+    top: 12mm;
+    right: 0;
+    width: 52mm;
+}
+
+.docDate {
+    position: absolute;
+    top: 17mm;
+    right: 0;
+    width: 52mm;
+}
+
+.docShipping {
+    position: absolute;
+    top: 22mm;
+    right: 0;
+    width: 52mm;
+}
+
+.docPayment {
+    position: absolute;
+    top: 27mm;
+    right: 0;
+    width: 52mm;
+}
+
+.docPaymentDay {
+    position: absolute;
+    top: 32mm;
+    right: 0;
+    width: 52mm;
+}
+
+.docDateExpect {
+    position: absolute;
+    top: 32mm;
+    right: 0;
+    width: 52mm;
+}
+
+.docDaysExpect {
+    position: absolute;
+    top: 37mm;
+    right: 0;
+    width: 52mm;
+}
+
+/* 注意事項 */
+.noticeArea {
+    border-left: 3px solid
+}
+
+.noticeArea .noticeTitle {
+    font-size: 10px;
+    padding-left: 7px;
+}
+
+.noticeArea .noticeContent li {
+    font-size: 10px;
+    list-style: none;
+}
+
+.bodyArea {
+    margin-top: 1mm;
+}
+
+.bodyArea .caption {
+    display: block;
+    text-align: right;
+}
+
+.bodyArea .caption p {
+    font-size: 10px;
+    margin-bottom: 0;
+}
+
+.bodyArea table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bodyArea thead {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+}
+
+.bodyArea thead tr th {
+    letter-spacing: 0.1em;
+    height: 22px;
+    text-align: center;
+}
+
+.bodyArea tbody tr td {
+    word-break: break-all;
+    padding: 6px 2px;
+}
+
+td.no {
+    text-align: center;
+}
+
+td.countTotal, td.noTaxTotal, td.tax, td.total, td.received, td.balance {
+    text-align: right;
+}
+
+td.productNumber {
+    min-width: 96px;
+}
+
+td.productCount, td.productPrice, td.productCost, td.productSum, .productContent {
+    text-align: right;
+}
+
+tr.trSum td {
+    padding-right: 2mm;
+    padding-bottom: 1px;
+    padding-top: 1px;
+}
+
+.footerArea table{
+    border: 1px solid;
+    width: 100%;
+    border-collapse: collapse;
+}
+.footerArea table td{
+    padding-left: 2mm;
+    padding-right: 2mm;
+}
+
+.footerArea .footerDescription{
+    width: 110mm;
+    vertical-align: text-top;
+    border-right: 1px solid;
+    text-align: left;
+    padding-top: 3px;
+    word-break: break-all;
+}
+
+.footerArea .footerDescription p{
+    margin-bottom: 0;
+}
+
+.footerArea .footerNoTaxTotal{
+    text-align: right;
+    padding-top: 3px;
+}
+.footerArea .footerTax{
+    text-align: right;
+}
+
+.footerArea .footerTotal{
+    text-align: right;
+    padding-bottom: 3px;
+}
+
+.footerArea .footerText{
+    text-align: right;
+}
+
+.footerArea .footerAccountTotal{
+    border-top: 1px solid;
+}
+
+/* 換頁 */
+.pageBreakAfter {
+    page-break-after: always;
+}
+
+.footerMeg{
+    width: 100%;
+    margin-top: 1px;
+    margin-bottom: 0;
+}
+.footerMeg .todayDate{
+    font-size: 10px;
+    padding-left: 2px;
+    display: block;
+    float: left;
+}
+
+@media print {
+    .fixVToolbarPaddingTop {
+        padding: 0 0 0 !important
+    }
+}
