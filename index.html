@@ -108,16 +108,7 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
-        <v-divider dark></v-divider>
-        <v-subheader dark>部落格</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item href="/blog">
-            <v-list-item-icon><v-icon>mdi-post</v-icon></v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>瑜誠部落格</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
+
       </v-navigation-drawer>
       <v-main>
         <section v-if="windowSize.x > 310 && windowSize.y > 350">
@@ -145,7 +136,6 @@
             </v-col>
           </v-row>
 
-          <section></section>
 
           <section class="hidden-md-and-down"> <v-container fluid>
               <v-row dense justify="center">
@@ -157,26 +147,27 @@
                       </v-card>
                     </v-col>
                   </v-row>
+
                   <v-row dense>
-                    <v-col cols="12" md="4" sm="4" v-for="(item,index) in bannerItems">
-                      <v-card :href="item.href" :height="getProductContentCardHeight">
-                        <v-img :src="`/local/landing/images/${item.src}`" class="align-end"
-                          :height="getProductContentImageHeight">
-                          <p style="background-color: rgba(255,255,255,0.5);" class="black--text mb-0 pa-2">{{
-                            item.title }}</p>
-                        </v-img>
-                        <v-card-text v-if="windowSize.y > 580" style="height: 125px">
-                          {{ item.text }}
+                    <v-col cols="12">
+                      <v-card>
+                        <v-card-title>最新消息</v-card-title>
+                        <v-card-subtitle>News</v-card-subtitle>
+                        <v-divider></v-divider>
+                        <v-card-text>
+                          <p>歡迎來到瑜誠工業網站，本網站重置施工中，不久將為您服務!!!</p>
+                          <p>我們有鎢鋼刀具、木工刀具，提供專業服務</p>
+                          <p>瑜誠工業粉專:</p>
+                          <p>
+                            <a href="https://www.facebook.com/ychitool">https://www.facebook.com/ychitool</a>
+                          </p>
+                          <p>
+                            在網站未修好之前，如果您有想要和我們聯係，請利用上面的FB連結與我們聯絡!
+                          </p>
+                          <p>FB 裡面有我們許多的製作的刀具產品資訊，也歡迎來電詢問!!</p>
                         </v-card-text>
-                        <v-card-actions v-if="windowSize.y > 580 &&  windowSize.x > 960 ">
-                          <v-spacer></v-spacer>
-                          <v-btn text :href="item.href">more...</v-btn>
-                        </v-card-actions>
                       </v-card>
                     </v-col>
-                  </v-row>
-                  <v-row dense>
-
                     <v-col cols="12">
                       <v-card>
                         <v-card-title>關於瑜誠</v-card-title>
@@ -368,11 +359,11 @@
       yVal: 0,
       menuItems: [
         { icon: 'mdi-home', text: '首頁', href: '/', isShowHandheld: true },
-        { icon: 'mdi-package-variant', text: '產品介紹', href: '/product', isShowHandheld: false },
-        { icon: 'mdi-phone', text: '聯絡我們', href: '/contact', isShowHandheld: true },
+        // { icon: 'mdi-package-variant', text: '產品介紹', href: '/product.html', isShowHandheld: false },
+        // { icon: 'mdi-phone', text: '聯絡我們', href: '/contact.html', isShowHandheld: true },
       ],
       linkItems: [
-        { icon: 'mdi-facebook', text: 'FaceBook', tip: 'FB', href: 'https://www.facebook.com/ychitool' },
+        { icon: 'mdi-facebook', text: 'Facebook', tip: 'FB', href: 'https://www.facebook.com/ychitool' },
         {
           icon: 'mdi-instagram', text: 'Instagram', tip: 'IG',
           href: 'https://www.instagram.com/ychitool168/'
