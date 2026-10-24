@@ -63,9 +63,6 @@
             title="瑜誠工業logo-small"></v-img>
         </a>
         <v-spacer></v-spacer>
-
-
-
       </v-app-bar>
 
       <v-navigation-drawer app v-model="isDrawer" clipped class="drawerBg" right>
@@ -113,31 +110,19 @@
       <v-main>
         <section v-if="windowSize.x > 310 && windowSize.y > 350">
           <v-row dense justify="center" class="my-1">
-
             <v-col cols="12" xl="8" lg="10" md="12" sm="12" xs="12" class="hidden-md-and-down">
               <v-card color="transparent" flat>
                 <v-toolbar flat dense color="transparent">
                   <span class="red--text"><v-img src="/local/landing/images/titleLogo.png" width="240"></v-img></span>
-                  <v-spacer></v-spacer>
-                  <v-btn text v-for="(item, index) in menuItems" :href="item.href" :key="index"
-                    :class="[item.href === ('/'+routePath) ? 'red--text' : '','']">
-                    <v-icon left>{{item.icon}}</v-icon>
-                    <span>{{ item.text }} </span>
-                  </v-btn>
+
                 </v-toolbar>
               </v-card>
             </v-col>
-            <v-col cols="12" xl="8" lg="10" md="12" sm="12" xs="12" class="hidden-lg-and-up text-center">
-              <v-btn text v-if="item.isShowHandheld" v-for="(item, index) in menuItems" :href="item.href" :key="index"
-                :class="[item.href === ('/'+routePath) ? 'red--text' : '','mx-1']">
-                <v-icon left>{{item.icon}}</v-icon>
-                <span>{{ item.text }} </span>
-              </v-btn>
-            </v-col>
+
           </v-row>
 
 
-          <section class="hidden-md-and-down"> <v-container fluid>
+          <section> <v-container fluid>
               <v-row dense justify="center">
                 <v-col cols="12" xl="8" lg="10" md="12" sm="12" xs="12">
                   <v-row dense>
@@ -182,14 +167,14 @@
                         </v-card-text>
                       </v-card>
                     </v-col>
-                    <v-col cols="12" xl="6" lg="6" md="12">
+                    <v-col cols="12">
                       <v-card min-height="500">
                         <v-img class="align-end pl-6 title" height="250" src="/local/landing/images/bottomBanner01.jpg">
                           <p class="white--text">木工凸半圓刀</p>
                         </v-img>
                         <v-card-title>我們能為您做什麼？</v-card-title>
                         <v-card-subtitle>What can I do for you?</v-card-subtitle>
-                        <v-card-text style="height: 200px;">
+                        <v-card-text>
                           我們可以提供您 鎢鋼刀具、 木工刀具、 鎢鋼微鑽頭 等精密刀具，
                           使您在使用刀具時，無後顧之憂；當您須要特殊規格刀具時，
                           我們會依您的要求， 做刀具上的修改，讓您在使用上更加順手；我們在每個產品皆有規格可提供您選擇，
@@ -199,19 +184,8 @@
                         </v-card-text>
                       </v-card>
                     </v-col>
-                    <v-col cols="12" xl="6" lg="6" md="12">
-                      <v-card min-height="500">
-                        <v-img class="align-end pl-6 title" height="250" src="/local/landing/images/bottomBanner02.jpg">
-                          <p class="white--text">鎢鋼鑽銑刀</p>
-                        </v-img>
-                        <v-card-title>資料下載</v-card-title>
-                        <v-card-subtitle>DownLoad</v-card-subtitle>
-                        <v-card-text style="height: 200px;" color="gery--text">
-                          (目前並無檔案供下載)
-                        </v-card-text>
-                      </v-card>
-                    </v-col>
-                    <v-col cols="12">
+
+                    <v-col cols=" 12">
                       <v-card :height="windowSize.x >=600 ? '' : getDefHeight">
                         <v-card-title>聯絡我們</v-card-title>
                         <v-card-subtitle>Contact Us</v-card-subtitle>
@@ -263,46 +237,9 @@
             </v-container>
           </section>
 
-          <section class="hidden-lg-and-up hidden-xs-only"> <v-container fluid>
-              <v-row dense>
-                <v-col cols="12" md="4" sm="4" v-for="(item,index) in bannerItems">
-                  <v-card :href="item.href" :height="getProductContentCardHeight">
-                    <v-img :src="`/local/landing/images/${item.src}`" class="align-end"
-                      :height="getProductContentImageHeight">
-                      <p style="background-color: rgba(255,255,255,0.5);" class="black--text mb-0 pa-2">{{ item.title }}
-                      </p>
-                    </v-img>
-                    <v-card-text v-if="windowSize.y > 580" style="height: 125px">
-                      {{ item.text }}
-                    </v-card-text>
-                    <v-card-actions v-if="windowSize.y > 580 &&  windowSize.x > 960 ">
-                      <v-spacer></v-spacer>
-                      <v-btn text :href="item.href">more...</v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-col>
-              </v-row>
-            </v-container>
-          </section>
 
-          <section class="hidden-sm-and-up"> <v-container fluid>
-              <v-row dense>
-                <v-col cols="12" v-for="(item,index) in bannerItems">
-                  <v-card :href="item.href" :height="getProductContentMobileHeight">
-                    <v-img :src="`/local/landing/images/${item.src}`" class="align-end"
-                      :height="getProductContentMobileHeight">
-                      <div style="background-color: rgba(255,255,255,0.5); width: 100%; height: 100%"
-                        class="black--text">
-                        <p class="pa-3 mb-0">{{ item.title }}</p>
-                        <v-divider color="grey" v-if="windowSize.y > 750"></v-divider>
-                        <p class="px-3 py-2 mb-0" style="font-size: 13px" v-if="windowSize.y > 750">{{ item.text }}</p>
-                      </div>
-                    </v-img>
-                  </v-card>
-                </v-col>
-              </v-row>
-            </v-container>
-          </section>
+
+
         </section>
         <v-container fluid fill-height v-else>
           <v-row dense justify="center" align="center">
@@ -376,21 +313,7 @@
       routePath: '',
       routePathParam: '',
       isDrawer: false,
-      //
-      bannerItems: [
-        {
-          title: '鎢鋼刀具', src: 'indexBanner01.jpg', srcText: '', href: '/productClass/1', class: 1,
-          text: '鎢鋼一體設計，全鎢鋼刀體及刀刃，具有極高切削能力，高精密、高耐用性之雕刻刀。適用於各種CNC加工使用。'
-        },
-        {
-          title: '木工刀具', src: 'indexBanner02.jpg', srcText: '', href: '/productClass/2', class: 2,
-          text: '焊刃材質，木頭加工的最佳選擇，可使用在路打機械使用，並可加裝培林，另我們提供特殊尺寸的訂制及設計。'
-        },
-        {
-          title: '微型鑽頭', src: 'indexBanner03.jpg', srcText: '', href: '/productClass/3', class: 3,
-          text: '刃部鎢鋼材質，柄部不銹鋼材質設計，可加工極細孔徑，極細孔徑加工的最佳選擇。'
-        }
-      ],
+
       contactItems: [
         { icon: 'mdi-phone', text: '02-2204-8967', subText: '電話', color: '', isBtn: false, },
         { icon: 'mdi-fax', text: '02-2208-0220', subText: '傳真', color: '', isBtn: false, },
@@ -400,12 +323,6 @@
           isBtn: true,
         },
         { icon: 'mdi-email', text: '0920636@gmail.com', subText: '郵件', color: '', isBtn: false, },
-      ],
-      askItems: [
-        { icon: 'mdi-chat-question-outline', text: '刀具名稱、型號、種類', subText: '告訴我們要何種刀具' },
-        { icon: 'mdi-chat-question-outline', text: '提供刃徑、刃長、柄徑、刃數等數值', subText: '刀具的規格' },
-        { icon: 'mdi-chat-question-outline', text: '提供被加工物材質，讓我們更能提供適合的刀具', subText: '被加工物材質' },
-        { icon: 'mdi-chat-question-outline', text: '提供基本所需數量，我們更能提供更好的價格', subText: '需求數' },
       ],
       /** ProductClass 該類別的產品 {Obj} */
       productClassItem: { id: 1, name: '鎢鋼銑刀' },
@@ -679,128 +596,11 @@
       onResize() {
         this.windowSize = { x: window.innerWidth, y: window.innerHeight };
       },
-      /** 取路徑 */
-      fetchPath() {
-        let path = window.location.pathname;   // 例如: /category/item/123
-        let pathParts = path.split('/');
-        // 取得第一個和第二個之間的值
-        let category = pathParts[1];
-        if (category === "") {
-          this.routePath = ''
-        } else {
-          this.routePath = category
-        }
-      },
-      fetchPathParam() {
-        let path = window.location.pathname;   // 例如: /category/item/123
-        let pathParts = path.split('/');
-        // 取得第一個和第二個之間的值
-        let param = pathParts[2];
-        if (param === "") {
-          this.routePathParam = 1
-        } else {
-          this.routePathParam = param
-        }
-      },
-      /** Product 頁面專用 */
-      /** 取得符合該 id 的類別資料 */
-      fetchProductClassItems(id) {
-        this.isErrorNotGetData = false
-        axios.get(`/local/landing/json/productClassList.json`)
-          .then(response => {
-            this.productClassListItems = response.data.productClassListItems
-            this.productClassItem = this.productClassListItems.find(item => Number(item.id) === Number(id));
-            if (this.productClassItem) {
-              console.log('Found product class:', this.productClassItem);
-            } else {
-              this.isErrorNotGetData = true
-              console.log('Product class not found');
-            }
-          })
-          .catch(error => {
-            this.isErrorNotGetData = true
-            console.log(error);
-          })
-          .finally(() => {
-          });
-      },
-      /** 取得符合該 id 的產品資料 */
-      fetchProductListItems(id) {
-        this.isErrorNotGetData = false
-        axios.get(`/local/landing/json/productList.json`)
-          .then(response => {
-            const productListItems = response.data.productListItems
-            this.productListItems = productListItems.filter(item => Number(item.productClassId) === Number(id));
-            if (this.productListItems.length > 0) {
-              console.log(this.productListItems);
-            } else {
-              this.isErrorNotGetData = true
-              console.log('No matching product classes found');
-            }
-          })
-          .catch(error => {
-            this.isErrorNotGetData = true
-            console.log(error);
-          })
-          .finally(() => {
-          });
-      },
-      /** */
-      openProductDialog(id, isImg) {
-        this.isDialogProductDetailed = true
-        this.productDetailedItem = this.productListItems.find(item => Number(item.id) === Number(id));
-        this.isJustImg = isImg
-        if (this.productDetailedItem) {
-          console.log('Found product class:', this.productDetailedItem);
-        } else {
-          this.isDialogProductDetailed = false
-        }
-      },
-      /** ProductDetailed 頁面 */
-      /** 取得產品詳細資料 */
-      fetchProductDetailedItem(id) {
-        this.isErrorNotGetData = false
-        axios.get(`/local/landing/json/productList.json`)
-          .then(response => {
-            this.productListItems = response.data.productListItems
-            this.productDetailedItem = this.productListItems.find(item => Number(item.id) === Number(id));
-            this.fetchProductClassItems(this.productDetailedItem.productClassId)
-            this.fetchProductListItems(this.productDetailedItem.productClassId)
-            if (!this.productDetailedItem) this.isErrorNotGetData = true
-          })
-          .catch(error => {
-            console.log(error);
-          })
-          .finally(() => {
-          });
-      },
-      fetchGetDetailedItem(id) {
-        this.productDetailedItem = this.productListItems.find(item => Number(item.id) === Number(id));
-        this.fetchProductClassItems(this.productDetailedItem.productClassId)
-        this.fetchProductListItems(this.productDetailedItem.productClassId)
-        document.title = this.productDetailedItem.title + ' | 瑜誠工業-工業切削刀具的專家'
-        window.history.pushState({}, '', `/productDetailed/${this.productDetailedItem.id}`);
-        this.routePathParam = this.productDetailedItem.id
-        this.toTop()
-        this.isDialogProductClass = false
-      }
+
     },
     mounted() {
       this.$vuetify.theme.dark = false;
-      this.fetchPath()
-      if (this.routePath === 'productClass' || this.routePath === 'productDetailed') {
-        // 取得 該id
-        this.fetchPathParam()
-        // 產品類別 頁面專用
-        if (this.routePath === 'productClass') {
-          this.fetchProductClassItems(this.routePathParam)
-          this.fetchProductListItems(this.routePathParam)
-        }
-        // 產品詳細資料 頁面專用
-        if (this.routePath === 'productDetailed') {
-          this.fetchProductDetailedItem(this.routePathParam)
-        }
-      }
+
     },
   })
 </script>
