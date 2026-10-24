@@ -16,16 +16,10 @@
   <meta property="og:image" content="https://www.ychi.com.tw/local/landing/images/metaImageIndex.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="icon" type="image/png" sizes="128x128" href="/local/images/favicon.ico" />
-  <!-- ICO -->
-  <link rel="icon" type="image/png" sizes="128x128" href="/local/images/favicon.ico" />
-  <!-- CSS -->
+  <link rel="icon" href="/local/images/favicon.ico" />
+
   <link href="/local/MaterialDesign/css/materialdesignicons.min.css" rel="stylesheet" />
   <link href="/local/vuetify/vuetify.min.css" rel="stylesheet" />
-  <script src="/local/vue.min.js"></script>
-  <script src="/local/axios/dist/axios.min.js"></script>
-  <script src="/local/vuetify/vuetify.min.js"></script>
-
   <link rel="stylesheet" href="/local/landing/landing.css" />
 </head>
 
@@ -34,222 +28,168 @@
   <div id="app">
     <v-app v-resize="onResize">
 
+      <!-- 桌機 / 平板頂部列 -->
       <v-app-bar app clipped-right fixed dense flat class="appBarBg hidden-xs-only">
-        <a href="http://www.ychi.com.tw" title="首頁-瑜誠工業">
-          <v-img class="hidden-xs-only" src="/local/landing/images/logo.png" max-width="200" alt="瑜誠工業Logo"
-            title="瑜誠工業logo-small"></v-img>
+        <a href="/" title="首頁-瑜誠工業">
+          <v-img src="/local/landing/images/logo.png" max-width="200" alt="瑜誠工業Logo"></v-img>
         </a>
         <v-spacer></v-spacer>
-        <v-toolbar-items class="hidden-xs-only">
-          <v-btn dark :text="windowSize.x >= 960" :icon="windowSize.x < 960" v-for="(item, index) in linkItems"
-            :href="item.href" :key="index">
-            <v-icon :left="windowSize.x >= 960">{{item.icon}}</v-icon>
-            <span v-if="windowSize.x >= 960">
-              <span v-if="windowSize.x >= 1650">{{ item.text }}</span>
-              <span v-if="windowSize.x < 1650">{{ item.tip }}</span>
-            </span>
+        <v-toolbar-items>
+          <v-btn v-for="item in linkItems" :key="item.href" :href="item.href" dark :text="!isCompact" :icon="isCompact">
+            <v-icon :left="!isCompact">{{ item.icon }}</v-icon>
+            <span v-if="!isCompact">{{ windowSize.x >= 1650 ? item.text : item.tip }}</span>
           </v-btn>
         </v-toolbar-items>
-        <v-app-bar-nav-icon class="hidden-xs-only white--text" @click="isDrawer = !isDrawer">
-        </v-app-bar-nav-icon>
+        <v-app-bar-nav-icon class="white--text" @click="isDrawer = !isDrawer"></v-app-bar-nav-icon>
       </v-app-bar>
+
+      <!-- 手機頂部列 -->
       <v-app-bar app clipped-right fixed dense flat class="appBarBgMobile hidden-sm-and-up">
-        <v-btn icon color="white" href="/">
-          <v-icon>mdi-home</v-icon>
-        </v-btn>
         <v-spacer></v-spacer>
-        <a href="http://www.ychi.com.tw" title="首頁-瑜誠工業" class="hidden-sm-and-up">
-          <v-img src="/local/landing/images/logo_small.png" max-width="90" alt="瑜誠工業Logo"
-            title="瑜誠工業logo-small"></v-img>
+        <a href="/" title="首頁-瑜誠工業">
+          <v-img src="/local/landing/images/logo_small.png" max-width="90" alt="瑜誠工業Logo"></v-img>
         </a>
         <v-spacer></v-spacer>
       </v-app-bar>
 
-      <v-navigation-drawer app v-model="isDrawer" clipped class="drawerBg" right>
-        <v-sheet dark color="transparent" class="pa-4">YCHI 瑜誠工業
-        </v-sheet>
-        <v-divider dark></v-divider>
-        <v-subheader dark>站內連結</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item v-for="(item, index) in menuItems" :key="index" :href="item.href"
-            :disabled="item.href === ('/'+routePath) ? true : false">
-            <v-list-item-icon class="white--text">
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider dark></v-divider>
-        <v-subheader dark>社群影音</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item v-for="(item, index) in linkItems" :key="index" :href="item.href">
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider dark></v-divider>
-        <v-subheader dark>賣場平台</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item v-for="(item, index) in shoppingItems" :key="index" :href="item.href">
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
+      <!-- 側邊選單 -->
+      <v-navigation-drawer app v-model="isDrawer" clipped right class="drawerBg">
+        <v-sheet dark color="transparent" class="pa-4">YCHI 瑜誠工業</v-sheet>
 
+        <template v-for="group in drawerGroups">
+          <v-divider dark :key="group.title + '-divider'"></v-divider>
+          <v-subheader dark :key="group.title + '-header'">{{ group.title }}</v-subheader>
+          <v-list dark :dense="windowSize.x < 1264" :key="group.title + '-list'">
+            <v-list-item v-for="item in group.items" :key="item.href" :href="item.href"
+              :disabled="item.href === currentPath">
+              <v-list-item-icon>
+                <v-icon :class="{ 'white--text': group.title === '站內連結' }">{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ item.text }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </template>
       </v-navigation-drawer>
+
       <v-main>
-        <section v-if="windowSize.x > 310 && windowSize.y > 350">
-          <v-row dense justify="center" class="my-1">
-            <v-col cols="12" xl="8" lg="10" md="12" sm="12" xs="12" class="hidden-md-and-down">
-              <v-card color="transparent" flat>
-                <v-toolbar flat dense color="transparent">
-                  <span class="red--text"><v-img src="/local/landing/images/titleLogo.png" width="240"></v-img></span>
+        <v-container fluid v-if="!isViewportTooSmall">
+          <v-row dense justify="center">
+            <v-col cols="12" xl="8" lg="10">
+              <v-row dense>
+                <v-col cols="12">
+                  <v-card>
+                    <v-img src="/local/landing/images/indexBanner.png" height="500" alt="瑜誠工業"></v-img>
+                  </v-card>
+                </v-col>
 
-                </v-toolbar>
-              </v-card>
-            </v-col>
+                <v-col cols="12">
+                  <v-card>
+                    <v-card-title>最新消息</v-card-title>
+                    <v-card-subtitle>News</v-card-subtitle>
+                    <v-divider></v-divider>
+                    <v-card-text>
+                      <p>歡迎來到瑜誠工業網站，本網站重置中</p>
+                      <p>我們有鎢鋼刀具、木工刀具，提供專業服務</p>
+                      <p>瑜誠工業粉專:</p>
+                      <p><a href="https://www.facebook.com/ychitool">https://www.facebook.com/ychitool</a></p>
+                      <p>在網站未修好之前，如果您有想要和我們聯係，請利用上面的FB連結與我們聯絡!</p>
+                      <p>FB 裡面有我們許多的製作的刀具產品資訊，也歡迎來電詢問!!</p>
+                    </v-card-text>
+                  </v-card>
+                </v-col>
 
-          </v-row>
+                <v-col cols="12">
+                  <v-card>
+                    <v-card-title>關於瑜誠</v-card-title>
+                    <v-card-subtitle>About Us</v-card-subtitle>
+                    <v-divider></v-divider>
+                    <v-card-text>
+                      <p class="subtitle-1">
+                        瑜誠工業有限公司，公司成立於 2012年，多年致力於全鎢鋼銑刀、木工刀具、鎢鋼微鑽頭等工業切削刀具的製造及銷售，
+                        接受特殊刀具訂制服務，我們服務的行業，跨及各個行業，電子業、汽車業、模具業、玩具模型業、玩具木工業、機械製造業、輕工業及
+                        文化創作（文創）木工產業，皆有我們公司的產品及作品，深受各界的喜愛與使用，我們將以誠心服務的精神，打造更優良的產品。
+                      </p>
+                    </v-card-text>
+                  </v-card>
+                </v-col>
 
+                <v-col cols="12">
+                  <v-card min-height="500">
+                    <v-img class="align-end pl-6 title" height="250" src="/local/landing/images/bottomBanner01.jpg"
+                      alt="木工凸半圓刀">
+                      <p class="white--text">木工凸半圓刀</p>
+                    </v-img>
+                    <v-card-title>我們能為您做什麼？</v-card-title>
+                    <v-card-subtitle>What can I do for you?</v-card-subtitle>
+                    <v-card-text>
+                      我們可以提供您鎢鋼刀具、木工刀具、鎢鋼微鑽頭等精密刀具，使您在使用刀具時，無後顧之憂；當您須要特殊規格刀具時，
+                      我們會依您的要求，做刀具上的修改，讓您在使用上更加順手；我們在每個產品皆有規格可提供您選擇，
+                      詳情請往「產品介紹」頁面。如果您找不到您所想的刀具樣式，可點選單「刀具展示」，
+                      裡面有各式刀具的圖片，以圖片的方式，方便各位找到您想要刀具樣式，從而了解如何選擇適合的刀具，
+                      如果您真的無法找到您適合的刀具，請您嘗試「聯絡我們」，我們將儘力幫您解決問題。
+                    </v-card-text>
+                  </v-card>
+                </v-col>
 
-          <section> <v-container fluid>
-              <v-row dense justify="center">
-                <v-col cols="12" xl="8" lg="10" md="12" sm="12" xs="12">
-                  <v-row dense>
-                    <v-col cols="12">
-                      <v-card>
-                        <v-img src="/local/landing/images/indexBanner.png" height="500"></v-img>
-                      </v-card>
-                    </v-col>
-                  </v-row>
+                <v-col cols="12">
+                  <v-card>
+                    <v-card-title>聯絡我們</v-card-title>
+                    <v-card-subtitle>Contact Us</v-card-subtitle>
+                    <v-divider></v-divider>
 
-                  <v-row dense>
-                    <v-col cols="12">
-                      <v-card>
-                        <v-card-title>最新消息</v-card-title>
-                        <v-card-subtitle>News</v-card-subtitle>
-                        <v-divider></v-divider>
-                        <v-card-text>
-                          <p>歡迎來到瑜誠工業網站，本網站重置中</p>
-                          <p>我們有鎢鋼刀具、木工刀具，提供專業服務</p>
-                          <p>瑜誠工業粉專:</p>
-                          <p>
-                            <a href="https://www.facebook.com/ychitool">https://www.facebook.com/ychitool</a>
-                          </p>
-                          <p>
-                            在網站未修好之前，如果您有想要和我們聯係，請利用上面的FB連結與我們聯絡!
-                          </p>
-                          <p>FB 裡面有我們許多的製作的刀具產品資訊，也歡迎來電詢問!!</p>
-                        </v-card-text>
-                      </v-card>
-                    </v-col>
-                    <v-col cols="12">
-                      <v-card>
-                        <v-card-title>關於瑜誠</v-card-title>
-                        <v-card-subtitle>About Us</v-card-subtitle>
-                        <v-divider></v-divider>
-                        <v-card-text>
-                          <p class="subtitle-1">
-                            瑜誠工業有限公司，公司成立於 2012年，多年致力於全鎢鋼銑刀、木工刀具、鎢鋼微鑽頭等工業切削刀具的製造及銷售，
-                            接受特殊刀具訂制服務，我們服務的行業，跨及各個行業，電子業、汽車業、模具業、玩具模型業、玩具木工業、機械製 造業、輕工業及
-                            文化創作（文創）木工產業，皆有我們公司的產品及作品，深受各界的喜愛與使用，我們將以誠心服務的精 神，打造更優良的產品。
-                          </p>
-                        </v-card-text>
-                      </v-card>
-                    </v-col>
-                    <v-col cols="12">
-                      <v-card min-height="500">
-                        <v-img class="align-end pl-6 title" height="250" src="/local/landing/images/bottomBanner01.jpg">
-                          <p class="white--text">木工凸半圓刀</p>
-                        </v-img>
-                        <v-card-title>我們能為您做什麼？</v-card-title>
-                        <v-card-subtitle>What can I do for you?</v-card-subtitle>
-                        <v-card-text>
-                          我們可以提供您 鎢鋼刀具、 木工刀具、 鎢鋼微鑽頭 等精密刀具，
-                          使您在使用刀具時，無後顧之憂；當您須要特殊規格刀具時，
-                          我們會依您的要求， 做刀具上的修改，讓您在使用上更加順手；我們在每個產品皆有規格可提供您選擇，
-                          詳情請往 產品介紹 頁面。如果您找不到您所 想的刀具樣式，可點選單「 刀具展示 」
-                          ，裡面有各式刀具的圖片，以圖片的方式，方便各位找到您想要刀具樣式，從而了解如何選擇適合的刀具，
-                          如果您真的 無法找到您適合的刀具，請您嘗試 聯絡我們 ，我們將儘力幫您解決問題。
-                        </v-card-text>
-                      </v-card>
-                    </v-col>
+                    <v-list>
+                      <v-list-item v-for="item in contactItems" :key="item.subText">
+                        <v-list-item-icon><v-icon>{{ item.icon }}</v-icon></v-list-item-icon>
+                        <v-list-item-content>
+                          <v-list-item-title>{{ item.text }}</v-list-item-title>
+                          <v-list-item-subtitle>{{ item.subText }}</v-list-item-subtitle>
+                        </v-list-item-content>
+                      </v-list-item>
+                    </v-list>
 
-                    <v-col cols=" 12">
-                      <v-card :height="windowSize.x >=600 ? '' : getDefHeight">
-                        <v-card-title>聯絡我們</v-card-title>
-                        <v-card-subtitle>Contact Us</v-card-subtitle>
-                        <v-divider></v-divider>
-                        <v-list class="hidden-sm-and-up">
-                          <v-list-item href="/product">
-                            <v-list-item-icon>
-                              <v-icon>mdi-package-variant</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content>
-                              <v-list-item-title>產品介紹</v-list-item-title>
-                            </v-list-item-content>
-                            <v-list-item-actions>
-                              <v-icon>mdi-link</v-icon>
-                            </v-list-item-actions>
-                          </v-list-item>
-                        </v-list>
-                        <v-divider class="hidden-sm-and-up"></v-divider>
-                        <v-list>
-                          <v-list-item v-for="(item, index) in contactItems" :key="index">
-                            <v-list-item-icon>
-                              <v-icon>{{ item.icon }}</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content>
-                              <v-list-item-title>{{ item.text }}</v-list-item-title>
-                              <v-list-item-subtitle>{{ item.subText }}</v-list-item-subtitle>
-                            </v-list-item-content>
-                          </v-list-item>
-                        </v-list>
-                        <v-divider v-if="windowSize.x >= 600"></v-divider>
-                        <v-list v-if="windowSize.x >= 600">
-                          <v-list-item v-for="(item, index) in linkItems" :key="index" :href="item.href">
-                            <v-list-item-icon>
-                              <v-icon>{{ item.icon }}</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content>
-                              <v-list-item-title>{{ item.text }}</v-list-item-title>
-                            </v-list-item-content>
-                            <v-list-item-actions>
-                              <v-icon>mdi-link</v-icon>
-                            </v-list-item-actions>
-                          </v-list-item>
-                        </v-list>
-                      </v-card>
-                    </v-col>
-                  </v-row>
+                    <template>
+                      <v-divider></v-divider>
+                      <v-list>
+                        <v-list-item v-for="item in linkItems" :key="item.href" :href="item.href">
+                          <v-list-item-icon><v-icon>{{ item.icon }}</v-icon></v-list-item-icon>
+                          <v-list-item-content>
+                            <v-list-item-title>{{ item.text }}</v-list-item-title>
+                          </v-list-item-content>
+                          <v-list-item-action><v-icon>mdi-link</v-icon></v-list-item-action>
+                        </v-list-item>
+                      </v-list>
+                    </template>
+                    <template>
+                      <v-divider></v-divider>
+                      <v-list>
+                        <v-list-item v-for="item in shoppingItems" :key="item.href" :href="item.href">
+                          <v-list-item-icon><v-icon>{{ item.icon }}</v-icon></v-list-item-icon>
+                          <v-list-item-content>
+                            <v-list-item-title>{{ item.text }}</v-list-item-title>
+                          </v-list-item-content>
+                          <v-list-item-action><v-icon>mdi-link</v-icon></v-list-item-action>
+                        </v-list-item>
+                      </v-list>
+                    </template>
+                  </v-card>
                 </v-col>
               </v-row>
-            </v-container>
-          </section>
+            </v-col>
+          </v-row>
+        </v-container>
 
-
-
-
-        </section>
+        <!-- 視窗過小提示 -->
         <v-container fluid fill-height v-else>
           <v-row dense justify="center" align="center">
-            <v-col cols="12" xl="10" lg="11" md="12" sm="12" xs="12">
+            <v-col cols="12" xl="10" lg="11">
               <v-card height="100" color="red darken-4">
                 <v-card-text class="title">
-                  <span v-if="windowSize.y < 350">
+                  <span v-if="windowSize.y <= 350">
                     此設備高不足 350px 無法顯示相關內容，請選擇適合的設備或調整視窗來觀看此網頁
                   </span>
-                  <span v-if="windowSize.x < 310">
+                  <span v-if="windowSize.x <= 310">
                     此設備寬不足 310px 無法顯示相關內容，請選擇適合的設備或調整視窗來觀看此網頁
                   </span>
                 </v-card-text>
@@ -259,350 +199,107 @@
         </v-container>
       </v-main>
 
-      <v-footer padless :fixed="windowSize.x >600 ? false : true" v-if="getIsFooterShow">
-        <v-card tile width="100%" :class="windowSize.x >600 ? 'footerBg text-center' : 'footerBgMobile text-center'">
-          <v-fade-transition>
-            <v-card-text v-if="getIsFooterShowLink">
-              <v-btn icon class="mx-3" dark v-for="(item, index) in linkItems" :href="item.href" :key="index">
-                <v-icon>{{item.icon}}</v-icon>
-              </v-btn>
-            </v-card-text>
-          </v-fade-transition>
+      <v-footer padless :fixed="isMobile" v-if="isFooterShow">
+        <v-card tile width="100%" :class="['text-center', isMobile ? 'footerBgMobile' : 'footerBg']">
+          <v-card-text v-if="!isMobile">
+            <v-btn icon dark class="mx-3" v-for="item in linkItems" :key="item.href" :href="item.href">
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-btn>
+          </v-card-text>
           <v-divider></v-divider>
           <v-card-text class="white--text">
-            © Copyright 2012-2026 瑜誠工業有限公司 版權所有
+            © Copyright 2012-{{ currentYear }} 瑜誠工業有限公司 版權所有
           </v-card-text>
         </v-card>
       </v-footer>
 
-      <v-fad-transition>
-        <v-btn fab dark fixed bottom right color="red darken-3" v-scroll="onScroll" v-show="isFab" v-on:click="toTop">
+      <!-- 回到頂端 -->
+      <v-fade-transition>
+        <v-btn fab dark fixed bottom right color="red darken-3" v-scroll="onScroll" v-show="isFab" @click="toTop">
           <v-icon>mdi-navigation</v-icon>
         </v-btn>
-      </v-fad-transition>
+      </v-fade-transition>
     </v-app>
   </div>
+
+  <script src="/local/vue.min.js"></script>
+  <script src="/local/vuetify/vuetify.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data: {
+        windowSize: { x: 0, y: 0 },
+        scrollY: 0,
+        isDrawer: false,
+        currentPath: location.pathname,
+        currentYear: new Date().getFullYear(),
+
+        menuItems: [
+          { icon: 'mdi-home', text: '首頁', href: '/' },
+        ],
+        linkItems: [
+          { icon: 'mdi-facebook', text: 'Facebook', tip: 'FB', href: 'https://www.facebook.com/ychitool' },
+          { icon: 'mdi-instagram', text: 'Instagram', tip: 'IG', href: 'https://www.instagram.com/ychitool168/' },
+          { icon: 'mdi-youtube', text: 'Youtube', tip: 'YT', href: 'https://www.youtube.com/@ychi' },
+        ],
+        shoppingItems: [
+          { icon: 'mdi-shopping', text: '蝦皮賣場', href: 'https://shopee.tw/ychitool' },
+        ],
+        contactItems: [
+          { icon: 'mdi-phone', text: '02-2204-8967', subText: '電話' },
+          { icon: 'mdi-fax', text: '02-2208-0220', subText: '傳真' },
+          { icon: 'mdi-map-marker', text: '242 新北市新莊區瓊泰路80巷17號', subText: '地址' },
+          { icon: 'mdi-alpha-l-circle-outline', text: '@zdy3796t', subText: 'LINE ID' },
+          { icon: 'mdi-email', text: '0920636@gmail.com', subText: '郵件' },
+        ],
+      },
+      computed: {
+        /** 手機版 (<600px) */
+        isMobile() {
+          return this.windowSize.x < 600
+        },
+        /** 頂部列只顯示圖示 (<960px) */
+        isCompact() {
+          return this.windowSize.x < 960
+        },
+        /** 視窗太小無法顯示內容 */
+        isViewportTooSmall() {
+          return this.windowSize.x <= 310 || this.windowSize.y <= 350
+        },
+        /** 回到頂端按鈕 */
+        isFab() {
+          return this.scrollY > 300
+        },
+        /** 手機版捲到底部時隱藏固定頁尾 */
+        isFooterShow() {
+          return !this.isMobile || this.scrollY <= this.windowSize.y - 40
+        },
+        /** 手機版聯絡卡片高度 */
+        getDefHeight() {
+          return this.windowSize.y - 260
+        },
+        drawerGroups() {
+          return [
+            { title: '站內連結', items: this.menuItems },
+            { title: '社群影音', items: this.linkItems },
+            { title: '賣場平台', items: this.shoppingItems },
+          ]
+        },
+      },
+      methods: {
+        onScroll() {
+          this.scrollY = window.pageYOffset || document.documentElement.scrollTop || 0
+        },
+        toTop() {
+          this.$vuetify.goTo(0)
+        },
+        onResize() {
+          this.windowSize = { x: window.innerWidth, y: window.innerHeight }
+        },
+      },
+    })
+  </script>
 </body>
-
-<script>
-  new Vue({
-    el: '#app',
-    vuetify: new Vuetify(),
-    data: {
-      // 共用資料
-
-      windowSize: { x: 0, y: 0 },
-      isFab: false,
-      yVal: 0,
-      menuItems: [
-        { icon: 'mdi-home', text: '首頁', href: '/', isShowHandheld: true },
-        // { icon: 'mdi-package-variant', text: '產品介紹', href: '/product.html', isShowHandheld: false },
-        // { icon: 'mdi-phone', text: '聯絡我們', href: '/contact.html', isShowHandheld: true },
-      ],
-      linkItems: [
-        { icon: 'mdi-facebook', text: 'Facebook', tip: 'FB', href: 'https://www.facebook.com/ychitool' },
-        {
-          icon: 'mdi-instagram', text: 'Instagram', tip: 'IG',
-          href: 'https://www.instagram.com/ychitool168/'
-        },
-        { icon: 'mdi-youtube', text: 'Youtube', tip: 'YT', href: 'https://www.youtube.com/@ychi' },
-      ],
-      shoppingItems: [
-        { icon: 'mdi-shopping', text: '蝦皮賣場', tip: 'SP', href: 'https://shopee.tw/ychitool' }
-      ],
-      routePath: '',
-      routePathParam: '',
-      isDrawer: false,
-
-      contactItems: [
-        { icon: 'mdi-phone', text: '02-2204-8967', subText: '電話', color: '', isBtn: false, },
-        { icon: 'mdi-fax', text: '02-2208-0220', subText: '傳真', color: '', isBtn: false, },
-        { icon: 'mdi-map-marker', text: '242 新北市新莊區瓊泰路80巷17號', subText: '地址', color: '', isBtn: false, },
-        {
-          icon: 'mdi-alpha-l-circle-outline', text: '@zdy3796t', subText: 'LINE ID', color: 'green',
-          isBtn: true,
-        },
-        { icon: 'mdi-email', text: '0920636@gmail.com', subText: '郵件', color: '', isBtn: false, },
-      ],
-      /** ProductClass 該類別的產品 {Obj} */
-      productClassItem: { id: 1, name: '鎢鋼銑刀' },
-      productClassListItems: [],
-      productListItems: [],
-      /** ProductDetailed 產品詳細資料 {Obj} */
-      productDetailedItem: { title: '', specList: [], model: '', productClass: 1 },
-      /** 沒有取得到資料 */
-      isErrorNotGetData: false,
-      /** 對話框 */
-      isDialogProductDetailed: false,
-      /** 只有開圖片 */
-      isJustImg: false,
-      /** 以列表顯示 */
-      isShowList: false,
-      isColumnNumber: 4,
-      itemsPerPage: 30,
-      isDialogProductClass: false,
-      isProductDetailedShowMode: true,
-    },
-    watch: {
-      getWindowSizeX(val) {
-        if (val < 600) {
-          this.isShowList = true
-        }
-      }
-    },
-    computed: {
-      getWindowSizeX() {
-        return this.windowSize.x
-      },
-      /** 基本容器高度 */
-      getDefHeight() {
-        return this.windowSize.y - 260
-      },
-      getIsFooterShowLink() {
-        if (this.getWindowSizeX < 600) {
-          if (this.yVal > 40) {
-            return false
-          } else {
-            return false
-          }
-        } else {
-          return true
-        }
-      },
-      getIsFooterShow() {
-        if (this.getWindowSizeX < 600) {
-          if (Number(this.yVal) > Number(this.windowSize.y - 40)) {
-            return false
-          } else {
-            return true
-          }
-        } else {
-          return true
-        }
-      },
-      /** Page:ProductContent */
-      getProductContentCardHeight() {
-        if (this.windowSize.y > 580) {
-          if (this.windowSize.x >= 1264)
-            return this.routePath !== '' ? this.getDefHeight : 450
-          else
-            return this.getDefHeight
-        } else {
-          return this.getDefHeight
-        }
-      },
-      getProductContentImageHeight() {
-        if (this.windowSize.y > 580) {
-          if (this.windowSize.x >= 1264)
-            return this.routePath !== '' ? this.getDefHeight - 180 : 250
-          else
-            return (this.windowSize.y - 250) - 180
-        } else {
-          return this.getDefHeight
-        }
-      },
-      getProductContentMobileHeight() {
-        return this.getDefHeight / 3
-      },
-      /** productDetailedItem.specList */
-      getSpecList() {
-        if (this.productDetailedItem) return this.productDetailedItem.specList
-        else return [];
-      },
-      /** 規格資料數量 */
-      getSpecListCount() {
-        return this.getSpecList.length;
-      },
-      /** 抬頭資料 */
-      getHeaders() {
-        let header = [
-          { text: "編號", align: "center", sortable: false, value: "no" },
-        ];
-        if (!this.getIsINUndefined) {
-          header.push({ text: "英制(IN)", align: "center", value: "IN" });
-        }
-        if (!this.getIsGNUndefined) {
-          header.push({ text: "稱呼(GN)", align: "center", value: "GN" });
-        }
-        if (!this.getIsMMUndefined) {
-          header.push({ text: "公制(MM)", align: "center", value: "MM" });
-        }
-        if (!this.getIsDUndefined) {
-          header.push({ text: "刃徑(D)", align: "center", value: "D" });
-        }
-        if (!this.getIsRUndefined) {
-          header.push({ text: "R徑(R)", align: "center", value: "R" });
-        }
-        if (!this.getIsMUndefined) {
-          header.push({ text: "螺孔(M)", align: "center", value: "M" });
-        }
-        if (!this.getIsDsUndefined) {
-          header.push({ text: "小徑(Ds)", align: "center", value: "Ds" });
-        }
-        if (!this.getIsDbUndefined) {
-          header.push({ text: "大徑(Db)", align: "center", value: "Db" });
-        }
-        if (!this.getIsTUndefined) {
-          header.push({ text: "台規(T)", align: "center", value: "T" });
-        }
-        if (!this.getIsHUndefined) {
-          header.push({ text: "刃長(H)", align: "center", value: "H" });
-        }
-        if (!this.getIsLUndefined) {
-          header.push({ text: "全長(L)", align: "center", value: "L" });
-        }
-        if (!this.getIsdUndefined) {
-          header.push({ text: "柄徑(d)", align: "center", value: "d" });
-        }
-        if (!this.getIsFUndefined) {
-          header.push({ text: "刃數(F)", align: "center", value: "F" });
-        }
-        if (!this.getIsNLUndefined) {
-          header.push({ text: "頸長(NL)", align: "center", value: "NL" });
-        }
-        if (!this.getIsAUndefined) {
-          header.push({ text: "角度(A)", align: "center", value: "A" });
-        }
-        if (!this.getIsCtUndefined) {
-          header.push({ text: "備註(Ct)", align: "center", value: "Ct" });
-        }
-        return header;
-      },
-      /** 確認list 的 D 欄位是否都是未定義的 */
-      getIsDUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.D === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-      /** 確認list 的 M 欄位是否都是未定義的 */
-      getIsMUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.M === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-      /** 確認list 的 T 欄位是否都是未定義的 */
-      getIsTUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.T === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-      /** 確認list 的 Ds 欄位是否都是未定義的 */
-      getIsDsUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.Ds === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-      /** 確認list 的 Db 欄位是否都是未定義的 */
-      getIsDbUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.Db === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-      /** 確認list 的 R 欄位是否都是未定義的 */
-      getIsRUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.R === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-      /** 確認list 的 H 欄位是否都是未定義的 */
-      getIsHUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.H === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-      /** 確認list 的 L 欄位是否都是未定義的 */
-      getIsLUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.L === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-      /** 確認list 的 d 欄位是否都是未定義的 */
-      getIsdUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.d === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-      /** 確認list 的 F 欄位是否都是未定義的 */
-      getIsFUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.F === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-      /** 確認list 的 NL 欄位是否都是未定義的 */
-      getIsNLUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.NL === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-      /** 確認list 的 A 欄位是否都是未定義的 */
-      getIsAUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.A === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-      /** 確認list 的 GN 欄位是否都是未定義的 */
-      getIsGNUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.GN === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-      /** 確認list 的 IN 欄位是否都是未定義的 */
-      getIsINUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.IN === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-      /** 確認list 的 MM 欄位是否都是未定義的 */
-      getIsMMUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.MM === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-      /** 確認list 的 Ct 欄位是否都是未定義的 */
-      getIsCtUndefined() {
-        let listUndefined = this.getSpecList.filter(function (item) {
-          return item.Ct === undefined;
-        });
-        return listUndefined.length === this.getSpecListCount;
-      },
-    },
-    methods: {
-      /** toTop 程式 */
-      onScroll() {
-        if (typeof window === 'undefined') return;
-        const top = window.pageYOffset || document.documentElement.offsetTop || 0;
-        this.isFab = top > 300
-        this.yVal = top
-      },
-      toTop() {
-        this.$vuetify.goTo(0);
-      },
-      /** 工作尺寸變更 */
-      onResize() {
-        this.windowSize = { x: window.innerWidth, y: window.innerHeight };
-      },
-
-    },
-    mounted() {
-      this.$vuetify.theme.dark = false;
-
-    },
-  })
-</script>
 
 </html>
