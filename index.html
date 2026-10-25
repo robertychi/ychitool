@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0d10" />
   <title>首頁 | 瑜誠工業-工業切削刀具的專家</title>
   <meta name="description" content="瑜誠工業成立於 2012 年，專營全鎢鋼銑刀、焊刃木工刀具、鎢鋼微鑽頭等工業切削刀具，提供特殊刀具訂製，服務電子、汽車、模具、木工等各行業。" />
 
@@ -18,53 +19,259 @@
 
   <link rel="icon" href="/local/images/favicon.ico" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap"
+    rel="stylesheet" />
   <link href="/local/MaterialDesign/css/materialdesignicons.min.css" rel="stylesheet" />
   <link href="/local/vuetify/vuetify.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="/local/landing/landing.css" />
+
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --surface: #13171c;
+      --surface-2: #1a2027;
+      --line: rgba(255, 255, 255, .08);
+      --text: #e9edf2;
+      --muted: #98a3b0;
+      --accent: #932023;
+      --accent-2: #d64550;
+      --radius: 16px;
+      --nav-h: 68px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    .v-application {
+      background: var(--bg) !important;
+      color: var(--text);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif !important;
+    }
+    .v-application h1, .v-application h2, .v-application h3, .v-application p { font-family: inherit; }
+    .v-main { padding-top: 0 !important; }
+    section, header.hero { scroll-margin-top: calc(var(--nav-h) + 8px); }
+
+    /* ---------- 導覽列 ---------- */
+    .nav {
+      background: transparent !important;
+      transition: background .3s ease, border-color .3s ease;
+      border-bottom: 1px solid transparent !important;
+    }
+    .nav.nav-solid {
+      background: rgba(11, 13, 16, .82) !important;
+      -webkit-backdrop-filter: saturate(1.4) blur(14px);
+      backdrop-filter: saturate(1.4) blur(14px);
+      border-bottom-color: var(--line) !important;
+    }
+    .nav-link { color: #c4ccd6 !important; letter-spacing: .08em; font-weight: 500; }
+    .nav-link:hover { color: #fff !important; }
+    .drawer { background: rgba(15, 18, 23, .98) !important; }
+
+    /* ---------- 共用元件 ---------- */
+    .grad {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+    .section { padding: 88px 0; }
+    .section-head { margin-bottom: 40px; }
+    .section-head h2 {
+      margin-top: .6rem;
+      font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .panel {
+      background: var(--surface) !important;
+      border: 1px solid var(--line);
+      border-radius: var(--radius) !important;
+      box-shadow: none !important;
+    }
+    .panel.hoverable { transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+    .panel.hoverable:hover {
+      transform: translateY(-6px);
+      border-color: rgba(147, 32, 35, .45);
+      box-shadow: 0 18px 40px -18px rgba(147, 32, 35, .35) !important;
+    }
+    .icon-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 24px -10px rgba(147, 32, 35, .7);
+    }
+    .icon-badge .v-icon { color: #fff !important; }
+    .muted { color: var(--muted); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: min(92vh, 820px);
+      padding: calc(var(--nav-h) + 48px) 0 96px;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero h1 {
+      margin: 1rem 0 1.2rem;
+      font-size: clamp(2.3rem, 6.4vw, 4.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: .02em;
+    }
+    .hero .lead {
+      max-width: 640px;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.9;
+      color: #c4ccd6;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 2rem; }
+    .btn-glow { box-shadow: 0 12px 30px -10px rgba(147, 32, 35, .7) !important; }
+
+    /* ---------- 數據列 ---------- */
+    .stats { position: relative; z-index: 2; margin-top: -56px; }
+    .stat { padding: 22px 16px; text-align: center; }
+    .stat strong { display: block; font-size: clamp(1.6rem, 3.6vw, 2.3rem); font-weight: 800; }
+    .stat span { font-size: .9rem; color: var(--muted); letter-spacing: .08em; }
+
+    /* ---------- 服務 ---------- */
+    .service { height: 100%; padding: 28px 24px; }
+    .service h3 { margin: 18px 0 8px; font-size: 1.2rem; font-weight: 700; }
+    .service p { margin: 0; line-height: 1.8; color: var(--muted); font-size: .95rem; }
+    .callout {
+      margin-top: 32px;
+      padding: 28px;
+      line-height: 2;
+      color: #c4ccd6;
+      border-left: 4px solid var(--accent) !important;
+    }
+
+    /* ---------- 關於 ---------- */
+    .about-text { font-size: 1.05rem; line-height: 2; color: #c4ccd6; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .chip {
+      padding: 6px 16px;
+      font-size: .9rem;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-2);
+    }
+    .figure { border-radius: var(--radius) !important; border: 1px solid var(--line); }
+    .figure-cap { padding: 18px 22px; font-weight: 700; letter-spacing: .08em; color: #fff; }
+
+    /* ---------- 最新消息 ---------- */
+    .news { padding: 32px; border-left: 4px solid var(--accent) !important; }
+    .news p { margin-bottom: 10px; line-height: 1.9; color: #c4ccd6; }
+    .news a { color: var(--accent-2); text-decoration: none; word-break: break-all; }
+    .news a:hover { text-decoration: underline; }
+    .tag {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 2px 12px;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      color: #fff;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    /* ---------- 聯絡 ---------- */
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      height: 100%;
+      padding: 22px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .contact-card .icon-badge { flex: none; width: 48px; height: 48px; border-radius: 12px; }
+    .contact-card small { display: block; color: var(--muted); letter-spacing: .1em; }
+    .contact-card b { font-size: 1.02rem; font-weight: 700; word-break: break-all; }
+    .contact-card .go { margin-left: auto; color: var(--muted) !important; }
+    .social { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+    /* ---------- 頁尾 ---------- */
+    .site-footer { background: #07090b !important; border-top: 1px solid var(--line); }
+    .site-footer .v-btn { color: var(--muted) !important; }
+    .site-footer .v-btn:hover { color: #fff !important; }
+
+    /* ---------- 進場動畫 ---------- */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 599px) {
+      .section { padding: 56px 0; }
+      .hero { padding: calc(var(--nav-h) + 24px) 0 80px; }
+      .stats { margin-top: -36px; }
+      .news, .callout { padding: 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
 </head>
 
-<body style="background-color:#000">
+<body>
 
   <div id="app">
-    <v-app v-resize="onResize">
+    <v-app v-resize="onResize" v-scroll="onScroll">
 
-      <!-- 桌機 / 平板頂部列 -->
-      <v-app-bar app clipped-right fixed dense flat class="appBarBg hidden-xs-only">
+      <!-- 頂部列 -->
+      <v-app-bar app fixed flat :height="68" class="nav" :class="{ 'nav-solid': isSolid }">
         <a href="/" title="首頁-瑜誠工業">
-          <v-img src="/local/landing/images/logo.png" max-width="200" alt="瑜誠工業Logo"></v-img>
+          <v-img class="hidden-xs-only" src="/local/landing/images/logo.png" max-width="180" alt="瑜誠工業Logo"></v-img>
+          <v-img class="hidden-sm-and-up" src="/local/landing/images/logo_small.png" max-width="90"
+            alt="瑜誠工業Logo"></v-img>
         </a>
         <v-spacer></v-spacer>
-        <v-toolbar-items>
-          <v-btn v-for="item in linkItems" :key="item.href" :href="item.href" dark :text="!isCompact" :icon="isCompact">
-            <v-icon :left="!isCompact">{{ item.icon }}</v-icon>
-            <span v-if="!isCompact">{{ windowSize.x >= 1650 ? item.text : item.tip }}</span>
+
+        <v-toolbar-items class="hidden-sm-only hidden-xs-only align-center">
+          <v-btn text class="nav-link" v-for="item in navItems" :key="item.href" :href="item.href">{{ item.text }}</v-btn>
+          <v-btn icon small class="nav-link ml-2" v-for="item in linkItems" :key="item.href" :href="item.href"
+            target="_blank" rel="noopener" :title="item.text">
+            <v-icon>{{ item.icon }}</v-icon>
           </v-btn>
         </v-toolbar-items>
-        <v-app-bar-nav-icon class="white--text" @click="isDrawer = !isDrawer"></v-app-bar-nav-icon>
-      </v-app-bar>
 
-      <!-- 手機頂部列 -->
-      <v-app-bar app clipped-right fixed dense flat class="appBarBgMobile hidden-sm-and-up">
-        <v-spacer></v-spacer>
-        <a href="/" title="首頁-瑜誠工業">
-          <v-img src="/local/landing/images/logo_small.png" max-width="90" alt="瑜誠工業Logo"></v-img>
-        </a>
-        <v-spacer></v-spacer>
+        <v-app-bar-nav-icon class="hidden-md-and-up white--text" @click="isDrawer = !isDrawer"></v-app-bar-nav-icon>
       </v-app-bar>
 
       <!-- 側邊選單 -->
-      <v-navigation-drawer app v-model="isDrawer" clipped right class="drawerBg">
-        <v-sheet dark color="transparent" class="pa-4">YCHI 瑜誠工業</v-sheet>
+      <v-navigation-drawer v-model="isDrawer" temporary fixed right width="280" class="drawer">
+        <v-sheet color="transparent" class="pa-4 font-weight-bold">YCHI 瑜誠工業</v-sheet>
 
         <template v-for="group in drawerGroups">
-          <v-divider dark :key="group.title + '-divider'"></v-divider>
-          <v-subheader dark :key="group.title + '-header'">{{ group.title }}</v-subheader>
-          <v-list dark :dense="windowSize.x < 1264" :key="group.title + '-list'">
+          <v-divider :key="group.title + '-divider'"></v-divider>
+          <v-subheader :key="group.title + '-header'">{{ group.title }}</v-subheader>
+          <v-list :key="group.title + '-list'">
             <v-list-item v-for="item in group.items" :key="item.href" :href="item.href"
-              :disabled="item.href === currentPath">
-              <v-list-item-icon>
-                <v-icon :class="{ 'white--text': group.title === '站內連結' }">{{ item.icon }}</v-icon>
-              </v-list-item-icon>
+              :disabled="item.href === currentPath" @click="isDrawer = false">
+              <v-list-item-icon><v-icon>{{ item.icon }}</v-icon></v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title>{{ item.text }}</v-list-item-title>
               </v-list-item-content>
@@ -74,111 +281,140 @@
       </v-navigation-drawer>
 
       <v-main>
-        <v-container fluid v-if="!isViewportTooSmall">
-          <v-row dense justify="center">
-            <v-col cols="12" xl="8" lg="10">
-              <v-row dense>
-                <v-col cols="12">
-                  <v-card>
-                    <v-img src="/local/landing/images/indexBanner.png" height="500" alt="瑜誠工業"></v-img>
-                  </v-card>
+        <div v-if="!isViewportTooSmall">
+
+          <!-- Hero -->
+          <header class="hero"
+            style="background-image: linear-gradient(to bottom, rgba(11,13,16,.55) 0%, rgba(11,13,16,.78) 70%, #0b0d10 100%), url('/local/landing/images/indexBanner.png')">
+            <v-container>
+              <v-row>
+                <v-col cols="12" md="9" lg="8" v-reveal>
+                  <span class="eyebrow">Since 2012 · YCHI Industrial</span>
+                  <h1>工業切削<span class="grad">刀具</span>的專家</h1>
+                  <p class="lead">
+                    專營全鎢鋼銑刀、焊刃木工刀具、鎢鋼微鑽頭等工業切削刀具，並接受特殊刀具訂製，以誠心服務的精神，打造更優良的產品。
+                  </p>
+                  <div class="hero-actions">
+                    <v-btn x-large rounded color="primary" class="btn-glow" href="#contact">
+                      <v-icon left>mdi-phone</v-icon>聯絡我們
+                    </v-btn>
+                    <v-btn x-large rounded outlined color="white" href="https://www.facebook.com/ychitool"
+                      target="_blank" rel="noopener">
+                      <v-icon left>mdi-facebook</v-icon>瀏覽粉絲專頁
+                    </v-btn>
+                  </div>
                 </v-col>
+              </v-row>
+            </v-container>
+          </header>
 
-                <v-col cols="12">
-                  <v-card>
-                    <v-card-title>最新消息</v-card-title>
-                    <v-card-subtitle>News</v-card-subtitle>
-                    <v-divider></v-divider>
-                    <v-card-text>
-                      <p>歡迎來到瑜誠工業網站，本網站重置中</p>
-                      <p>我們有鎢鋼刀具、木工刀具，提供專業服務</p>
-                      <p>瑜誠工業粉專:</p>
-                      <p><a href="https://www.facebook.com/ychitool">https://www.facebook.com/ychitool</a></p>
-                      <p>在網站未修好之前，如果您有想要和我們聯係，請利用上面的FB連結與我們聯絡!</p>
-                      <p>FB 裡面有我們許多的製作的刀具產品資訊，也歡迎來電詢問!!</p>
-                    </v-card-text>
-                  </v-card>
-                </v-col>
+          <!-- 數據列 -->
+          <v-container class="stats">
+            <v-row dense>
+              <v-col cols="6" md="3" v-for="(stat, i) in stats" :key="stat.label" v-reveal="i * 100">
+                <v-card class="panel stat">
+                  <strong class="grad">{{ stat.value }}</strong>
+                  <span>{{ stat.label }}</span>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
 
-                <v-col cols="12">
-                  <v-card>
-                    <v-card-title>關於瑜誠</v-card-title>
-                    <v-card-subtitle>About Us</v-card-subtitle>
-                    <v-divider></v-divider>
-                    <v-card-text>
-                      <p class="subtitle-1">
-                        瑜誠工業有限公司，公司成立於 2012年，多年致力於全鎢鋼銑刀、木工刀具、鎢鋼微鑽頭等工業切削刀具的製造及銷售，
-                        接受特殊刀具訂制服務，我們服務的行業，跨及各個行業，電子業、汽車業、模具業、玩具模型業、玩具木工業、機械製造業、輕工業及
-                        文化創作（文創）木工產業，皆有我們公司的產品及作品，深受各界的喜愛與使用，我們將以誠心服務的精神，打造更優良的產品。
-                      </p>
-                    </v-card-text>
-                  </v-card>
-                </v-col>
-
-                <v-col cols="12">
-                  <v-card min-height="500">
-                    <v-img class="align-end pl-6 title" height="250" src="/local/landing/images/bottomBanner01.jpg"
-                      alt="木工凸半圓刀">
-                      <p class="white--text">木工凸半圓刀</p>
-                    </v-img>
-                    <v-card-title>我們能為您做什麼？</v-card-title>
-                    <v-card-subtitle>What can I do for you?</v-card-subtitle>
-                    <v-card-text>
-                      我們可以提供您鎢鋼刀具、木工刀具、鎢鋼微鑽頭等精密刀具，使您在使用刀具時，無後顧之憂；當您須要特殊規格刀具時，
-                      我們會依您的要求，做刀具上的修改，讓您在使用上更加順手；我們在每個產品皆有規格可提供您選擇，
-                      詳情請往「產品介紹」頁面。如果您找不到您所想的刀具樣式，可點選單「刀具展示」，
-                      裡面有各式刀具的圖片，以圖片的方式，方便各位找到您想要刀具樣式，從而了解如何選擇適合的刀具，
-                      如果您真的無法找到您適合的刀具，請您嘗試「聯絡我們」，我們將儘力幫您解決問題。
-                    </v-card-text>
-                  </v-card>
-                </v-col>
-
-                <v-col cols="12">
-                  <v-card>
-                    <v-card-title>聯絡我們</v-card-title>
-                    <v-card-subtitle>Contact Us</v-card-subtitle>
-                    <v-divider></v-divider>
-
-                    <v-list>
-                      <v-list-item v-for="item in contactItems" :key="item.subText">
-                        <v-list-item-icon><v-icon>{{ item.icon }}</v-icon></v-list-item-icon>
-                        <v-list-item-content>
-                          <v-list-item-title>{{ item.text }}</v-list-item-title>
-                          <v-list-item-subtitle>{{ item.subText }}</v-list-item-subtitle>
-                        </v-list-item-content>
-                      </v-list-item>
-                    </v-list>
-
-                    <template>
-                      <v-divider></v-divider>
-                      <v-list>
-                        <v-list-item v-for="item in linkItems" :key="item.href" :href="item.href">
-                          <v-list-item-icon><v-icon>{{ item.icon }}</v-icon></v-list-item-icon>
-                          <v-list-item-content>
-                            <v-list-item-title>{{ item.text }}</v-list-item-title>
-                          </v-list-item-content>
-                          <v-list-item-action><v-icon>mdi-link</v-icon></v-list-item-action>
-                        </v-list-item>
-                      </v-list>
-                    </template>
-                    <template>
-                      <v-divider></v-divider>
-                      <v-list>
-                        <v-list-item v-for="item in shoppingItems" :key="item.href" :href="item.href">
-                          <v-list-item-icon><v-icon>{{ item.icon }}</v-icon></v-list-item-icon>
-                          <v-list-item-content>
-                            <v-list-item-title>{{ item.text }}</v-list-item-title>
-                          </v-list-item-content>
-                          <v-list-item-action><v-icon>mdi-link</v-icon></v-list-item-action>
-                        </v-list-item>
-                      </v-list>
-                    </template>
+          <!-- 服務項目 -->
+          <section id="services" class="section">
+            <v-container>
+              <section-head en="What can I do for you?" title="我們能為您做什麼？"></section-head>
+              <v-row>
+                <v-col cols="12" sm="6" lg="3" v-for="(item, i) in services" :key="item.title" v-reveal="i * 100">
+                  <v-card class="panel hoverable service">
+                    <span class="icon-badge"><v-icon large>{{ item.icon }}</v-icon></span>
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.desc }}</p>
                   </v-card>
                 </v-col>
               </v-row>
-            </v-col>
-          </v-row>
-        </v-container>
+              <v-card class="panel callout" v-reveal>
+                我們可以提供您鎢鋼刀具、木工刀具、鎢鋼微鑽頭等精密刀具，使您在使用刀具時，無後顧之憂；當您須要特殊規格刀具時，
+                我們會依您的要求，做刀具上的修改，讓您在使用上更加順手；我們在每個產品皆有規格可提供您選擇，
+                詳情請往「產品介紹」頁面。如果您找不到您所想的刀具樣式，可點選單「刀具展示」，
+                裡面有各式刀具的圖片，以圖片的方式，方便各位找到您想要刀具樣式，從而了解如何選擇適合的刀具，
+                如果您真的無法找到您適合的刀具，請您嘗試「聯絡我們」，我們將儘力幫您解決問題。
+              </v-card>
+            </v-container>
+          </section>
+
+          <!-- 關於瑜誠 -->
+          <section id="about" class="section" style="background: var(--surface)">
+            <v-container>
+              <section-head en="About Us" title="關於瑜誠"></section-head>
+              <v-row align="center">
+                <v-col cols="12" md="7" v-reveal>
+                  <p class="about-text">
+                    瑜誠工業有限公司，公司成立於 2012年，多年致力於全鎢鋼銑刀、木工刀具、鎢鋼微鑽頭等工業切削刀具的製造及銷售，
+                    接受特殊刀具訂制服務，我們服務的行業，跨及各個行業，電子業、汽車業、模具業、玩具模型業、玩具木工業、機械製造業、輕工業及
+                    文化創作（文創）木工產業，皆有我們公司的產品及作品，深受各界的喜愛與使用，我們將以誠心服務的精神，打造更優良的產品。
+                  </p>
+                  <div class="chips">
+                    <span class="chip" v-for="name in industries" :key="name">{{ name }}</span>
+                  </div>
+                </v-col>
+                <v-col cols="12" md="5" v-reveal="150">
+                  <v-img class="figure align-end" :aspect-ratio="4 / 3" src="/local/landing/images/bottomBanner01.jpg"
+                    alt="木工凸半圓刀" gradient="to top, rgba(0,0,0,.75), transparent 45%">
+                    <div class="figure-cap">木工凸半圓刀</div>
+                  </v-img>
+                </v-col>
+              </v-row>
+            </v-container>
+          </section>
+
+          <!-- 最新消息 -->
+          <section id="news" class="section">
+            <v-container>
+              <section-head en="News" title="最新消息"></section-head>
+              <v-card class="panel news" v-reveal>
+                <span class="tag">NOTICE</span>
+                <p>歡迎來到瑜誠工業網站，本網站重置中</p>
+                <p>我們有鎢鋼刀具、木工刀具，提供專業服務</p>
+                <p>瑜誠工業粉專：<a href="https://www.facebook.com/ychitool" target="_blank"
+                    rel="noopener">https://www.facebook.com/ychitool</a></p>
+                <p>在網站未修好之前，如果您有想要和我們聯係，請利用上面的FB連結與我們聯絡!</p>
+                <p>FB 裡面有我們許多的製作的刀具產品資訊，也歡迎來電詢問!!</p>
+                <v-btn rounded color="primary" class="mt-3" href="https://www.facebook.com/ychitool" target="_blank"
+                  rel="noopener">
+                  <v-icon left>mdi-facebook</v-icon>前往粉絲專頁
+                </v-btn>
+              </v-card>
+            </v-container>
+          </section>
+
+          <!-- 聯絡我們 -->
+          <section id="contact" class="section" style="background: var(--surface)">
+            <v-container>
+              <section-head en="Contact Us" title="聯絡我們"></section-head>
+              <v-row>
+                <v-col cols="12" sm="6" lg="4" v-for="(item, i) in contactItems" :key="item.label" v-reveal="i * 80">
+                  <component :is="item.href ? 'a' : 'div'" class="panel contact-card"
+                    :class="{ hoverable: item.href }" :href="item.href"
+                    :target="item.external ? '_blank' : null" :rel="item.external ? 'noopener' : null">
+                    <span class="icon-badge"><v-icon>{{ item.icon }}</v-icon></span>
+                    <div>
+                      <small>{{ item.label }}</small>
+                      <b>{{ item.text }}</b>
+                    </div>
+                    <v-icon v-if="item.href" class="go">mdi-chevron-right</v-icon>
+                  </component>
+                </v-col>
+              </v-row>
+              <div class="social" v-reveal>
+                <v-btn rounded outlined color="white" v-for="item in socialItems" :key="item.href" :href="item.href"
+                  target="_blank" rel="noopener">
+                  <v-icon left>{{ item.icon }}</v-icon>{{ item.text }}
+                </v-btn>
+              </div>
+            </v-container>
+          </section>
+        </div>
 
         <!-- 視窗過小提示 -->
         <v-container fluid fill-height v-else>
@@ -199,24 +435,33 @@
         </v-container>
       </v-main>
 
-      <v-footer padless :fixed="isMobile" v-if="isFooterShow">
-        <v-card tile width="100%" :class="['text-center', isMobile ? 'footerBgMobile' : 'footerBg']">
-          <v-card-text v-if="!isMobile">
-            <v-btn icon dark class="mx-3" v-for="item in linkItems" :key="item.href" :href="item.href">
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-btn>
-          </v-card-text>
-          <v-divider></v-divider>
-          <v-card-text class="white--text">
+      <!-- 頁尾 -->
+      <v-footer padless class="site-footer">
+        <v-container>
+          <v-row align="center" justify="space-between" class="text-center text-md-left">
+            <v-col cols="12" md="auto">
+              <v-img class="mx-auto" src="/local/landing/images/logo_small.png" max-width="90"
+                alt="瑜誠工業Logo"></v-img>
+            </v-col>
+            <v-col cols="12" md="auto">
+              <v-btn icon class="mx-1" v-for="item in socialItems" :key="item.href" :href="item.href" target="_blank"
+                rel="noopener" :title="item.text">
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
+          <v-divider class="my-4"></v-divider>
+          <div class="text-center muted" style="font-size: .85rem">
             © Copyright 2012-{{ currentYear }} 瑜誠工業有限公司 版權所有
-          </v-card-text>
-        </v-card>
+          </div>
+        </v-container>
       </v-footer>
 
       <!-- 回到頂端 -->
       <v-fade-transition>
-        <v-btn fab dark fixed bottom right color="red darken-3" v-scroll="onScroll" v-show="isFab" @click="toTop">
-          <v-icon>mdi-navigation</v-icon>
+        <v-btn fab dark fixed bottom right color="primary" class="btn-glow" v-show="isFab" @click="toTop"
+          aria-label="回到頂端">
+          <v-icon>mdi-chevron-up</v-icon>
         </v-btn>
       </v-fade-transition>
     </v-app>
@@ -225,63 +470,107 @@
   <script src="/local/vue.min.js"></script>
   <script src="/local/vuetify/vuetify.min.js"></script>
   <script>
+    /** 捲動進場動畫：v-reveal 或 v-reveal="延遲毫秒" */
+    Vue.directive('reveal', {
+      inserted(el, binding) {
+        const delay = Number(binding.value) || 0
+        if (!('IntersectionObserver' in window)) return
+        el.classList.add('reveal')
+        el.style.transitionDelay = delay + 'ms'
+        const io = new IntersectionObserver(([entry]) => {
+          if (!entry.isIntersecting) return
+          io.disconnect()
+          el.classList.add('in')
+          // 動畫結束後移除，避免影響 hover 等效果
+          setTimeout(() => {
+            el.classList.remove('reveal', 'in')
+            el.style.transitionDelay = ''
+          }, 800 + delay)
+        }, { threshold: 0.12 })
+        io.observe(el)
+      },
+    })
+
+    /** 區塊標題 */
+    Vue.component('section-head', {
+      props: { en: String, title: String },
+      template: '<div class="section-head" v-reveal><span class="eyebrow">{{ en }}</span><h2>{{ title }}</h2></div>',
+    })
+
     new Vue({
       el: '#app',
-      vuetify: new Vuetify(),
+      vuetify: new Vuetify({
+        theme: {
+          dark: true,
+          themes: { dark: { primary: '#932023' } },
+        },
+      }),
       data: {
-        windowSize: { x: 0, y: 0 },
-        scrollY: 0,
+        windowSize: { x: window.innerWidth, y: window.innerHeight },
+        scrollY: window.pageYOffset || 0,
         isDrawer: false,
         currentPath: location.pathname,
         currentYear: new Date().getFullYear(),
 
-        menuItems: [
-          { icon: 'mdi-home', text: '首頁', href: '/' },
+        navItems: [
+          { icon: 'mdi-cog', text: '服務項目', href: '#services' },
+          { icon: 'mdi-information-outline', text: '關於瑜誠', href: '#about' },
+          { icon: 'mdi-newspaper', text: '最新消息', href: '#news' },
+          { icon: 'mdi-phone', text: '聯絡我們', href: '#contact' },
         ],
         linkItems: [
-          { icon: 'mdi-facebook', text: 'Facebook', tip: 'FB', href: 'https://www.facebook.com/ychitool' },
-          { icon: 'mdi-instagram', text: 'Instagram', tip: 'IG', href: 'https://www.instagram.com/ychitool168/' },
-          { icon: 'mdi-youtube', text: 'Youtube', tip: 'YT', href: 'https://www.youtube.com/@ychi' },
+          { icon: 'mdi-facebook', text: 'Facebook', href: 'https://www.facebook.com/ychitool' },
+          { icon: 'mdi-instagram', text: 'Instagram', href: 'https://www.instagram.com/ychitool168/' },
+          { icon: 'mdi-youtube', text: 'Youtube', href: 'https://www.youtube.com/@ychi' },
         ],
         shoppingItems: [
           { icon: 'mdi-shopping', text: '蝦皮賣場', href: 'https://shopee.tw/ychitool' },
         ],
+        services: [
+          { icon: 'mdi-diamond-stone', title: '全鎢鋼銑刀', desc: '以全鎢鋼製作的工業切削刀具，適用電子、汽車、模具等精密加工。' },
+          { icon: 'mdi-tree', title: '木工刀具', desc: '焊刃木工刀具與木工凸半圓刀，深受玩具木工與文創木工產業喜愛。' },
+          { icon: 'mdi-target', title: '鎢鋼微鑽頭', desc: '精密的鎢鋼微鑽頭，讓您在使用刀具時無後顧之憂。' },
+          { icon: 'mdi-pencil-ruler', title: '特殊刀具訂製', desc: '依您的需求調整刀具規格，讓每一次加工都更加順手。' },
+        ],
+        industries: ['電子業', '汽車業', '模具業', '玩具模型業', '玩具木工業', '機械製造業', '輕工業', '文創木工產業'],
         contactItems: [
-          { icon: 'mdi-phone', text: '02-2204-8967', subText: '電話' },
-          { icon: 'mdi-fax', text: '02-2208-0220', subText: '傳真' },
-          { icon: 'mdi-map-marker', text: '242 新北市新莊區瓊泰路80巷17號', subText: '地址' },
-          { icon: 'mdi-alpha-l-circle-outline', text: '@zdy3796t', subText: 'LINE ID' },
-          { icon: 'mdi-email', text: '0920636@gmail.com', subText: '郵件' },
+          { icon: 'mdi-phone', label: '電話', text: '02-2204-8967', href: 'tel:+886222048967' },
+          { icon: 'mdi-fax', label: '傳真', text: '02-2208-0220' },
+          {
+            icon: 'mdi-map-marker', label: '地址', text: '242 新北市新莊區瓊泰路80巷17號', external: true,
+            href: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('新北市新莊區瓊泰路80巷17號'),
+          },
+          { icon: 'mdi-alpha-l-circle-outline', label: 'LINE ID', text: '@zdy3796t', external: true, href: 'https://line.me/R/ti/p/@zdy3796t' },
+          { icon: 'mdi-email', label: '郵件', text: '0920636@gmail.com', href: 'mailto:0920636@gmail.com' },
         ],
       },
       computed: {
-        /** 手機版 (<600px) */
-        isMobile() {
-          return this.windowSize.x < 600
-        },
-        /** 頂部列只顯示圖示 (<960px) */
-        isCompact() {
-          return this.windowSize.x < 960
-        },
         /** 視窗太小無法顯示內容 */
         isViewportTooSmall() {
           return this.windowSize.x <= 310 || this.windowSize.y <= 350
+        },
+        /** 頂部列捲動後改為實心毛玻璃 */
+        isSolid() {
+          return this.scrollY > 40
         },
         /** 回到頂端按鈕 */
         isFab() {
           return this.scrollY > 300
         },
-        /** 手機版捲到底部時隱藏固定頁尾 */
-        isFooterShow() {
-          return !this.isMobile || this.scrollY <= this.windowSize.y - 40
+        stats() {
+          return [
+            { value: this.currentYear - 2012 + '+', label: '年專業經驗' },
+            { value: '3', label: '大主力刀具' },
+            { value: this.industries.length, label: '服務產業類別' },
+            { value: '客製', label: '特殊刀具訂製' },
+          ]
         },
-        /** 手機版聯絡卡片高度 */
-        getDefHeight() {
-          return this.windowSize.y - 260
+        socialItems() {
+          return [...this.linkItems, ...this.shoppingItems]
         },
         drawerGroups() {
           return [
-            { title: '站內連結', items: this.menuItems },
+            { title: '站內連結', items: [{ icon: 'mdi-home', text: '首頁', href: '/' }, ...this.navItems] },
             { title: '社群影音', items: this.linkItems },
             { title: '賣場平台', items: this.shoppingItems },
           ]
