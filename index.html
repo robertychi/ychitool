@@ -40,16 +40,31 @@
       --nav-h: 68px;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     .v-application {
       background: var(--bg) !important;
       color: var(--text);
       font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif !important;
     }
-    .v-application h1, .v-application h2, .v-application h3, .v-application p { font-family: inherit; }
-    .v-main { padding-top: 0 !important; }
-    section, header.hero { scroll-margin-top: calc(var(--nav-h) + 8px); }
+
+    .v-application h1,
+    .v-application h2,
+    .v-application h3,
+    .v-application p {
+      font-family: inherit;
+    }
+
+    .v-main {
+      padding-top: 0 !important;
+    }
+
+    section,
+    header.hero {
+      scroll-margin-top: calc(var(--nav-h) + 8px);
+    }
 
     /* ---------- 導覽列 ---------- */
     .nav {
@@ -57,15 +72,27 @@
       transition: background .3s ease, border-color .3s ease;
       border-bottom: 1px solid transparent !important;
     }
+
     .nav.nav-solid {
       background: rgba(11, 13, 16, .82) !important;
       -webkit-backdrop-filter: saturate(1.4) blur(14px);
       backdrop-filter: saturate(1.4) blur(14px);
       border-bottom-color: var(--line) !important;
     }
-    .nav-link { color: #c4ccd6 !important; letter-spacing: .08em; font-weight: 500; }
-    .nav-link:hover { color: #fff !important; }
-    .drawer { background: rgba(15, 18, 23, .98) !important; }
+
+    .nav-link {
+      color: #c4ccd6 !important;
+      letter-spacing: .08em;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      color: #fff !important;
+    }
+
+    .drawer {
+      background: rgba(15, 18, 23, .98) !important;
+    }
 
     /* ---------- 共用元件 ---------- */
     .grad {
@@ -74,6 +101,7 @@
       background-clip: text;
       color: transparent;
     }
+
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -84,32 +112,46 @@
       text-transform: uppercase;
       color: var(--accent-2);
     }
+
     .eyebrow::before {
       content: "";
       width: 28px;
       height: 2px;
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
     }
-    .section { padding: 88px 0; }
-    .section-head { margin-bottom: 40px; }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .section-head {
+      margin-bottom: 40px;
+    }
+
     .section-head h2 {
       margin-top: .6rem;
       font-size: clamp(1.6rem, 3.4vw, 2.4rem);
       font-weight: 800;
       letter-spacing: .02em;
     }
+
     .panel {
       background: var(--surface) !important;
       border: 1px solid var(--line);
       border-radius: var(--radius) !important;
       box-shadow: none !important;
     }
-    .panel.hoverable { transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+
+    .panel.hoverable {
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+
     .panel.hoverable:hover {
       transform: translateY(-6px);
       border-color: rgba(147, 32, 35, .45);
       box-shadow: 0 18px 40px -18px rgba(147, 32, 35, .35) !important;
     }
+
     .icon-badge {
       display: inline-flex;
       align-items: center;
@@ -120,8 +162,14 @@
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       box-shadow: 0 10px 24px -10px rgba(147, 32, 35, .7);
     }
-    .icon-badge .v-icon { color: #fff !important; }
-    .muted { color: var(--muted); }
+
+    .icon-badge .v-icon {
+      color: #fff !important;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
 
     /* ---------- Hero ---------- */
     .hero {
@@ -133,6 +181,7 @@
       background-size: cover;
       background-position: center;
     }
+
     .hero h1 {
       margin: 1rem 0 1.2rem;
       font-size: clamp(2.3rem, 6.4vw, 4.4rem);
@@ -140,25 +189,68 @@
       line-height: 1.15;
       letter-spacing: .02em;
     }
+
     .hero .lead {
       max-width: 640px;
       font-size: clamp(1rem, 2vw, 1.2rem);
       line-height: 1.9;
       color: #c4ccd6;
     }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 2rem; }
-    .btn-glow { box-shadow: 0 12px 30px -10px rgba(147, 32, 35, .7) !important; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 2rem;
+    }
+
+    .btn-glow {
+      box-shadow: 0 12px 30px -10px rgba(147, 32, 35, .7) !important;
+    }
 
     /* ---------- 數據列 ---------- */
-    .stats { position: relative; z-index: 2; margin-top: -56px; }
-    .stat { padding: 22px 16px; text-align: center; }
-    .stat strong { display: block; font-size: clamp(1.6rem, 3.6vw, 2.3rem); font-weight: 800; }
-    .stat span { font-size: .9rem; color: var(--muted); letter-spacing: .08em; }
+    .stats {
+      position: relative;
+      z-index: 2;
+      margin-top: -56px;
+    }
+
+    .stat {
+      padding: 22px 16px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(1.6rem, 3.6vw, 2.3rem);
+      font-weight: 800;
+    }
+
+    .stat span {
+      font-size: .9rem;
+      color: var(--muted);
+      letter-spacing: .08em;
+    }
 
     /* ---------- 服務 ---------- */
-    .service { height: 100%; padding: 28px 24px; }
-    .service h3 { margin: 18px 0 8px; font-size: 1.2rem; font-weight: 700; }
-    .service p { margin: 0; line-height: 1.8; color: var(--muted); font-size: .95rem; }
+    .service {
+      height: 100%;
+      padding: 28px 24px;
+    }
+
+    .service h3 {
+      margin: 18px 0 8px;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .service p {
+      margin: 0;
+      line-height: 1.8;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
     .callout {
       margin-top: 32px;
       padding: 28px;
@@ -168,8 +260,19 @@
     }
 
     /* ---------- 關於 ---------- */
-    .about-text { font-size: 1.05rem; line-height: 2; color: #c4ccd6; }
-    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .about-text {
+      font-size: 1.05rem;
+      line-height: 2;
+      color: #c4ccd6;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
     .chip {
       padding: 6px 16px;
       font-size: .9rem;
@@ -178,14 +281,41 @@
       border-radius: 999px;
       background: var(--surface-2);
     }
-    .figure { border-radius: var(--radius) !important; border: 1px solid var(--line); }
-    .figure-cap { padding: 18px 22px; font-weight: 700; letter-spacing: .08em; color: #fff; }
+
+    .figure {
+      border-radius: var(--radius) !important;
+      border: 1px solid var(--line);
+    }
+
+    .figure-cap {
+      padding: 18px 22px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: #fff;
+    }
 
     /* ---------- 最新消息 ---------- */
-    .news { padding: 32px; border-left: 4px solid var(--accent) !important; }
-    .news p { margin-bottom: 10px; line-height: 1.9; color: #c4ccd6; }
-    .news a { color: var(--accent-2); text-decoration: none; word-break: break-all; }
-    .news a:hover { text-decoration: underline; }
+    .news {
+      padding: 32px;
+      border-left: 4px solid var(--accent) !important;
+    }
+
+    .news p {
+      margin-bottom: 10px;
+      line-height: 1.9;
+      color: #c4ccd6;
+    }
+
+    .news a {
+      color: var(--accent-2);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .news a:hover {
+      text-decoration: underline;
+    }
+
     .tag {
       display: inline-block;
       margin-bottom: 14px;
@@ -208,30 +338,93 @@
       text-decoration: none;
       color: inherit;
     }
-    .contact-card .icon-badge { flex: none; width: 48px; height: 48px; border-radius: 12px; }
-    .contact-card small { display: block; color: var(--muted); letter-spacing: .1em; }
-    .contact-card b { font-size: 1.02rem; font-weight: 700; word-break: break-all; }
-    .contact-card .go { margin-left: auto; color: var(--muted) !important; }
-    .social { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+    .contact-card .icon-badge {
+      flex: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+    }
+
+    .contact-card small {
+      display: block;
+      color: var(--muted);
+      letter-spacing: .1em;
+    }
+
+    .contact-card b {
+      font-size: 1.02rem;
+      font-weight: 700;
+      word-break: break-all;
+    }
+
+    .contact-card .go {
+      margin-left: auto;
+      color: var(--muted) !important;
+    }
+
+    .social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
 
     /* ---------- 頁尾 ---------- */
-    .site-footer { background: #07090b !important; border-top: 1px solid var(--line); }
-    .site-footer .v-btn { color: var(--muted) !important; }
-    .site-footer .v-btn:hover { color: #fff !important; }
+    .site-footer {
+      background: #07090b !important;
+      border-top: 1px solid var(--line);
+    }
+
+    .site-footer .v-btn {
+      color: var(--muted) !important;
+    }
+
+    .site-footer .v-btn:hover {
+      color: #fff !important;
+    }
 
     /* ---------- 進場動畫 ---------- */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.in { opacity: 1; transform: none; }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
 
     @media (max-width: 599px) {
-      .section { padding: 56px 0; }
-      .hero { padding: calc(var(--nav-h) + 24px) 0 80px; }
-      .stats { margin-top: -36px; }
-      .news, .callout { padding: 22px; }
+      .section {
+        padding: 56px 0;
+      }
+
+      .hero {
+        padding: calc(var(--nav-h) + 24px) 0 80px;
+      }
+
+      .stats {
+        margin-top: -36px;
+      }
+
+      .news,
+      .callout {
+        padding: 22px;
+      }
     }
+
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .reveal { opacity: 1; transform: none; transition: none; }
+      html {
+        scroll-behavior: auto;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
     }
   </style>
 </head>
@@ -251,7 +444,8 @@
         <v-spacer></v-spacer>
 
         <v-toolbar-items class="hidden-sm-only hidden-xs-only align-center">
-          <v-btn text class="nav-link" v-for="item in navItems" :key="item.href" :href="item.href">{{ item.text }}</v-btn>
+          <v-btn text class="nav-link" v-for="item in navItems" :key="item.href" :href="item.href">{{ item.text
+            }}</v-btn>
           <v-btn icon small class="nav-link ml-2" v-for="item in linkItems" :key="item.href" :href="item.href"
             target="_blank" rel="noopener" :title="item.text">
             <v-icon>{{ item.icon }}</v-icon>
@@ -301,6 +495,10 @@
                     <v-btn x-large rounded outlined color="white" href="https://www.facebook.com/ychitool"
                       target="_blank" rel="noopener">
                       <v-icon left>mdi-facebook</v-icon>瀏覽粉絲專頁
+                    </v-btn>
+                    <v-btn x-large rounded outlined color="white" href="https://www.ychi.com.tw/blog.html"
+                      target="_blank" rel="noopener">
+                      <v-icon left>mdi-post</v-icon> 部落格
                     </v-btn>
                   </div>
                 </v-col>
@@ -394,9 +592,9 @@
               <section-head en="Contact Us" title="聯絡我們"></section-head>
               <v-row>
                 <v-col cols="12" sm="6" lg="4" v-for="(item, i) in contactItems" :key="item.label" v-reveal="i * 80">
-                  <component :is="item.href ? 'a' : 'div'" class="panel contact-card"
-                    :class="{ hoverable: item.href }" :href="item.href"
-                    :target="item.external ? '_blank' : null" :rel="item.external ? 'noopener' : null">
+                  <component :is="item.href ? 'a' : 'div'" class="panel contact-card" :class="{ hoverable: item.href }"
+                    :href="item.href" :target="item.external ? '_blank' : null"
+                    :rel="item.external ? 'noopener' : null">
                     <span class="icon-badge"><v-icon>{{ item.icon }}</v-icon></span>
                     <div>
                       <small>{{ item.label }}</small>
@@ -440,8 +638,7 @@
         <v-container>
           <v-row align="center" justify="space-between" class="text-center text-md-left">
             <v-col cols="12" md="auto">
-              <v-img class="mx-auto" src="/local/landing/images/logo_small.png" max-width="90"
-                alt="瑜誠工業Logo"></v-img>
+              <v-img class="mx-auto" src="/local/landing/images/logo_small.png" max-width="90" alt="瑜誠工業Logo"></v-img>
             </v-col>
             <v-col cols="12" md="auto">
               <v-btn icon class="mx-1" v-for="item in socialItems" :key="item.href" :href="item.href" target="_blank"
