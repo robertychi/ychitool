@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="zh-TW">
+
+<head>
+  <title>木工長度單位自動換算計算器| 瑜誠工業-部落格</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Keyword -->
+  <meta name="Keywords" content="刀具部落格,瑜誠工業,木工刀具,尺寸試算">
+  <meta name="Description" content="瑜誠工業提供的「木工長度單位自動換算計算器」，旨在協助使用者輕鬆快速地進行各種尺寸單位的自動換算與試算，提升工作效率。 ">
+  <meta name="copyright" content="瑜誠工業刀具部落格 Ychi">
+  <!-- google robot -->
+  <meta name="robots" content="index,follow">
+  <meta name="googlebot" content="index,follow">
+  <!-- FB -->
+  <meta property="fb:app_id" content="104356957765552">
+  <meta property="og:title" content="木工長度單位自動換算計算器| 瑜誠工業-部落格">
+  <meta property="og:description" content="瑜誠工業提供的「木工長度單位自動換算計算器」，旨在協助使用者輕鬆快速地進行各種尺寸單位的自動換算與試算，提升工作效率。">
+  <meta property="og:image" content="http://www.ychi.com.tw/local/blog/images/20211024.jpg">
+  <meta property="og:url" content="http://www.ychi.com.tw/blog/1">
+  <meta property="og:type" content="website">
+  <!-- Twitter -->
+  <meta property="og:image:alt" content="瑜誠工業-工業切削刀具的專家">
+  <meta name="twitter:card" content="Ychi">
+  <!-- ICO -->
+  <link rel="icon" type="image/png" sizes="128x128" href="/local/images/faviconBlog.ico">
+  <!-- CSS -->
+  <link href="/local/MaterialDesign/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="/local/vuetify/vuetify.min.css" rel="stylesheet">
+  <script src="/local/vue.min.js"></script>
+  <script src="/local/axios/dist/axios.min.js"></script>
+  <script src="/local/vuetify/vuetify.min.js"></script>
+
+  <link rel="stylesheet" href="/local/blog/blog.css">
+</head>
+
+<body style="background-color:#000">
+  <div id="app">
+    <v-app v-resize="onResize">
+
+      <v-app-bar app clipped-right fixed dense flat class="appBarBg hidden-xs-only">
+        <a href="http://www.ychi.com.tw" title="首頁-瑜誠工業">
+          <v-img class="hidden-xs-only" src="/local/blog/images/logo.png" max-width="160" alt="瑜誠工業Logo"
+            title="瑜誠工業logo-small"></v-img>
+        </a>
+        <v-spacer></v-spacer>
+        <v-toolbar-items class="hidden-xs-only">
+          <v-btn dark :text="windowSize.x >= 960" :icon="windowSize.x < 960" v-for="(item, index) in linkItems"
+            :href="item.href" :key="index">
+            <v-icon :left="windowSize.x >= 960">{{item.icon}}</v-icon>
+            <span v-if="windowSize.x >= 960">
+              <span v-if="windowSize.x >= 1650">{{ item.text }}</span>
+              <span v-if="windowSize.x < 1650">{{ item.tip }}</span>
+            </span>
+          </v-btn>
+        </v-toolbar-items>
+        <v-app-bar-nav-icon class="hidden-xs-only white--text" @click="isDrawer = !isDrawer">
+        </v-app-bar-nav-icon>
+      </v-app-bar>
+      <v-app-bar app clipped-right fixed dense flat class="appBarBgMobile hidden-sm-and-up">
+        <v-btn icon color="white" href="/">
+          <v-icon>mdi-home</v-icon>
+        </v-btn>
+        <v-spacer></v-spacer>
+        <a href="http://www.ychi.com.tw" title="首頁-瑜誠工業" class="hidden-sm-and-up">
+          <v-img src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo" title="瑜誠工業logo-small"></v-img>
+        </a>
+        <v-spacer></v-spacer>
+      </v-app-bar>
+
+      <v-navigation-drawer app v-model="isDrawer" clipped class="drawerBg" right>
+        <v-sheet dark color="transparent" class="pa-4">YCHI 瑜誠工業
+        </v-sheet>
+        <v-divider dark></v-divider>
+        <v-subheader dark>站內連結</v-subheader>
+        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
+          <v-list-item v-for="(item, index) in menuItems" :key="index" :href="item.href"
+            :disabled="item.href === ('/'+routePath) ? true : false">
+            <v-list-item-icon class="white--text">
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+        <v-divider dark></v-divider>
+        <v-subheader dark>社群影音</v-subheader>
+        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
+          <v-list-item v-for="(item, index) in linkItems" :key="index" :href="item.href">
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+        <v-divider dark></v-divider>
+        <v-subheader dark>賣場平台</v-subheader>
+        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
+          <v-list-item v-for="(item, index) in shoppingItems" :key="index" :href="item.href">
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+      <v-main>
+        <section v-if="windowSize.x > 310 && windowSize.y > 350">
+          <v-row dense justify="center" class="my-1">
+
+
+
+          </v-row>
+
+          <section> <v-container fluid>
+              <v-row dense justify="center">
+                <v-col cols="12" xl="8" lg="9" md="12" sm="12" xs="12">
+                  <v-row dense>
+                    <v-col cols="12">
+                      <v-card>
+                        <v-toolbar style="background: rgba(255,255,255,0.5)" flat dense>
+                          <v-toolbar-title class="blue--text text--darken-4">YCHI BLOG</v-toolbar-title>
+                          <v-spacer></v-spacer>
+                          <v-btn text href="/"><v-icon left>mdi-home</v-icon>瑜誠首頁</v-btn>
+                          <v-btn text href="/blog"><v-icon left>mdi-reply</v-icon>文章列表</v-btn>
+                        </v-toolbar>
+                        <v-divider></v-divider>
+                        <v-card-title class="display-2 mb-2">
+                          {{ articleItem.title }}
+                        </v-card-title>
+                        <v-card-subtitle>
+                          <p class="mb-0">
+                            <v-icon class="mr-1">mdi-calendar-month</v-icon>
+                            {{ articleItem.date }}
+                          </p>
+                        </v-card-subtitle>
+                        <v-img src="/local/blog/images/20211024.jpg" height="300"></v-img>
+                        <v-card-text>
+                          <p class="title blue darken-3 white--text pa-4">● 單位換算器：</p>
+                          <p>在表單內輸入數值，即可得到你要的相對數值</p>
+                          <v-row dense>
+                            <v-col cols="12" lg="5" md="12">
+                              <v-row dense>
+                                <v-col cols="12" lg="12">
+                                  <v-card color="orange lighten-5">
+                                    <v-card-text>
+                                      <v-text-field counter persistent-hint label="台尺" prepend-icon="mdi-alpha-t-box"
+                                        maxlength="6" color="orange" hint="1台尺=30.3公分=300.03公厘=0.303公尺"
+                                        placeholder="1台尺=30.3公分=300.03公厘=0.303公尺" v-model="tm" :rules="rules"
+                                        @input="changeTm()" v-on:focus="$event.target.select()"></v-text-field>
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                                <v-col cols="12" lg="12">
+                                  <v-card color="orange lighten-5">
+                                    <v-card-text>
+                                      <v-text-field counter persistent-hint label="台寸" prepend-icon="mdi-alpha-t-box"
+                                        maxlength="6" color="orange" hint="1台寸=3.03公分=30.3公厘=0.0303公尺"
+                                        placeholder="1台寸=3.03公分=30.3公厘=0.0303公尺" v-model="tin" :rules="rules"
+                                        @input="changeTin()" v-on:focus="$event.target.select()"></v-text-field>
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                                <v-col cols="12" lg="12">
+                                  <v-card color="orange lighten-5">
+                                    <v-card-text>
+                                      <v-text-field counter persistent-hint label="台分" prepend-icon="mdi-alpha-t-box"
+                                        maxlength="6" color="orange" hint="1台分=0.303公分=3.03公厘=0.00303公尺"
+                                        placeholder="1台分=0.303公分=3.03公厘=0.00303公尺" v-model="tcm" :rules="rules"
+                                        @input="changeTcm()" v-on:focus="$event.target.select()"></v-text-field>
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                                <v-col cols="12" lg="12">
+                                  <v-card color="green lighten-5">
+                                    <v-card-text>
+                                      <v-text-field counter persistent-hint label="公尺(m)" prepend-icon="mdi-alpha-c-box"
+                                        maxlength="6" color="green" hint="1公尺=3.3台尺" placeholder="1公尺=3.3台尺" v-model="m"
+                                        :rules="rules" @input="changeM()"
+                                        v-on:focus="$event.target.select()"></v-text-field>
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                                <v-col cols="12" lg="12">
+                                  <v-card color="green lighten-5">
+                                    <v-card-text>
+                                      <v-text-field counter persistent-hint label="公分(cm)"
+                                        prepend-icon="mdi-alpha-c-box" maxlength="6" color="green" hint="1公分=0.01公尺"
+                                        placeholder="1公分=0.01公尺" v-model="cm" :rules="rules" @input="changeCm()"
+                                        v-on:focus="$event.target.select()"></v-text-field>
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                                <v-col cols="12" lg="12">
+                                  <v-card color="green lighten-5">
+                                    <v-card-text>
+                                      <v-text-field counter persistent-hint label="公厘(mm)"
+                                        prepend-icon="mdi-alpha-c-box" maxlength="6" color="green" hint="1公厘=0.1公分"
+                                        placeholder="1公厘=0.1公分" v-model="mm" :rules="rules" @input="changeMm()"
+                                        v-on:focus="$event.target.select()"></v-text-field>
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                                <v-col cols="12" lg="12">
+                                  <v-card color="blue lighten-5">
+                                    <v-card-text>
+                                      <v-text-field counter persistent-hint label="英呎(ft)"
+                                        prepend-icon="mdi-alpha-i-box" maxlength="6" color="blue" hint="1英呎=30.48公分"
+                                        placeholder="1英呎=30.48公分" v-model="ift" :rules="rules" @input="changeIft()"
+                                        v-on:focus="$event.target.select()"></v-text-field>
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                                <v-col cols="12" lg="12">
+                                  <v-card color="blue lighten-5">
+                                    <v-card-text>
+                                      <v-text-field counter persistent-hint label="英吋(in)"
+                                        prepend-icon="mdi-alpha-i-box" maxlength="6" color="blue" hint="1英吋=2.54公分"
+                                        placeholder="1英吋=2.54公分" v-model="iin" :rules="rules" @input="changeIin()"
+                                        v-on:focus="$event.target.select()"></v-text-field>
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                              </v-row>
+                            </v-col>
+                            <v-col cols="12" lg="7" md="12">
+                              <v-row dense>
+                                <v-col cols="12" lg="12" md="12">
+                                  <v-card dark color="orange darken-2" height="102">
+                                    <v-card-subtitle class="headline pb-0">台尺</v-card-subtitle>
+                                    <v-card-text class="display-2 text-right white--text" v-if="tm">
+                                      {{tm}}
+                                    </v-card-text>
+                                    <v-card-text class="display-2 text-right white--text" v-else>---
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                                <v-col cols="12" lg="12" md="12">
+                                  <v-card dark flat color="orange darken-2" height="102">
+                                    <v-card-subtitle class="headline pb-0">台寸</v-card-subtitle>
+                                    <v-card-text class="display-2 text-right white--text" v-if="tin">
+                                      {{tin}}
+                                    </v-card-text>
+                                    <v-card-text class="display-2 text-right white--text" v-else>---
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                                <v-col cols="12" lg="12" md="12">
+                                  <v-card dark flat color="orange darken-2" height="102">
+                                    <v-card-subtitle class="headline pb-0">台分</v-card-subtitle>
+                                    <v-card-text class="display-2 text-right white--text" v-if="tcm">
+                                      {{tcm}}
+                                    </v-card-text>
+                                    <v-card-text class="display-2 text-right white--text" v-else>---
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                                <v-col cols="12" lg="12" md="12">
+                                  <v-card dark flat color="green darken-2" height="102">
+                                    <v-card-subtitle class="headline pb-0">公尺(m)
+                                    </v-card-subtitle>
+                                    <v-card-text class="display-2 text-right white--text" v-if="m">
+                                      {{m}}
+                                    </v-card-text>
+                                    <v-card-text class="display-2 text-right white--text" v-else>---
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                                <v-col cols="12" lg="12" md="12">
+                                  <v-card dark flat color="green darken-2" height="102">
+                                    <v-card-subtitle class="headline pb-0">公分(cm)
+                                    </v-card-subtitle>
+                                    <v-card-text class="display-2 text-right white--text" v-if="cm">
+                                      {{cm}}
+                                    </v-card-text>
+                                    <v-card-text class="display-2 text-right white--text" v-else>---
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                                <v-col cols="12" lg="12" md="12">
+                                  <v-card dark flat color="green darken-2" height="102">
+                                    <v-card-subtitle class="headline pb-0">公厘(mm)
+                                    </v-card-subtitle>
+                                    <v-card-text class="display-2 text-right white--text" v-if="mm">
+                                      {{mm}}
+                                    </v-card-text>
+                                    <v-card-text class="display-2 text-right white--text" v-else>---
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                                <v-col cols="12" lg="12" md="12">
+                                  <v-card dark flat color="blue darken-2" height="102">
+                                    <v-card-subtitle class="headline pb-0">英呎(ft)
+                                    </v-card-subtitle>
+                                    <v-card-text class="display-2 text-right white--text" v-if="ift">
+                                      {{ift}}
+                                    </v-card-text>
+                                    <v-card-text class="display-2 text-right white--text" v-else>---
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                                <v-col cols="12" lg="12" md="12">
+                                  <v-card dark flat color="blue darken-2" height="102">
+                                    <v-card-subtitle class="headline pb-0">英吋(in)
+                                    </v-card-subtitle>
+                                    <v-card-text class="display-2 text-right white--text" v-if="iin">
+                                      {{iin}}
+                                    </v-card-text>
+                                    <v-card-text class="display-2 text-right white--text" v-else>---
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                              </v-row>
+
+                            </v-col>
+                          </v-row>
+                          <v-row>
+                            <v-col cols="12">
+                              <p class="title blue darken-3 white--text pa-4">● 各單位與公厘之關系</p>
+                              <v-simple-table class="mb-2">
+                                <template v-slot:default>
+                                  <thead>
+                                    <tr>
+                                      <th class="text-center">單位(1)</th>
+                                      <th class="text-center">公厘(mm)</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr v-for="item in rulerLists" :key="item.name">
+                                      <td class="text-center">{{ item.unit }}</td>
+                                      <td class="text-right">{{ item.mm }}</td>
+                                    </tr>
+                                  </tbody>
+                                </template>
+                              </v-simple-table>
+                            </v-col>
+                          </v-row>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-col>
+              </v-row>
+            </v-container>
+          </section>
+
+          <section class="hidden-md-and-down"></section>
+
+          <section class="hidden-lg-and-up hidden-xs-only"></section>
+
+          <section class="hidden-sm-and-up"></section>
+        </section>
+        <v-container fluid fill-height v-else>
+          <v-row dense justify="center" align="center">
+            <v-col cols="12" xl="10" lg="11" md="12" sm="12" xs="12">
+              <v-card height="100" color="red darken-4">
+                <v-card-text class="title">
+                  <span v-if="windowSize.y < 350">
+                    此設備高不足 350px 無法顯示相關內容，請選擇適合的設備或調整視窗來觀看此網頁
+                  </span>
+                  <span v-if="windowSize.x < 310">
+                    此設備寬不足 310px 無法顯示相關內容，請選擇適合的設備或調整視窗來觀看此網頁
+                  </span>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-main>
+
+      <v-footer padless :fixed="windowSize.x >600 ? false : true" v-if="getIsFooterShow">
+        <v-card tile width="100%" :class="windowSize.x >600 ? 'footerBg text-center' : 'footerBgMobile text-center'">
+          <v-fade-transition>
+            <v-card-text v-if="getIsFooterShowLink">
+              <v-btn icon class="mx-3" dark v-for="(item, index) in linkItems" :href="item.href" :key="index">
+                <v-icon>{{item.icon}}</v-icon>
+              </v-btn>
+            </v-card-text>
+          </v-fade-transition>
+          <v-divider></v-divider>
+          <v-card-text class="white--text">
+            © Copyright 2012-2024 瑜誠工業有限公司 版權所有
+          </v-card-text>
+        </v-card>
+      </v-footer>
+
+      <v-fad-transition>
+        <v-btn fab dark fixed bottom right color="red darken-3" v-scroll="onScroll" v-show="isFab" v-on:click="toTop">
+          <v-icon>mdi-navigation</v-icon>
+        </v-btn>
+      </v-fad-transition>
+    </v-app>
+  </div>
+</body>
+
+<script>
+  new Vue({
+    el: '#app',
+    vuetify: new Vuetify(),
+    data: {
+      windowSize: { x: 0, y: 0 },
+      isFab: false,
+      yVal: 0,
+      menuItems: [
+        { icon: 'mdi-home', text: '首頁', href: '/', isShowHandheld: true },
+        { icon: 'mdi-package-variant', text: '產品介紹', href: '/product', isShowHandheld: false },
+        { icon: 'mdi-phone', text: '聯絡我們', href: '/contact', isShowHandheld: true },
+      ],
+      linkItems: [
+        { icon: 'mdi-facebook', text: 'FaceBook', tip: 'FB', href: 'https://www.facebook.com/ychitool' },
+        {
+          icon: 'mdi-instagram', text: 'Instagram', tip: 'IG',
+          href: 'https://www.instagram.com/ychitool168/'
+        },
+        { icon: 'mdi-youtube', text: 'Youtube', tip: 'YT', href: 'https://www.youtube.com/@ychi' },
+      ],
+      shoppingItems: [
+        { icon: 'mdi-shopping', text: '蝦皮賣場', tip: 'SP', href: 'https://shopee.tw/ychitool' }
+      ],
+      routePath: '',
+      routePathParam: '',
+      isDrawer: false,
+      isErrorNotGetData: false,
+      // articleClass
+      articleClassItems: [],
+      articleItems: [],
+      articleItem: {},
+      /** 內容用資料 */
+      rules: [v => !isNaN(v) || '請輸入數字'],
+      tm: null, /** 台尺 */
+      tin: null, /** 台寸 */
+      tcm: null, /** 台分 */
+      m: null, /** 公尺 */
+      cm: null, /** 公分 */
+      mm: null, /** 公厘 */
+      ift: null, /** 英呎 */
+      iin: null, /** 英吋 */
+
+      rulerLists: [
+        { unit: '1 公厘', mm: 1, },
+        { unit: '1 公分', mm: 10, },
+        { unit: '1 公尺', mm: 1000, },
+        { unit: '1 台尺', mm: 303, },
+        { unit: '1 台寸', mm: 30.3, },
+        { unit: '1 台分', mm: 3.03, },
+        { unit: '1 英呎', mm: 300.48, },
+        { unit: '1 英吋', mm: 25.4, },
+      ],
+
+      /** 內容用資料 */
+
+    },
+    watch: {
+      getWindowSizeX(val) {
+        if (val < 600) {
+          this.isShowList = true
+        }
+      }
+    },
+    computed: {
+      getWindowSizeX() {
+        return this.windowSize.x
+      },
+      /** 基本容器高度 */
+      getDefHeight() {
+        return this.windowSize.y - 260
+      },
+      getIsFooterShowLink() {
+        if (this.getWindowSizeX < 600) {
+          if (this.yVal > 40) {
+            return false
+          } else {
+            return true
+          }
+        } else {
+          return true
+        }
+      },
+      getIsFooterShow() {
+        if (this.getWindowSizeX < 600) {
+          if (Number(this.yVal) > Number(this.windowSize.y - 40)) {
+            return false
+          } else {
+            return true
+          }
+        } else {
+          return true
+        }
+      },
+      /** 內容用資料 */
+
+
+      /** 內容用資料 */
+
+    },
+    methods: {
+      /** toTop 程式 */
+      onScroll() {
+        if (typeof window === 'undefined') return;
+        const top = window.pageYOffset || document.documentElement.offsetTop || 0;
+        this.isFab = top > 300
+        this.yVal = top
+      },
+      toTop() {
+        this.$vuetify.goTo(0);
+      },
+      /** 工作尺寸變更 */
+      onResize() {
+        this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+      },
+      /** 取路徑 */
+      fetchPath() {
+        let path = window.location.pathname;   // 例如: /category/item/123
+        let pathParts = path.split('/');
+        // 取得第一個和第二個之間的值
+        let category = pathParts[1];
+        if (category === "") {
+          this.routePath = ''
+        } else {
+          this.routePath = category
+        }
+      },
+      fetchPathParam() {
+        let path = window.location.pathname;   // 例如: /category/item/123
+        let pathParts = path.split('/');
+        // 取得第一個和第二個之間的值
+        let param = pathParts[2];
+        if (param === "") {
+          this.routePathParam = 1
+        } else {
+          this.routePathParam = param
+        }
+      },
+      /** 取得類別資料 */
+      fetchArticleClassItems() {
+        this.isErrorNotGetData = false
+        axios.get(`/local/blog/json/articleClass.json`)
+          .then(response => {
+            console.log(response);
+            this.articleClassItems = response.data.articleClassItems
+          })
+          .catch(error => {
+            this.isErrorNotGetData = true
+            console.log(error);
+          })
+          .finally(() => {
+          });
+      },
+      fetchArticleItem(id) {
+        this.isErrorNotGetData = false
+        axios.get(`/local/blog/json/articles.json`)
+          .then(response => {
+            console.log(response);
+            this.articleItems = response.data.articleItems
+            this.articleItem = this.articleItems.find(item => Number(item.id) === Number(id));
+          })
+          .catch(error => {
+            this.isErrorNotGetData = true
+            console.log(error);
+          })
+          .finally(() => {
+          });
+      },
+      /** 內容用資料 */
+      changeTm() {
+        let val = this.tm;
+        if (!isNaN(val)) {
+          this.tin = Math.round(val * 10 * 100000) / 100000;
+          this.tcm = Math.round(val * 100 * 100000) / 100000;
+          this.m = Math.round(val * 0.3 * 100000) / 100000;
+          this.cm = Math.round(val * 30.3 * 100000) / 100000;
+          this.mm = Math.round(val * 303 * 100000) / 100000;
+          this.ift = Math.round(val * 0.99 * 100000) / 100000;
+          this.iin = Math.round(val * 11.93 * 100000) / 100000;
+        }
+      },
+      changeTin() {
+        let val = this.tin;
+        if (!isNaN(val)) {
+          this.tm = Math.round(val * 0.1 * 100000) / 100000;
+          this.tcm = Math.round(val * 10 * 100000) / 100000;
+          this.m = Math.round(val * 0.0303 * 100000) / 100000;
+          this.cm = Math.round(val * 3.3 * 100000) / 100000;
+          this.mm = Math.round(val * 30.3 * 100000) / 100000;
+          this.ift = Math.round(val * 0.099 * 100000) / 100000;
+          this.iin = Math.round(val * 1.19 * 100000) / 100000;
+        }
+      },
+      changeTcm() {
+        let val = this.tcm;
+        if (!isNaN(val)) {
+          this.tm = Math.round(val * 0.01 * 100000) / 100000;
+          this.tin = Math.round(val * 0.1 * 100000) / 100000;
+          this.m = Math.round(val * 0.003 * 100000) / 100000;
+          this.cm = Math.round(val * 0.303 * 100000) / 100000;
+          this.mm = Math.round(val * 3.03 * 100000) / 100000;
+          this.ift = Math.round(val * 0.0099 * 100000) / 100000;
+          this.iin = Math.round(val * 0.12 * 100000) / 100000;
+        }
+      },
+      changeM() {
+        let val = this.m;
+        if (!isNaN(val)) {
+          this.tm = Math.round(val * 3.3 * 100000) / 100000;
+          this.tin = Math.round(val * 33 * 100000) / 100000;
+          this.tcm = Math.round(val * 330.3 * 100000) / 100000;
+          this.cm = Math.round(val * 100 * 100000) / 100000;
+          this.mm = Math.round(val * 1000 * 100000) / 100000;
+          this.ift = Math.round(val * 3.28 * 100000) / 100000;
+          this.iin = Math.round(val * 39.37 * 100000) / 100000;
+        }
+      },
+      changeCm() {
+        let val = this.cm;
+        if (!isNaN(val)) {
+          this.tm = Math.round(val * 0.033 * 100000) / 100000;
+          this.tin = Math.round(val * 0.33 * 100000) / 100000;
+          this.tcm = Math.round(val * 3.3 * 100000) / 100000;
+          this.m = Math.round(val * 0.01 * 100000) / 100000;
+          this.mm = Math.round(val * 10 * 100000) / 100000;
+          this.ift = Math.round(val * 0.0328 * 100000) / 100000;
+          this.iin = Math.round(val * 0.3937 * 100000) / 100000;
+        }
+      },
+      changeMm() {
+        let val = this.mm;
+        if (!isNaN(val)) {
+          this.tm = Math.round(val * 0.0033 * 100000) / 100000;
+          this.tin = Math.round(val * 0.033 * 100000) / 100000;
+          this.tcm = Math.round(val * 0.33 * 100000) / 100000;
+          this.m = Math.round(val * 0.001 * 100000) / 100000;
+          this.cm = Math.round(val * 0.1 * 100000) / 100000;
+          this.ift = Math.round(val * 0.00328 * 100000) / 100000;
+          this.iin = Math.round(val * 0.03937 * 100000) / 100000;
+        }
+      },
+      changeIft() {
+        let val = this.ift;
+        if (!isNaN(val)) {
+          this.tm = Math.round(val * 1.0059 * 100000) / 100000;
+          this.tin = Math.round(val * 10.059 * 100000) / 100000;
+          this.tcm = Math.round(val * 100.59 * 100000) / 100000;
+          this.m = Math.round(val * 0.3048 * 100000) / 100000;
+          this.cm = Math.round(val * 30.48 * 100000) / 100000;
+          this.mm = Math.round(val * 300.48 * 100000) / 100000;
+          this.iin = Math.round(val * 12 * 100000) / 100000;
+        }
+      },
+      changeIin() {
+        let val = this.iin;
+        if (!isNaN(val)) {
+          this.tm = Math.round(val * 0.0838 * 100000) / 100000;
+          this.tin = Math.round(val * 0.838 * 100000) / 100000;
+          this.tcm = Math.round(val * 8.38 * 100000) / 100000;
+          this.m = Math.round(val * 0.0254 * 100000) / 100000;
+          this.cm = Math.round(val * 2.54 * 100000) / 100000;
+          this.mm = Math.round(val * 25.4 * 100000) / 100000;
+          this.ift = Math.round(val * 0.08 * 100000) / 100000;
+        }
+      },
+      /** 內容用資料 */
+    },
+    mounted() {
+      this.$vuetify.theme.dark = false;
+      this.fetchPath()
+      this.fetchPathParam()
+      this.fetchArticleClassItems()
+      this.fetchArticleItem(this.routePathParam)
+    },
+  })
+</script>
