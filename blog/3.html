@@ -48,16 +48,30 @@
       --nav-h: 68px;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     .v-application {
       background: var(--bg) !important;
       color: var(--text);
       font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif !important;
     }
-    .v-application h1, .v-application h2, .v-application h3, .v-application p { font-family: inherit; }
-    .v-main { padding-top: 0 !important; }
-    section { scroll-margin-top: calc(var(--nav-h) + 8px); }
+
+    .v-application h1,
+    .v-application h2,
+    .v-application h3,
+    .v-application p {
+      font-family: inherit;
+    }
+
+    .v-main {
+      padding-top: 0 !important;
+    }
+
+    section {
+      scroll-margin-top: calc(var(--nav-h) + 8px);
+    }
 
     /* ---------- 導覽列 ---------- */
     .nav {
@@ -65,15 +79,27 @@
       transition: background .3s ease, border-color .3s ease;
       border-bottom: 1px solid transparent !important;
     }
+
     .nav.nav-solid {
       background: rgba(10, 10, 10, .82) !important;
       -webkit-backdrop-filter: saturate(1.4) blur(14px);
       backdrop-filter: saturate(1.4) blur(14px);
       border-bottom-color: var(--line) !important;
     }
-    .nav-link { color: var(--body) !important; letter-spacing: .08em; font-weight: 500; }
-    .nav-link:hover { color: #fff !important; }
-    .drawer { background: rgba(14, 14, 14, .98) !important; }
+
+    .nav-link {
+      color: var(--body) !important;
+      letter-spacing: .08em;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      color: #fff !important;
+    }
+
+    .drawer {
+      background: rgba(14, 14, 14, .98) !important;
+    }
 
     /* ---------- 共用 ---------- */
     .grad {
@@ -82,6 +108,7 @@
       background-clip: text;
       color: transparent;
     }
+
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -92,30 +119,55 @@
       text-transform: uppercase;
       color: var(--accent-2);
     }
+
     .eyebrow::before {
       content: "";
       width: 28px;
       height: 2px;
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
     }
-    .section { padding: 72px 0; }
-    .section-head { margin-bottom: 28px; }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
     .section-head h2 {
       margin-top: .6rem;
       font-size: clamp(1.5rem, 3.2vw, 2.2rem);
       font-weight: 800;
       letter-spacing: .02em;
     }
-    .section-desc { max-width: 760px; margin: 0 0 32px; line-height: 1.9; color: var(--body); }
+
+    .section-desc {
+      max-width: 760px;
+      margin: 0 0 32px;
+      line-height: 1.9;
+      color: var(--body);
+    }
+
     .panel {
       background: var(--surface) !important;
       border: 1px solid var(--line);
       border-radius: var(--radius) !important;
       box-shadow: none !important;
     }
-    .bg-surface { background: var(--surface); }
-    .btn-glow { box-shadow: 0 12px 30px -10px rgba(147, 32, 35, .7) !important; }
-    .muted { color: var(--muted); }
+
+    .bg-surface {
+      background: var(--surface);
+    }
+
+    .btn-glow {
+      box-shadow: 0 12px 30px -10px rgba(147, 32, 35, .7) !important;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
     .tag {
       display: inline-block;
       padding: 2px 12px;
@@ -138,6 +190,7 @@
       background-size: cover;
       background-position: center;
     }
+
     .hero .watermark {
       position: absolute;
       right: -6%;
@@ -148,7 +201,13 @@
       animation: spin 60s linear infinite;
       pointer-events: none;
     }
-    @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+
+    @keyframes spin {
+      to {
+        transform: translateY(-50%) rotate(360deg);
+      }
+    }
+
     .hero h1 {
       margin: 1rem 0 1rem;
       font-size: clamp(1.8rem, 4.8vw, 3.2rem);
@@ -156,31 +215,119 @@
       line-height: 1.25;
       letter-spacing: .02em;
     }
-    .hero .date { display: flex; align-items: center; gap: 6px; color: var(--muted); }
-    .hero .date .v-icon { color: var(--muted) !important; font-size: 20px !important; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.6rem; }
+
+    .hero .date {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+    }
+
+    .hero .date .v-icon {
+      color: var(--muted) !important;
+      font-size: 20px !important;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 1.6rem;
+    }
 
     /* ---------- 單位說明 ---------- */
-    .unit-card { height: 100%; padding: 22px 24px; }
-    .unit-card .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
-    .unit-card h3 { font-size: 1.08rem; font-weight: 800; }
-    .unit-card .sym { font-size: .85rem; color: var(--muted); white-space: nowrap; }
-    .unit-card p { margin: 0; font-size: .93rem; line-height: 1.8; color: var(--body); }
+    .unit-card {
+      height: 100%;
+      padding: 22px 24px;
+    }
+
+    .unit-card .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .unit-card h3 {
+      font-size: 1.08rem;
+      font-weight: 800;
+    }
+
+    .unit-card .sym {
+      font-size: .85rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .unit-card p {
+      margin: 0;
+      font-size: .93rem;
+      line-height: 1.8;
+      color: var(--body);
+    }
 
     /* ---------- 換算器 ---------- */
-    .group { height: 100%; padding: 24px; }
-    .group-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-    .group-head h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: .06em; }
-    .calc-input input { font-size: 1.4rem; font-weight: 700; text-align: right; color: #fff !important; }
-    .calc-input .v-label { font-size: 1rem; }
-    .calc-input .v-messages { font-size: .78rem; }
-    .calc-input .v-messages__message { color: var(--muted) !important; }
-    .calc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 28px; }
+    .group {
+      height: 100%;
+      padding: 24px;
+    }
+
+    .group-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .group-head h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+    }
+
+    .calc-input input {
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-align: right;
+      color: #fff !important;
+    }
+
+    .calc-input .v-label {
+      font-size: 1rem;
+    }
+
+    .calc-input .v-messages {
+      font-size: .78rem;
+    }
+
+    .calc-input .v-messages__message {
+      color: var(--muted) !important;
+    }
+
+    .calc-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-top: 28px;
+    }
 
     /* ---------- 比對表 / 對照表 ---------- */
-    .table-wrap { overflow: auto; }
-    .table-wrap.tall { max-height: 640px; }
-    .grid-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+    .table-wrap {
+      overflow: auto;
+    }
+
+    .table-wrap.tall {
+      max-height: 640px;
+    }
+
+    .grid-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
     .grid-table th {
       position: sticky;
       top: 0;
@@ -195,6 +342,7 @@
       background: #1a1a1a;
       border-bottom: 1px solid var(--line);
     }
+
     .grid-table td {
       padding: 13px 16px;
       font-size: .9rem;
@@ -204,6 +352,7 @@
       font-variant-numeric: tabular-nums;
       border-bottom: 1px solid var(--line);
     }
+
     .grid-table th:first-child,
     .grid-table td:first-child {
       position: sticky;
@@ -213,35 +362,111 @@
       background: #1a1a1a;
       border-right: 1px solid var(--line);
     }
-    .grid-table th:first-child { z-index: 3; }
-    .grid-table td:first-child { z-index: 1; color: #fff; }
-    .grid-table tbody tr:hover td { background: rgba(255, 255, 255, .03); }
-    .grid-table tbody tr:hover td:first-child { background: #222; }
-    .grid-table td.diag { color: var(--accent-2); font-weight: 800; background: rgba(147, 32, 35, .16); }
-    .grid-table tr:last-child td { border-bottom: 0; }
-    .grid-table.simple th, .grid-table.simple td { text-align: left; }
-    .grid-table.simple td.num, .grid-table.simple th.num { text-align: right; }
-    .note { margin-top: 16px; font-size: .88rem; line-height: 1.8; color: var(--muted); }
+
+    .grid-table th:first-child {
+      z-index: 3;
+    }
+
+    .grid-table td:first-child {
+      z-index: 1;
+      color: #fff;
+    }
+
+    .grid-table tbody tr:hover td {
+      background: rgba(255, 255, 255, .03);
+    }
+
+    .grid-table tbody tr:hover td:first-child {
+      background: #222;
+    }
+
+    .grid-table td.diag {
+      color: var(--accent-2);
+      font-weight: 800;
+      background: rgba(147, 32, 35, .16);
+    }
+
+    .grid-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .grid-table.simple th,
+    .grid-table.simple td {
+      text-align: left;
+    }
+
+    .grid-table.simple td.num,
+    .grid-table.simple th.num {
+      text-align: right;
+    }
+
+    .note {
+      margin-top: 16px;
+      font-size: .88rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
 
     /* ---------- 頁尾 ---------- */
-    .site-footer { background: #050505 !important; border-top: 1px solid var(--line); }
-    .site-footer .v-btn { color: var(--muted) !important; }
-    .site-footer .v-btn:hover { color: #fff !important; }
+    .site-footer {
+      background: #050505 !important;
+      border-top: 1px solid var(--line);
+    }
+
+    .site-footer .v-btn {
+      color: var(--muted) !important;
+    }
+
+    .site-footer .v-btn:hover {
+      color: #fff !important;
+    }
 
     /* ---------- 進場動畫 ---------- */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.in { opacity: 1; transform: none; }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
 
     @media (max-width: 599px) {
-      .section { padding: 48px 0; }
-      .hero { padding: calc(var(--nav-h) + 24px) 0 56px; }
-      .group, .unit-card { padding: 20px; }
-      .grid-table th, .grid-table td { padding: 12px 12px; }
+      .section {
+        padding: 48px 0;
+      }
+
+      .hero {
+        padding: calc(var(--nav-h) + 24px) 0 56px;
+      }
+
+      .group,
+      .unit-card {
+        padding: 20px;
+      }
+
+      .grid-table th,
+      .grid-table td {
+        padding: 12px 12px;
+      }
     }
+
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .hero .watermark { animation: none; }
-      .reveal { opacity: 1; transform: none; transition: none; }
+      html {
+        scroll-behavior: auto;
+      }
+
+      .hero .watermark {
+        animation: none;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
     }
   </style>
 </head>
@@ -252,14 +477,15 @@
 
       <!-- 頂部列 -->
       <v-app-bar app fixed flat :height="68" class="nav" :class="{ 'nav-solid': isSolid }">
-        <a href="/blog" title="瑜誠工業-部落格">
+        <a href="/blog.html" title="瑜誠工業-部落格">
           <v-img class="hidden-xs-only" src="/local/blog/images/logo.png" max-width="160" alt="瑜誠工業Logo"></v-img>
           <v-img class="hidden-sm-and-up" src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo"></v-img>
         </a>
         <v-spacer></v-spacer>
 
         <v-toolbar-items class="hidden-sm-only hidden-xs-only align-center">
-          <v-btn text class="nav-link" v-for="item in navItems" :key="item.href" :href="item.href">{{ item.text }}</v-btn>
+          <v-btn text class="nav-link" v-for="item in navItems" :key="item.href" :href="item.href">{{ item.text
+            }}</v-btn>
           <v-btn icon small class="nav-link ml-2" v-for="item in linkItems" :key="item.href" :href="item.href"
             target="_blank" rel="noopener" :title="item.text">
             <v-icon>{{ item.icon }}</v-icon>
@@ -307,7 +533,7 @@
                     <v-btn rounded color="primary" class="btn-glow" href="#calculator">
                       <v-icon left>mdi-calculator-variant</v-icon>開始換算
                     </v-btn>
-                    <v-btn rounded outlined color="white" href="/blog">
+                    <v-btn rounded outlined color="white" href="/blog.html">
                       <v-icon left>mdi-format-list-bulleted</v-icon>文章列表
                     </v-btn>
                     <v-btn rounded outlined color="white" href="/">
@@ -362,9 +588,9 @@
                       <span class="tag">{{ group.tag }}</span>
                     </div>
                     <v-text-field v-for="u in group.units" :key="u.key" class="calc-input" v-model="values[u.key]"
-                      :label="u.name" :hint="u.hint" :rules="rules" persistent-hint outlined dense
-                      inputmode="decimal" autocomplete="off" maxlength="14" color="primary"
-                      @input="convert(u.key, $event)" @focus="$event.target.select()"></v-text-field>
+                      :label="u.name" :hint="u.hint" :rules="rules" persistent-hint outlined dense inputmode="decimal"
+                      autocomplete="off" maxlength="14" color="primary" @input="convert(u.key, $event)"
+                      @focus="$event.target.select()"></v-text-field>
                   </v-card>
                 </v-col>
               </v-row>
@@ -533,30 +759,54 @@
 
     /** 單位定義：ml = 1 個該單位等於幾毫升 */
     const UNITS = [
-      { key: 'ml', name: '毫升', symbol: 'mL', group: '公制', ml: 1,
-        desc: '公制容量單位，符號為 mL，1 毫升 = 1 立方公分，又稱公撮。' },
-      { key: 'l', name: '公升', symbol: 'L', group: '公制', ml: 1000,
-        desc: '公制容量單位，通常簡稱為升，符號為 L，1 公升 = 1000 毫升。' },
-      { key: 'flE', name: '液量盎司(英)', symbol: 'fl oz', group: '英制', ml: IMP_GALLON / 160,
-        desc: '英制，通常用於測量液體的體積單位，1 英制液量盎司約 28.413 毫升。' },
-      { key: 'flA', name: '液量盎司(美)', symbol: 'fl oz', group: '美制濕式', ml: US_GALLON / 128,
-        desc: '美制，通常用於測量液體的體積單位，1 美制液量盎司約 29.574 毫升。' },
-      { key: 'galE', name: '加侖(英)', symbol: 'gallon', group: '英制', ml: IMP_GALLON,
-        desc: '英制，英美度量衡的容量單位，液體與乾量皆可使用，1 英制加侖 = 4.54609 公升。' },
-      { key: 'galAW', name: '加侖濕式(美)', symbol: 'gallon', group: '美制濕式', ml: US_GALLON,
-        desc: '美制濕式，用於液體，1 加侖 = 231 立方英吋，約 3.785 公升。' },
-      { key: 'galAD', name: '加侖乾式(美)', symbol: 'gallon', group: '美制乾式', ml: US_DRY_GALLON,
-        desc: '美制乾式，用於乾量（穀物等乾貨），等於 1/8 美制蒲式耳，約 4.405 公升。' },
-      { key: 'pinE', name: '品脫(英)', symbol: 'pint', group: '英制', ml: IMP_GALLON / 8,
-        desc: '英制，容量單位，等於 1/8 英制加侖，約 568.26 毫升。' },
-      { key: 'pinAW', name: '品脫濕式(美)', symbol: 'pint', group: '美制濕式', ml: US_GALLON / 8,
-        desc: '美制濕式，用於液體，等於 1/8 美制濕式加侖，約 473.18 毫升。' },
-      { key: 'pinAD', name: '品脫乾式(美)', symbol: 'pint', group: '美制乾式', ml: US_BUSHEL / 64,
-        desc: '美制乾式，用於乾量，等於 1/64 美制蒲式耳，約 550.61 毫升。' },
-      { key: 'bushE', name: '蒲式耳(英)', symbol: 'bushel', group: '英制', ml: IMP_GALLON * 8,
-        desc: '英制，又稱英斗，主要用於穀物等乾貨，等於 8 英制加侖，約 36.369 公升。' },
-      { key: 'bushA', name: '蒲式耳(美)', symbol: 'bushel', group: '美制乾式', ml: US_BUSHEL,
-        desc: '美制，主要用於穀物等乾貨，1 蒲式耳 = 2150.42 立方英吋，約 35.239 公升。' },
+      {
+        key: 'ml', name: '毫升', symbol: 'mL', group: '公制', ml: 1,
+        desc: '公制容量單位，符號為 mL，1 毫升 = 1 立方公分，又稱公撮。'
+      },
+      {
+        key: 'l', name: '公升', symbol: 'L', group: '公制', ml: 1000,
+        desc: '公制容量單位，通常簡稱為升，符號為 L，1 公升 = 1000 毫升。'
+      },
+      {
+        key: 'flE', name: '液量盎司(英)', symbol: 'fl oz', group: '英制', ml: IMP_GALLON / 160,
+        desc: '英制，通常用於測量液體的體積單位，1 英制液量盎司約 28.413 毫升。'
+      },
+      {
+        key: 'flA', name: '液量盎司(美)', symbol: 'fl oz', group: '美制濕式', ml: US_GALLON / 128,
+        desc: '美制，通常用於測量液體的體積單位，1 美制液量盎司約 29.574 毫升。'
+      },
+      {
+        key: 'galE', name: '加侖(英)', symbol: 'gallon', group: '英制', ml: IMP_GALLON,
+        desc: '英制，英美度量衡的容量單位，液體與乾量皆可使用，1 英制加侖 = 4.54609 公升。'
+      },
+      {
+        key: 'galAW', name: '加侖濕式(美)', symbol: 'gallon', group: '美制濕式', ml: US_GALLON,
+        desc: '美制濕式，用於液體，1 加侖 = 231 立方英吋，約 3.785 公升。'
+      },
+      {
+        key: 'galAD', name: '加侖乾式(美)', symbol: 'gallon', group: '美制乾式', ml: US_DRY_GALLON,
+        desc: '美制乾式，用於乾量（穀物等乾貨），等於 1/8 美制蒲式耳，約 4.405 公升。'
+      },
+      {
+        key: 'pinE', name: '品脫(英)', symbol: 'pint', group: '英制', ml: IMP_GALLON / 8,
+        desc: '英制，容量單位，等於 1/8 英制加侖，約 568.26 毫升。'
+      },
+      {
+        key: 'pinAW', name: '品脫濕式(美)', symbol: 'pint', group: '美制濕式', ml: US_GALLON / 8,
+        desc: '美制濕式，用於液體，等於 1/8 美制濕式加侖，約 473.18 毫升。'
+      },
+      {
+        key: 'pinAD', name: '品脫乾式(美)', symbol: 'pint', group: '美制乾式', ml: US_BUSHEL / 64,
+        desc: '美制乾式，用於乾量，等於 1/64 美制蒲式耳，約 550.61 毫升。'
+      },
+      {
+        key: 'bushE', name: '蒲式耳(英)', symbol: 'bushel', group: '英制', ml: IMP_GALLON * 8,
+        desc: '英制，又稱英斗，主要用於穀物等乾貨，等於 8 英制加侖，約 36.369 公升。'
+      },
+      {
+        key: 'bushA', name: '蒲式耳(美)', symbol: 'bushel', group: '美制乾式', ml: US_BUSHEL,
+        desc: '美制，主要用於穀物等乾貨，1 蒲式耳 = 2150.42 立方英吋，約 35.239 公升。'
+      },
     ]
     UNITS.forEach(u => { u.hint = '1 ' + u.name + ' = ' + round5(u.ml) + ' 毫升' })
 
@@ -593,7 +843,7 @@
 
         navItems: [
           { icon: 'mdi-home', text: '瑜誠首頁', href: '/' },
-          { icon: 'mdi-format-list-bulleted', text: '文章列表', href: '/blog' },
+          { icon: 'mdi-format-list-bulleted', text: '文章列表', href: '/blog.html' },
           { icon: 'mdi-information-outline', text: '單位說明', href: '#units' },
           { icon: 'mdi-calculator-variant', text: '換算器', href: '#calculator' },
           { icon: 'mdi-table-large', text: '比對表', href: '#matrix' },

@@ -48,16 +48,30 @@
       --nav-h: 68px;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     .v-application {
       background: var(--bg) !important;
       color: var(--text);
       font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif !important;
     }
-    .v-application h1, .v-application h2, .v-application h3, .v-application p { font-family: inherit; }
-    .v-main { padding-top: 0 !important; }
-    section { scroll-margin-top: calc(var(--nav-h) + 8px); }
+
+    .v-application h1,
+    .v-application h2,
+    .v-application h3,
+    .v-application p {
+      font-family: inherit;
+    }
+
+    .v-main {
+      padding-top: 0 !important;
+    }
+
+    section {
+      scroll-margin-top: calc(var(--nav-h) + 8px);
+    }
 
     /* ---------- 導覽列 ---------- */
     .nav {
@@ -65,15 +79,27 @@
       transition: background .3s ease, border-color .3s ease;
       border-bottom: 1px solid transparent !important;
     }
+
     .nav.nav-solid {
       background: rgba(10, 10, 10, .82) !important;
       -webkit-backdrop-filter: saturate(1.4) blur(14px);
       backdrop-filter: saturate(1.4) blur(14px);
       border-bottom-color: var(--line) !important;
     }
-    .nav-link { color: var(--body) !important; letter-spacing: .08em; font-weight: 500; }
-    .nav-link:hover { color: #fff !important; }
-    .drawer { background: rgba(14, 14, 14, .98) !important; }
+
+    .nav-link {
+      color: var(--body) !important;
+      letter-spacing: .08em;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      color: #fff !important;
+    }
+
+    .drawer {
+      background: rgba(14, 14, 14, .98) !important;
+    }
 
     /* ---------- 共用 ---------- */
     .eyebrow {
@@ -86,29 +112,50 @@
       text-transform: uppercase;
       color: var(--accent-2);
     }
+
     .eyebrow::before {
       content: "";
       width: 28px;
       height: 2px;
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
     }
-    .section { padding: 72px 0; }
-    .section-head { margin-bottom: 28px; }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
     .section-head h2 {
       margin-top: .6rem;
       font-size: clamp(1.5rem, 3.2vw, 2.2rem);
       font-weight: 800;
       letter-spacing: .02em;
     }
-    .section-desc { max-width: 720px; margin: 0 0 32px; line-height: 1.9; color: var(--body); }
+
+    .section-desc {
+      max-width: 720px;
+      margin: 0 0 32px;
+      line-height: 1.9;
+      color: var(--body);
+    }
+
     .panel {
       background: var(--surface) !important;
       border: 1px solid var(--line);
       border-radius: var(--radius) !important;
       box-shadow: none !important;
     }
-    .btn-glow { box-shadow: 0 12px 30px -10px rgba(147, 32, 35, .7) !important; }
-    .muted { color: var(--muted); }
+
+    .btn-glow {
+      box-shadow: 0 12px 30px -10px rgba(147, 32, 35, .7) !important;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
 
     /* ---------- Hero ---------- */
     .hero {
@@ -121,6 +168,7 @@
       background-size: cover;
       background-position: center;
     }
+
     .hero .watermark {
       position: absolute;
       right: -6%;
@@ -131,7 +179,13 @@
       animation: spin 60s linear infinite;
       pointer-events: none;
     }
-    @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+
+    @keyframes spin {
+      to {
+        transform: translateY(-50%) rotate(360deg);
+      }
+    }
+
     .hero h1 {
       margin: 1rem 0 1rem;
       font-size: clamp(1.8rem, 4.8vw, 3.2rem);
@@ -139,14 +193,46 @@
       line-height: 1.25;
       letter-spacing: .02em;
     }
-    .hero .date { display: flex; align-items: center; gap: 6px; color: var(--muted); }
-    .hero .date .v-icon { color: var(--muted) !important; font-size: 20px !important; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.6rem; }
+
+    .hero .date {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+    }
+
+    .hero .date .v-icon {
+      color: var(--muted) !important;
+      font-size: 20px !important;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 1.6rem;
+    }
 
     /* ---------- 換算器 ---------- */
-    .group { height: 100%; padding: 24px; }
-    .group-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
-    .group-head h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: .06em; }
+    .group {
+      height: 100%;
+      padding: 24px;
+    }
+
+    .group-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .group-head h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+    }
+
     .group-tag {
       padding: 2px 12px;
       font-size: .72rem;
@@ -156,12 +242,40 @@
       border-radius: 999px;
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
     }
-    .seg { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-    .calc-input input { font-size: 1.5rem; font-weight: 700; text-align: right; color: #fff !important; }
-    .calc-input .v-label { font-size: 1rem; }
-    .calc-input .v-messages { font-size: .78rem; }
-    .calc-input .v-messages__message { color: var(--muted) !important; }
-    .calc-hint { min-height: 1.6em; margin: 0; font-size: .9rem; color: var(--muted); text-align: right; }
+
+    .seg {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .calc-input input {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-align: right;
+      color: #fff !important;
+    }
+
+    .calc-input .v-label {
+      font-size: 1rem;
+    }
+
+    .calc-input .v-messages {
+      font-size: .78rem;
+    }
+
+    .calc-input .v-messages__message {
+      color: var(--muted) !important;
+    }
+
+    .calc-hint {
+      min-height: 1.6em;
+      margin: 0;
+      font-size: .9rem;
+      color: var(--muted);
+      text-align: right;
+    }
 
     .result-value {
       margin: 8px 0 12px;
@@ -172,13 +286,39 @@
       font-variant-numeric: tabular-nums;
       word-break: break-all;
     }
-    .result-value small { margin-left: 6px; font-size: 1rem; font-weight: 500; color: var(--muted); }
-    .result-formula { margin: 0; font-size: .95rem; text-align: right; color: var(--muted); }
-    .calc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 28px; }
+
+    .result-value small {
+      margin-left: 6px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .result-formula {
+      margin: 0;
+      font-size: .95rem;
+      text-align: right;
+      color: var(--muted);
+    }
+
+    .calc-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-top: 28px;
+    }
 
     /* ---------- 對照表 ---------- */
-    .table-wrap { overflow-x: auto; }
-    .ref-table { width: 100%; border-collapse: collapse; }
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    .ref-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
     .ref-table th {
       padding: 16px 24px;
       font-size: .85rem;
@@ -189,14 +329,46 @@
       border-bottom: 1px solid var(--line);
       white-space: nowrap;
     }
-    .ref-table td { padding: 14px 24px; color: #fff; border-bottom: 1px solid var(--line); white-space: nowrap; }
-    .ref-table tr:last-child td { border-bottom: 0; }
-    .ref-table tbody tr { cursor: pointer; }
-    .ref-table tbody tr:hover td { background: rgba(255, 255, 255, .03); }
-    .ref-table tbody tr.active td { background: rgba(147, 32, 35, .28); }
-    .ref-table .num { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
-    .ref-table th.num { text-align: right; }
-    .note { margin-top: 16px; font-size: .88rem; line-height: 1.8; color: var(--muted); }
+
+    .ref-table td {
+      padding: 14px 24px;
+      color: #fff;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    .ref-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .ref-table tbody tr {
+      cursor: pointer;
+    }
+
+    .ref-table tbody tr:hover td {
+      background: rgba(255, 255, 255, .03);
+    }
+
+    .ref-table tbody tr.active td {
+      background: rgba(147, 32, 35, .28);
+    }
+
+    .ref-table .num {
+      text-align: right;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ref-table th.num {
+      text-align: right;
+    }
+
+    .note {
+      margin-top: 16px;
+      font-size: .88rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
 
     .notice {
       display: flex;
@@ -209,9 +381,17 @@
       border-radius: var(--radius);
       background: rgba(147, 32, 35, .12);
     }
-    .notice .v-icon { color: var(--accent-2) !important; margin-top: 2px; }
 
-    .promo { overflow: hidden; border-radius: var(--radius) !important; }
+    .notice .v-icon {
+      color: var(--accent-2) !important;
+      margin-top: 2px;
+    }
+
+    .promo {
+      overflow: hidden;
+      border-radius: var(--radius) !important;
+    }
+
     .promo .tag {
       display: inline-block;
       margin: 14px;
@@ -225,24 +405,64 @@
     }
 
     /* ---------- 頁尾 ---------- */
-    .site-footer { background: #050505 !important; border-top: 1px solid var(--line); }
-    .site-footer .v-btn { color: var(--muted) !important; }
-    .site-footer .v-btn:hover { color: #fff !important; }
+    .site-footer {
+      background: #050505 !important;
+      border-top: 1px solid var(--line);
+    }
+
+    .site-footer .v-btn {
+      color: var(--muted) !important;
+    }
+
+    .site-footer .v-btn:hover {
+      color: #fff !important;
+    }
 
     /* ---------- 進場動畫 ---------- */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.in { opacity: 1; transform: none; }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
 
     @media (max-width: 599px) {
-      .section { padding: 48px 0; }
-      .hero { padding: calc(var(--nav-h) + 24px) 0 56px; }
-      .group { padding: 20px; }
-      .ref-table th, .ref-table td { padding: 12px 14px; }
+      .section {
+        padding: 48px 0;
+      }
+
+      .hero {
+        padding: calc(var(--nav-h) + 24px) 0 56px;
+      }
+
+      .group {
+        padding: 20px;
+      }
+
+      .ref-table th,
+      .ref-table td {
+        padding: 12px 14px;
+      }
     }
+
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .hero .watermark { animation: none; }
-      .reveal { opacity: 1; transform: none; transition: none; }
+      html {
+        scroll-behavior: auto;
+      }
+
+      .hero .watermark {
+        animation: none;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
     }
   </style>
 </head>
@@ -253,14 +473,15 @@
 
       <!-- 頂部列 -->
       <v-app-bar app fixed flat :height="68" class="nav" :class="{ 'nav-solid': isSolid }">
-        <a href="/blog" title="瑜誠工業-部落格">
+        <a href="/blog.html" title="瑜誠工業-部落格">
           <v-img class="hidden-xs-only" src="/local/blog/images/logo.png" max-width="160" alt="瑜誠工業Logo"></v-img>
           <v-img class="hidden-sm-and-up" src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo"></v-img>
         </a>
         <v-spacer></v-spacer>
 
         <v-toolbar-items class="hidden-sm-only hidden-xs-only align-center">
-          <v-btn text class="nav-link" v-for="item in navItems" :key="item.href" :href="item.href">{{ item.text }}</v-btn>
+          <v-btn text class="nav-link" v-for="item in navItems" :key="item.href" :href="item.href">{{ item.text
+            }}</v-btn>
           <v-btn icon small class="nav-link ml-2" v-for="item in linkItems" :key="item.href" :href="item.href"
             target="_blank" rel="noopener" :title="item.text">
             <v-icon>{{ item.icon }}</v-icon>
@@ -308,7 +529,7 @@
                     <v-btn rounded color="primary" class="btn-glow" href="#calculator">
                       <v-icon left>mdi-calculator-variant</v-icon>開始換算
                     </v-btn>
-                    <v-btn rounded outlined color="white" href="/blog">
+                    <v-btn rounded outlined color="white" href="/blog.html">
                       <v-icon left>mdi-format-list-bulleted</v-icon>文章列表
                     </v-btn>
                     <v-btn rounded outlined color="white" href="/">
@@ -358,16 +579,17 @@
                         <v-btn rounded small :outlined="inUnit !== 'ft'" :color="inUnit === 'ft' ? 'primary' : 'white'"
                           @click="inUnit = 'ft'">英呎 (ft)</v-btn>
                       </div>
-                      <v-text-field class="calc-input" v-model="inputText" :label="inUnit === 'in' ? '英吋 (in)' : '英呎 (ft)'"
-                        :rules="rules" outlined dense clearable inputmode="decimal" autocomplete="off" maxlength="14"
-                        color="primary" @focus="$event.target.select()"></v-text-field>
+                      <v-text-field class="calc-input" v-model="inputText"
+                        :label="inUnit === 'in' ? '英吋 (in)' : '英呎 (ft)'" :rules="rules" outlined dense clearable
+                        inputmode="decimal" autocomplete="off" maxlength="14" color="primary"
+                        @focus="$event.target.select()"></v-text-field>
                       <p class="calc-hint" v-if="matchedSize">≈ {{ matchedSize.label }}［{{ matchedSize.tw }}］</p>
                       <p class="calc-hint" v-else>&nbsp;</p>
                     </template>
 
                     <template v-else>
-                      <v-select class="calc-input" v-model="selectedIdx" :items="sizeOptions" label="常用尺寸" outlined dense
-                        color="primary" hide-details></v-select>
+                      <v-select class="calc-input" v-model="selectedIdx" :items="sizeOptions" label="常用尺寸" outlined
+                        dense color="primary" hide-details></v-select>
                       <p class="calc-hint mt-3">
                         {{ currentSize.label }}［{{ currentSize.tw }}］= {{ currentSize.mmText }} mm
                       </p>
@@ -422,8 +644,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(s, i) in sizes" :key="s.label" :class="{ active: mode === 'fraction' && selectedIdx === i }"
-                      @click="pickSize(i)">
+                    <tr v-for="(s, i) in sizes" :key="s.label"
+                      :class="{ active: mode === 'fraction' && selectedIdx === i }" @click="pickSize(i)">
                       <td>{{ s.label }}</td>
                       <td class="muted">{{ s.tw }}</td>
                       <td class="num">{{ s.mmText }}</td>
@@ -571,7 +793,7 @@
 
         navItems: [
           { icon: 'mdi-home', text: '瑜誠首頁', href: '/' },
-          { icon: 'mdi-format-list-bulleted', text: '文章列表', href: '/blog' },
+          { icon: 'mdi-format-list-bulleted', text: '文章列表', href: '/blog.html' },
           { icon: 'mdi-calculator-variant', text: '單位換算器', href: '#calculator' },
           { icon: 'mdi-table', text: '對照表', href: '#reference' },
         ],
