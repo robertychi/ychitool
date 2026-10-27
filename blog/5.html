@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="zh-TW">
+
+<head>
+  <title>英制公制單位轉換| 瑜誠工業-部落格</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Keyword -->
+  <meta name="Keywords" content="刀具部落格,瑜誠工業,木工刀具,尺寸試算">
+  <meta name="Description" content="瑜誠工業提供的「英制公制單位轉換」，旨在協助使用者輕鬆快速地進行各種尺寸單位的自動換算與試算，提升工作效率。 ">
+  <meta name="copyright" content="瑜誠工業刀具部落格 Ychi">
+  <!-- google robot -->
+  <meta name="robots" content="index,follow">
+  <meta name="googlebot" content="index,follow">
+  <!-- FB -->
+  <meta property="fb:app_id" content="104356957765552">
+  <meta property="og:title" content="英制公制單位轉換| 瑜誠工業-部落格">
+  <meta property="og:description" content="瑜誠工業提供的「英制公制單位轉換」，旨在協助使用者輕鬆快速地進行各種尺寸單位的自動換算與試算，提升工作效率。">
+  <meta property="og:image" content="http://www.ychi.com.tw/local/blog/images/20241031.jpg">
+  <meta property="og:url" content="http://www.ychi.com.tw/blog/5">
+  <meta property="og:type" content="website">
+  <!-- Twitter -->
+  <meta property="og:image:alt" content="瑜誠工業-工業切削刀具的專家">
+  <meta name="twitter:card" content="Ychi">
+  <!-- ICO -->
+  <link rel="icon" type="image/png" sizes="128x128" href="/local/images/faviconBlog.ico">
+  <!-- CSS -->
+  <link href="/local/MaterialDesign/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="/local/vuetify/vuetify.min.css" rel="stylesheet">
+  <script src="/local/vue.min.js"></script>
+  <script src="/local/axios/dist/axios.min.js"></script>
+  <script src="/local/vuetify/vuetify.min.js"></script>
+
+  <link rel="stylesheet" href="/local/blog/blog.css">
+</head>
+
+<body style="background-color:#000">
+  <div id="app">
+    <v-app v-resize="onResize">
+
+      <v-app-bar app clipped-right fixed dense flat class="appBarBg hidden-xs-only">
+        <a href="http://www.ychi.com.tw" title="首頁-瑜誠工業">
+          <v-img class="hidden-xs-only" src="/local/blog/images/logo.png" max-width="160" alt="瑜誠工業Logo"
+            title="瑜誠工業logo-small"></v-img>
+        </a>
+        <v-spacer></v-spacer>
+        <v-toolbar-items class="hidden-xs-only">
+          <v-btn dark :text="windowSize.x >= 960" :icon="windowSize.x < 960" v-for="(item, index) in linkItems"
+            :href="item.href" :key="index">
+            <v-icon :left="windowSize.x >= 960">{{item.icon}}</v-icon>
+            <span v-if="windowSize.x >= 960">
+              <span v-if="windowSize.x >= 1650">{{ item.text }}</span>
+              <span v-if="windowSize.x < 1650">{{ item.tip }}</span>
+            </span>
+          </v-btn>
+        </v-toolbar-items>
+        <v-app-bar-nav-icon class="hidden-xs-only white--text" @click="isDrawer = !isDrawer">
+        </v-app-bar-nav-icon>
+      </v-app-bar>
+      <v-app-bar app clipped-right fixed dense flat class="appBarBgMobile hidden-sm-and-up">
+        <v-btn icon color="white" href="/">
+          <v-icon>mdi-home</v-icon>
+        </v-btn>
+        <v-spacer></v-spacer>
+        <a href="http://www.ychi.com.tw" title="首頁-瑜誠工業" class="hidden-sm-and-up">
+          <v-img src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo" title="瑜誠工業logo-small"></v-img>
+        </a>
+        <v-spacer></v-spacer>
+      </v-app-bar>
+
+      <v-navigation-drawer app v-model="isDrawer" clipped class="drawerBg" right>
+        <v-sheet dark color="transparent" class="pa-4">YCHI 瑜誠工業
+        </v-sheet>
+        <v-divider dark></v-divider>
+        <v-subheader dark>站內連結</v-subheader>
+        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
+          <v-list-item v-for="(item, index) in menuItems" :key="index" :href="item.href"
+            :disabled="item.href === ('/'+routePath) ? true : false">
+            <v-list-item-icon class="white--text">
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+        <v-divider dark></v-divider>
+        <v-subheader dark>社群影音</v-subheader>
+        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
+          <v-list-item v-for="(item, index) in linkItems" :key="index" :href="item.href">
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+        <v-divider dark></v-divider>
+        <v-subheader dark>賣場平台</v-subheader>
+        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
+          <v-list-item v-for="(item, index) in shoppingItems" :key="index" :href="item.href">
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+      <v-main>
+        <section v-if="windowSize.x > 310 && windowSize.y > 350">
+          <v-row dense justify="center" class="my-1">
+
+
+
+          </v-row>
+
+          <section> <v-container fluid>
+              <v-row dense justify="center">
+                <v-col cols="12" xl="8" lg="10" md="12" sm="12" xs="12">
+                  <v-row dense>
+                    <v-col cols="12">
+                      <v-card>
+                        <v-toolbar style="background: rgba(255,255,255,0.5)" flat dense>
+                          <v-toolbar-title class="blue--text text--darken-4 hidden-xs-only">YCHI BLOG
+                          </v-toolbar-title>
+                          <v-spacer></v-spacer>
+                          <v-btn text href="/">
+                            <v-icon left>mdi-home</v-icon>
+                            瑜誠首頁
+                          </v-btn>
+                          <v-btn text href="/blog">
+                            <v-icon left>mdi-reply</v-icon>
+                            文章列表
+                          </v-btn>
+                        </v-toolbar>
+                        <v-divider></v-divider>
+                        <v-card-title :class="getWindowSizeX > 600 ? 'display-2 mb-2' : 'title mb-1'">
+                          {{ articleItem.title }}
+                        </v-card-title>
+                        <v-card-subtitle>
+                          <p class="mb-0">
+                            <v-icon class="mr-1">mdi-calendar-month</v-icon>
+                            {{ articleItem.date }}
+                          </p>
+                        </v-card-subtitle>
+                        <v-divider></v-divider>
+                        <v-card-text>
+                          <v-row dense>
+
+                            <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12" v-if="!isSelected">
+                              <v-card height="180">
+                                <v-toolbar dense flat>
+                                  <v-toolbar-title>輸入：</v-toolbar-title>
+                                  <v-spacer></v-spacer>
+                                  <v-btn :disabled="isInches" class="mr-2" @click="changeInches()" outlined>吋(In)
+                                  </v-btn>
+                                  <v-btn :disabled="isFeet" class="mr-2" @click="changeFeet()" outlined>
+                                    呎(Ft)
+                                  </v-btn>
+                                  <v-divider vertical></v-divider>
+                                  <v-btn icon class="ml-1" @click="switchFormSelect()">
+                                    <v-icon>mdi-form-select</v-icon>
+                                  </v-btn>
+                                </v-toolbar>
+                                <v-divider></v-divider>
+                                <v-card-text>
+                                  <v-row dense>
+                                    <v-col cols="12">
+                                      <v-text-field v-model="inputValue" label="輸入英制數值" prepend-icon="mdi-ruler"
+                                        :hint="`目前輸入的值為${isInches ? ' 英吋(In) ' : ''}${isFeet? ' 英呎(Ft) ': ''}`"
+                                        persistent-hint clearable></v-text-field>
+                                    </v-col>
+                                    <v-col cols="12" v-if="isInches">
+                                      <p class="body-2 mb-0 ml-8" v-if="matchingImperial">[{{ matchingImperial }}]</p>
+                                    </v-col>
+                                  </v-row>
+                                </v-card-text>
+                              </v-card>
+                            </v-col>
+
+                            <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12" v-if="isSelected">
+                              <v-card height="180">
+                                <v-toolbar dense flat>
+                                  <v-toolbar-title>輸入：</v-toolbar-title>
+                                  <v-spacer></v-spacer>
+                                  <v-btn outlined class="mr-2" disabled>吋(In)</v-btn>
+                                  <v-divider vertical></v-divider>
+                                  <v-btn icon class="ml-1" @click="switchFormSelect()">
+                                    <v-icon>mdi-form-textbox</v-icon>
+                                  </v-btn>
+                                </v-toolbar>
+                                <v-divider></v-divider>
+                                <v-card-text>
+                                  <v-row dense>
+                                    <v-col cols="12">
+                                      <v-select v-model="select" :items="rulerSimpleLists"
+                                        :item-text="item => `${item.imperial} [${item.tw}]`" label="選項" persistent-hint
+                                        return-object class="mb-2" prepend-icon="mdi-ruler"
+                                        :hint="`目前尺寸：${select.imperial} [${select.tw}]`"></v-select>
+                                    </v-col>
+                                  </v-row>
+                                </v-card-text>
+                              </v-card>
+                            </v-col>
+
+                            <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12">
+                              <v-card height="180">
+                                <v-toolbar dense flat>
+                                  <v-toolbar-title>結果：</v-toolbar-title>
+                                  <v-spacer></v-spacer>
+                                  <v-btn :disabled="isMillimeter" class="mr-2" @click="changeMillimeter" outlined>公厘(mm)
+                                  </v-btn>
+                                  <v-btn :disabled="isMeter" @click="changeMeter" outlined
+                                    v-if="!isSelected">公尺(m)</v-btn>
+                                </v-toolbar>
+                                <v-divider></v-divider>
+                                <v-card-text>
+                                  <p
+                                    :class="getWindowSizeX > 600 ? 'display-3 text-right mb-1' : 'display-1 text-right mb-1'">
+                                    {{ resultValue | commonFormat}}
+                                    <span class="body-1" v-if="isMillimeter">mm</span>
+                                    <span class="body-1" v-if="isMeter">m</span>
+                                  </p>
+
+                                  <p class="body-1 text-right mb-0" v-if="!isSelected">
+                                    <span>{{ inputValue | commonFormat}}</span>
+                                    <span v-if="isFeet">(Ft) x</span>
+                                    <span v-if="isInches">(In) x</span>
+                                    <span v-if="isInches">
+                                      <span v-if="isMillimeter">{{ inchesToMillimeter | commonFormat}}</span>
+                                      <span v-if="isMeter">{{ (inchesToMillimeter / meterToMillimeter) |
+                                        commonFormat}}</span>
+                                    </span>
+                                    <span v-if="isFeet">
+                                      <span v-if="isMillimeter">{{ (inchesToMillimeter * feetToInches) |
+                                        commonFormat}}</span>
+                                      <span v-if="isMeter">{{ (inchesToMillimeter * feetToInches / meterToMillimeter) |
+                                        commonFormat}}</span>
+                                    </span>
+                                  </p>
+
+
+                                  <p class="body-1 text-right" v-if="isSelected">
+                                    <span v-if="select.molecular === select.denominator">1</span>
+                                    <span v-else>{{ select.molecular }}/{{ select.denominator }}"</span>
+                                    <span>(In) x</span>
+                                    <span>
+                                      <span>{{ inchesToMillimeter | commonFormat}}</span>
+                                    </span>
+                                    <span class="ml-1">[{{ select.tw }}]</span>
+                                  </p>
+                                </v-card-text>
+                              </v-card>
+                            </v-col>
+                          </v-row>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-card color="orange">
+                        <v-card-text class="white--text">
+                          <v-icon color="white">mdi-alert-octagon-outline</v-icon>
+                          注意：以上計算結果僅供參考，如您對上述計算結果有任何疑問或發現錯誤，建議您自行核實。我們無法對計算結果承擔責任，敬請諒解！
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-card>
+
+                        <v-img src="/local/blog/images/20241031CM.jpg" height="250">
+                          <p class="white--text ml-1 mt-2 pl-1 ">
+                            <v-icon color="white" class="mb-1">mdi-alert-circle-outline</v-icon>
+                            <span>瑜誠產品</span>
+                          </p>
+                        </v-img>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-col>
+              </v-row>
+            </v-container>
+          </section>
+
+          <section class="hidden-md-and-down"></section>
+
+          <section class="hidden-lg-and-up hidden-xs-only"></section>
+
+          <section class="hidden-sm-and-up"></section>
+        </section>
+        <v-container fluid fill-height v-else>
+          <v-row dense justify="center" align="center">
+            <v-col cols="12" xl="10" lg="11" md="12" sm="12" xs="12">
+              <v-card height="100" color="red darken-4">
+                <v-card-text class="title">
+                  <span v-if="windowSize.y < 350">
+                    此設備高不足 350px 無法顯示相關內容，請選擇適合的設備或調整視窗來觀看此網頁
+                  </span>
+                  <span v-if="windowSize.x < 310">
+                    此設備寬不足 310px 無法顯示相關內容，請選擇適合的設備或調整視窗來觀看此網頁
+                  </span>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-main>
+
+      <v-footer padless :fixed="windowSize.x >600 ? false : true" v-if="getIsFooterShow">
+        <v-card tile width="100%" :class="windowSize.x >600 ? 'footerBg text-center' : 'footerBgMobile text-center'">
+          <v-fade-transition>
+            <v-card-text v-if="getIsFooterShowLink">
+              <v-btn icon class="mx-3" dark v-for="(item, index) in linkItems" :href="item.href" :key="index">
+                <v-icon>{{item.icon}}</v-icon>
+              </v-btn>
+            </v-card-text>
+          </v-fade-transition>
+          <v-divider></v-divider>
+          <v-card-text class="white--text">
+            © Copyright 2012-2024 瑜誠工業有限公司 版權所有
+          </v-card-text>
+        </v-card>
+      </v-footer>
+
+      <v-fad-transition>
+        <v-btn fab dark fixed bottom right color="red darken-3" v-scroll="onScroll" v-show="isFab" v-on:click="toTop">
+          <v-icon>mdi-navigation</v-icon>
+        </v-btn>
+      </v-fad-transition>
+    </v-app>
+  </div>
+</body>
+
+<script>
+  new Vue({
+    el: '#app',
+    vuetify: new Vuetify(),
+    data: {
+      windowSize: { x: 0, y: 0 },
+      isFab: false,
+      yVal: 0,
+      menuItems: [
+        { icon: 'mdi-home', text: '首頁', href: '/', isShowHandheld: true },
+        { icon: 'mdi-package-variant', text: '產品介紹', href: '/product', isShowHandheld: false },
+        { icon: 'mdi-phone', text: '聯絡我們', href: '/contact', isShowHandheld: true },
+      ],
+      linkItems: [
+        { icon: 'mdi-facebook', text: 'FaceBook', tip: 'FB', href: 'https://www.facebook.com/ychitool' },
+        {
+          icon: 'mdi-instagram', text: 'Instagram', tip: 'IG',
+          href: 'https://www.instagram.com/ychitool168/'
+        },
+        { icon: 'mdi-youtube', text: 'Youtube', tip: 'YT', href: 'https://www.youtube.com/@ychi' },
+      ],
+      shoppingItems: [
+        { icon: 'mdi-shopping', text: '蝦皮賣場', tip: 'SP', href: 'https://shopee.tw/ychitool' }
+      ],
+      routePath: '',
+      routePathParam: '',
+      isDrawer: false,
+      isErrorNotGetData: false,
+      // articleClass
+      articleClassItems: [],
+      articleItems: [],
+      articleItem: {},
+      /** 內容用資料 */
+      isMetricToImperialModel: false, // 公制轉英制模式
+      inputValue: 1, // 輸入值
+      resultValue: 25.4, // 結果值
+      isFeet: false,
+      isInches: true,
+      isMillimeter: true,
+      isMeter: false,
+      feetToInches: 12, // 呎 >>> 吋
+      inchesToMillimeter: 25.4, // 吋 >>> 毫米
+      meterToMillimeter: 1000, // 公尺 >>> 毫米
+      //
+      isSelected: false,
+      select: { imperial: '3/8″', metric: '9.525mm ', tw: '3分', molecular: 3, denominator: 8 },
+      rulerSimpleLists: [
+        { imperial: '1/16″', metric: '1.5875', tw: '半分', molecular: 1, denominator: 16 },
+        { imperial: '1/8″', metric: '3.175 ', tw: '1分', molecular: 1, denominator: 8 },
+        { imperial: '3/16″', metric: '4.7625 ', tw: '1分半', molecular: 3, denominator: 16 },
+        { imperial: '1/4″', metric: '6.35 ', tw: '2分', molecular: 1, denominator: 4 },
+        { imperial: '5/16″', metric: '7.9375 ', tw: '2分半', molecular: 5, denominator: 16 },
+        { imperial: '3/8″', metric: '9.525 ', tw: '3分', molecular: 3, denominator: 8 },
+        { imperial: '7/16″', metric: '11.1125 ', tw: '3分半', molecular: 7, denominator: 16 },
+        { imperial: '1/2″', metric: '12.7 ', tw: '4分', molecular: 1, denominator: 2 },
+        { imperial: '9/16″', metric: '14.2875 ', tw: '4分半', molecular: 9, denominator: 16 },
+        { imperial: '5/8″', metric: '15.875 ', tw: '5分', molecular: 5, denominator: 8 },
+        { imperial: '11/16″', metric: '17.4625 ', tw: '5分半', molecular: 11, denominator: 16 },
+        { imperial: '3/4″', metric: '19.05', tw: '6分', molecular: 3, denominator: 4 },
+        { imperial: '13/16″', metric: '20.6375 ', tw: '6分半', molecular: 13, denominator: 16 },
+        { imperial: '7/8″ ', metric: '22.225 ', tw: '7分', molecular: 7, denominator: 8 },
+        { imperial: '15/16″', metric: '23.8125 ', tw: '7分半', molecular: 15, denominator: 16 },
+        { imperial: '1” = 1吋', metric: '25.4', tw: '8分', molecular: 1, denominator: 1 },
+      ],
+    },
+    watch: {
+      getWindowSizeX(val) {
+        if (val < 600) {
+          this.isShowList = true
+        }
+      },
+      inputValue(val) {
+        // 吋
+        if (this.isInches) {
+          this.calInchesToMetric(val)
+        }
+        if (this.isFeet) {
+          this.calFeetToMetric(val)
+        }
+      },
+      select(val) {
+        console.log(val);
+        let valNew = val.molecular / val.denominator
+        this.calInchesToMetric(valNew)
+      }
+    },
+    computed: {
+      getWindowSizeX() {
+        return this.windowSize.x
+      },
+      /** 基本容器高度 */
+      getDefHeight() {
+        return this.windowSize.y - 260
+      },
+      getIsFooterShowLink() {
+        if (this.getWindowSizeX < 600) {
+          if (this.yVal > 40) {
+            return false
+          } else {
+            return true
+          }
+        } else {
+          return true
+        }
+      },
+      getIsFooterShow() {
+        if (this.getWindowSizeX < 600) {
+          if (Number(this.yVal) > Number(this.windowSize.y - 40)) {
+            return false
+          } else {
+            return true
+          }
+        } else {
+          return true
+        }
+      },
+      matchingImperial() {
+        // 尋找 metric 值等於 inputValue 的項目
+        const match = this.rulerSimpleLists.find(
+          item => parseFloat(item.molecular / item.denominator) === parseFloat(this.inputValue)
+        );
+        // 如果有匹配則返回 imperial 值，否則返回空字串
+        return match ? match.imperial : '';
+      },
+    },
+    methods: {
+      /** toTop 程式 */
+      onScroll() {
+        if (typeof window === 'undefined') return;
+        const top = window.pageYOffset || document.documentElement.offsetTop || 0;
+        this.isFab = top > 300
+        this.yVal = top
+      },
+      toTop() {
+        this.$vuetify.goTo(0);
+      },
+      /** 工作尺寸變更 */
+      onResize() {
+        this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+      },
+      /** 取路徑 */
+      fetchPath() {
+        let path = window.location.pathname;   // 例如: /category/item/123
+        let pathParts = path.split('/');
+        // 取得第一個和第二個之間的值
+        let category = pathParts[1];
+        if (category === "") {
+          this.routePath = ''
+        } else {
+          this.routePath = category
+        }
+      },
+      fetchPathParam() {
+        let path = window.location.pathname;   // 例如: /category/item/123
+        let pathParts = path.split('/');
+        // 取得第一個和第二個之間的值
+        let param = pathParts[2];
+        if (param === "") {
+          this.routePathParam = 1
+        } else {
+          this.routePathParam = param
+        }
+      },
+      /** 取得類別資料 */
+      fetchArticleClassItems() {
+        this.isErrorNotGetData = false
+        axios.get(`/local/blog/json/articleClass.json`)
+          .then(response => {
+            console.log(response);
+            this.articleClassItems = response.data.articleClassItems
+          })
+          .catch(error => {
+            this.isErrorNotGetData = true
+            console.log(error);
+          })
+          .finally(() => {
+          });
+      },
+      fetchArticleItem(id) {
+        this.isErrorNotGetData = false
+        axios.get(`/local/blog/json/articles.json`)
+          .then(response => {
+            console.log(response);
+            this.articleItems = response.data.articleItems
+            this.articleItem = this.articleItems.find(item => Number(item.id) === Number(id));
+          })
+          .catch(error => {
+            this.isErrorNotGetData = true
+            console.log(error);
+          })
+          .finally(() => {
+          });
+      },
+      // 改成呎
+      changeFeet() {
+        this.isFeet = true
+        this.isInches = false
+        this.calFeetToMetric(this.inputValue)
+      },
+      // 改成吋
+      changeInches() {
+        this.isFeet = false
+        this.isInches = true
+        this.calInchesToMetric(this.inputValue)
+      },
+      // 改成公厘
+      changeMillimeter() {
+        this.isMillimeter = true
+        this.isMeter = false
+        this.resultValue = this.resultValue * this.meterToMillimeter
+      },
+      // 改成公尺
+      changeMeter() {
+        this.isMillimeter = false
+        this.isMeter = true
+        this.resultValue = this.resultValue / this.meterToMillimeter
+      },
+      // 計算從英吋變公制
+      calInchesToMetric(val) {
+        if (this.isMillimeter) this.resultValue = val * this.inchesToMillimeter
+        if (this.isMeter) this.resultValue = val * this.inchesToMillimeter / this.meterToMillimeter
+      },
+      // 計算從英呎變公制
+      calFeetToMetric(val) {
+        if (this.isMillimeter) this.resultValue = val * this.inchesToMillimeter * this.feetToInches
+        if (this.isMeter) this.resultValue = val * this.inchesToMillimeter * this.feetToInches / this.meterToMillimeter
+      },
+      switchFormSelect() {
+        this.isSelected = !this.isSelected
+        if (this.isSelected) {
+          this.isMeter = false
+          this.isMillimeter = true
+          let val = this.select.molecular / this.select.denominator
+          this.calInchesToMetric(val)
+        } else {
+          this.isInches = true
+          this.isFeet = false
+          this.inputValue = 1
+          this.calInchesToMetric(this.inputValue)
+        }
+      }
+    },
+    filters: {
+      commonFormat(value) {
+        let valueType = typeof (value);
+
+        if (valueType === 'string') {
+          return value;
+        } else if (valueType === 'number') {
+          if (!(value === null || value === 0 || value === undefined)) {
+
+            // 當數字絕對值超過1000萬時，使用科學記數法
+            if (Math.abs(value) >= 10_000_000) {
+              let exponent = Math.floor(Math.log10(Math.abs(value))); // 計算指數部分
+              let mantissa = (value / Math.pow(10, exponent)).toFixed(3); // 計算尾數並保留三位小數
+              return mantissa + " x 10^" + exponent;
+            } else {
+              // 如果小數點超過第三位，進行四捨五入
+              let roundedValue = value % 1 !== 0 ? parseFloat(value.toFixed(3)) : value;
+
+              // 格式化千分位
+              return String(roundedValue).replace(/^(-?\d+?)((?:\d{3})+)(?=\.\d+$|$)/, function (all, pre, groupOf3Digital) {
+                return pre + groupOf3Digital.replace(/\d{3}/g, ',$&');
+              });
+            }
+
+          } else {
+            return 0;
+          }
+        } else {
+          return value;
+        }
+      }
+    },
+    mounted() {
+      this.$vuetify.theme.dark = false;
+      this.fetchPath()
+      this.fetchPathParam()
+      this.fetchArticleClassItems()
+      this.fetchArticleItem(this.routePathParam)
+    },
+  })
+</script>
