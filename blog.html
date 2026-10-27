@@ -2,194 +2,570 @@
 <html lang="zh-TW">
 
 <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0a0a0a" />
   <title>首頁 | 瑜誠工業-部落格</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <!-- Keyword -->
-  <meta name="Keywords" content="刀具部落格,瑜誠工業,木工刀具,尺寸試算">
-  <meta name="Description" content="歡迎來到瑜誠工業的部落格！我們致力於分享刀具相關的知識與實用常識，為您打造一個便於交流與學習的知識分享平台。 ">
-  <meta name="copyright" content="瑜誠工業刀具部落格 Ychi">
-  <!-- google robot -->
-  <meta name="robots" content="index,follow">
-  <meta name="googlebot" content="index,follow">
-  <!-- FB -->
-  <meta property="fb:app_id" content="104356957765552">
-  <meta property="og:title" content="首頁 | 瑜誠工業-部落格">
-  <meta property="og:description" content="歡迎來到瑜誠工業的部落格！我們致力於分享刀具相關的知識與實用常識，為您打造一個便於交流與學習的知識分享平台。">
-  <meta property="og:image" content="http://www.ychi.com.tw/local/blog/images/metaImageIndex.png">
-  <meta property="og:url" content="http://www.ychi.com.tw/blog">
-  <meta property="og:type" content="website">
-  <!-- Twitter -->
-  <meta property="og:image:alt" content="瑜誠工業-工業切削刀具的專家">
-  <meta name="twitter:card" content="Ychi">
-  <!-- ICO -->
-  <link rel="icon" type="image/png" sizes="128x128" href="/local/images/faviconBlog.ico">
-  <!-- CSS -->
-  <link href="/local/MaterialDesign/css/materialdesignicons.min.css" rel="stylesheet">
-  <link href="/local/vuetify/vuetify.min.css" rel="stylesheet">
-  <script src="/local/vue.min.js"></script>
-  <script src="/local/axios/dist/axios.min.js"></script>
-  <script src="/local/vuetify/vuetify.min.js"></script>
 
-  <link rel="stylesheet" href="/local/blog/blog.css">
+  <meta name="keywords" content="刀具部落格,瑜誠工業,木工刀具,尺寸試算" />
+  <meta name="description" content="歡迎來到瑜誠工業的部落格！我們致力於分享刀具相關的知識與實用常識，為您打造一個便於交流與學習的知識分享平台。" />
+  <meta name="copyright" content="瑜誠工業刀具部落格 Ychi" />
+  <meta name="robots" content="index,follow" />
+  <meta name="googlebot" content="index,follow" />
+  <link rel="canonical" href="https://www.ychi.com.tw/blog" />
+
+  <meta property="fb:app_id" content="104356957765552" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.ychi.com.tw/blog" />
+  <meta property="og:title" content="首頁 | 瑜誠工業-部落格" />
+  <meta property="og:description" content="歡迎來到瑜誠工業的部落格！我們致力於分享刀具相關的知識與實用常識，為您打造一個便於交流與學習的知識分享平台。" />
+  <meta property="og:image" content="https://www.ychi.com.tw/local/blog/images/metaImageIndex.png" />
+  <meta property="og:image:alt" content="瑜誠工業-工業切削刀具的專家" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/local/images/faviconBlog.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="/local/MaterialDesign/css/materialdesignicons.min.css" rel="stylesheet" />
+  <link href="/local/vuetify/vuetify.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface-2: #1c1c1c;
+      --line: rgba(255, 255, 255, .08);
+      --text: #ffffff;
+      --muted: #b3b3b3;
+      --accent: #932023;
+      --accent-2: #d64550;
+      --radius: 16px;
+      --nav-h: 68px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .v-application {
+      background: var(--bg) !important;
+      color: var(--text);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif !important;
+    }
+
+    .v-application h1,
+    .v-application h2,
+    .v-application h3,
+    .v-application p {
+      font-family: inherit;
+    }
+
+    .v-main {
+      padding-top: 0 !important;
+    }
+
+    section {
+      scroll-margin-top: calc(var(--nav-h) + 8px);
+    }
+
+    /* ---------- 導覽列 ---------- */
+    .nav {
+      background: transparent !important;
+      transition: background .3s ease, border-color .3s ease;
+      border-bottom: 1px solid transparent !important;
+    }
+
+    .nav.nav-solid {
+      background: rgba(10, 10, 10, .82) !important;
+      -webkit-backdrop-filter: saturate(1.4) blur(14px);
+      backdrop-filter: saturate(1.4) blur(14px);
+      border-bottom-color: var(--line) !important;
+    }
+
+    .nav-link {
+      color: #e8e8e8 !important;
+      letter-spacing: .08em;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      color: #fff !important;
+    }
+
+    .drawer {
+      background: rgba(14, 14, 14, .98) !important;
+    }
+
+    /* ---------- 共用 ---------- */
+    .grad {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .section-head h2 {
+      margin-top: .6rem;
+      font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .count {
+      color: var(--muted);
+      font-size: .9rem;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+
+    .panel {
+      background: var(--surface) !important;
+      border: 1px solid var(--line);
+      border-radius: var(--radius) !important;
+      box-shadow: none !important;
+    }
+
+    .panel.hoverable {
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+
+    .panel.hoverable:hover {
+      transform: translateY(-4px);
+      border-color: rgba(147, 32, 35, .8);
+      box-shadow: 0 18px 40px -18px rgba(147, 32, 35, .6) !important;
+    }
+
+    .btn-glow {
+      box-shadow: 0 12px 30px -10px rgba(147, 32, 35, .7) !important;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      min-height: min(64vh, 560px);
+      padding: calc(var(--nav-h) + 40px) 0 88px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero .watermark {
+      position: absolute;
+      right: -6%;
+      top: 50%;
+      font-size: clamp(280px, 40vw, 520px) !important;
+      color: rgba(255, 255, 255, .04) !important;
+      transform: translateY(-50%);
+      animation: spin 60s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes spin {
+      to {
+        transform: translateY(-50%) rotate(360deg);
+      }
+    }
+
+    .hero h1 {
+      margin: 1rem 0 1rem;
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: .02em;
+    }
+
+    .hero .lead {
+      max-width: 620px;
+      font-size: clamp(.98rem, 1.8vw, 1.1rem);
+      line-height: 1.9;
+      color: #e8e8e8;
+    }
+
+    .search {
+      max-width: 520px;
+      margin-top: 1.8rem;
+    }
+
+    .search .v-input__slot {
+      background: rgba(20, 20, 20, .88) !important;
+      border: 1px solid var(--line);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    /* ---------- 熱門文章 ---------- */
+    .hot-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 24px;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .hot-tag {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 12px 2px 8px;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      color: #fff;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    .hot-tag .v-icon {
+      color: #fff !important;
+      font-size: 16px !important;
+    }
+
+    .hot-card h3 {
+      margin: 16px 0 auto;
+      padding-bottom: 20px;
+      font-size: 1.12rem;
+      font-weight: 700;
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .meta .v-icon {
+      color: var(--muted) !important;
+      font-size: 18px !important;
+    }
+
+    /* ---------- 文章列表 ---------- */
+    .post {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 24px;
+      margin-bottom: 12px;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .panel.post {
+      background: #171717 !important;
+      border-color: rgba(255, 255, 255, .06);
+    }
+
+    .panel.post:hover {
+      background: #1e1e1e !important;
+    }
+
+    .post .no {
+      flex: none;
+      width: 52px;
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      color: rgba(255, 255, 255, .22);
+      transition: color .3s ease;
+    }
+
+    .post:hover .no {
+      color: var(--accent-2);
+    }
+
+    .post .info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .post .title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.6;
+      color: #ffffff;
+    }
+
+    .post .go {
+      color: var(--muted) !important;
+      transition: transform .3s ease;
+    }
+
+    .post:hover .go {
+      transform: translateX(4px);
+      color: var(--accent-2) !important;
+    }
+
+    .fire {
+      color: var(--accent-2) !important;
+    }
+
+    .state {
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .state .v-icon {
+      font-size: 56px !important;
+      color: var(--muted) !important;
+    }
+
+    /* ---------- 頁尾 ---------- */
+    .site-footer {
+      background: #050505 !important;
+      border-top: 1px solid var(--line);
+    }
+
+    .site-footer .v-btn {
+      color: var(--muted) !important;
+    }
+
+    .site-footer .v-btn:hover {
+      color: #fff !important;
+    }
+
+    /* ---------- 進場動畫 ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 599px) {
+      .section {
+        padding: 48px 0;
+      }
+
+      .hero {
+        padding: calc(var(--nav-h) + 24px) 0 64px;
+      }
+
+      .post {
+        gap: 12px;
+        padding: 16px;
+      }
+
+      .post .no {
+        width: 40px;
+        font-size: 1.4rem;
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .hero .watermark {
+        animation: none;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
 </head>
 
-<body style="background-color:#000">
+<body>
   <div id="app">
-    <v-app v-resize="onResize">
+    <v-app v-resize="onResize" v-scroll="onScroll">
 
-      <v-app-bar app clipped-right fixed dense flat class="appBarBg hidden-xs-only">
-        <a href="http://www.ychi.com.tw" title="首頁-瑜誠工業">
-          <v-img class="hidden-xs-only" src="/local/blog/images/logo.png" max-width="160" alt="瑜誠工業Logo"
-            title="瑜誠工業logo-small"></v-img>
+      <!-- 頂部列 -->
+      <v-app-bar app fixed flat :height="68" class="nav" :class="{ 'nav-solid': isSolid }">
+        <a href="/blog" title="瑜誠工業-部落格">
+          <v-img class="hidden-xs-only" src="/local/blog/images/logo.png" max-width="160" alt="瑜誠工業Logo"></v-img>
+          <v-img class="hidden-sm-and-up" src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo"></v-img>
         </a>
         <v-spacer></v-spacer>
-        <v-toolbar-items class="hidden-xs-only">
-          <v-btn dark :text="windowSize.x >= 960" :icon="windowSize.x < 960" v-for="(item, index) in linkItems"
-            :href="item.href" :key="index">
-            <v-icon :left="windowSize.x >= 960">{{item.icon}}</v-icon>
-            <span v-if="windowSize.x >= 960">
-              <span v-if="windowSize.x >= 1650">{{ item.text }}</span>
-              <span v-if="windowSize.x < 1650">{{ item.tip }}</span>
-            </span>
+
+        <v-toolbar-items class="hidden-sm-only hidden-xs-only align-center">
+          <v-btn text class="nav-link" v-for="item in navItems" :key="item.href" :href="item.href">{{ item.text
+            }}</v-btn>
+          <v-btn icon small class="nav-link ml-2" v-for="item in linkItems" :key="item.href" :href="item.href"
+            target="_blank" rel="noopener" :title="item.text">
+            <v-icon>{{ item.icon }}</v-icon>
           </v-btn>
         </v-toolbar-items>
-        <v-app-bar-nav-icon class="hidden-xs-only white--text" @click="isDrawer = !isDrawer">
-        </v-app-bar-nav-icon>
-      </v-app-bar>
-      <v-app-bar app clipped-right fixed dense flat class="appBarBgMobile hidden-sm-and-up">
-        <v-btn icon color="white" href="/">
-          <v-icon>mdi-home</v-icon>
-        </v-btn>
-        <v-spacer></v-spacer>
-        <a href="http://www.ychi.com.tw" title="首頁-瑜誠工業" class="hidden-sm-and-up">
-          <v-img src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo" title="瑜誠工業logo-small"></v-img>
-        </a>
-        <v-spacer></v-spacer>
+
+        <v-app-bar-nav-icon class="hidden-md-and-up white--text" @click="isDrawer = !isDrawer"></v-app-bar-nav-icon>
       </v-app-bar>
 
-      <v-navigation-drawer app v-model="isDrawer" clipped class="drawerBg" right>
-        <v-sheet dark color="transparent" class="pa-4">YCHI 瑜誠工業
-        </v-sheet>
-        <v-divider dark></v-divider>
-        <v-subheader dark>站內連結</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item v-for="(item, index) in menuItems" :key="index" :href="item.href"
-            :disabled="item.href === ('/'+routePath) ? true : false">
-            <v-list-item-icon class="white--text">
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider dark></v-divider>
-        <v-subheader dark>社群影音</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item v-for="(item, index) in linkItems" :key="index" :href="item.href">
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider dark></v-divider>
-        <v-subheader dark>賣場平台</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item v-for="(item, index) in shoppingItems" :key="index" :href="item.href">
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
+      <!-- 側邊選單 -->
+      <v-navigation-drawer v-model="isDrawer" temporary fixed right width="280" class="drawer">
+        <v-sheet color="transparent" class="pa-4 font-weight-bold">YCHI 瑜誠工業</v-sheet>
+
+        <template v-for="group in drawerGroups">
+          <v-divider :key="group.title + '-divider'"></v-divider>
+          <v-subheader :key="group.title + '-header'">{{ group.title }}</v-subheader>
+          <v-list :key="group.title + '-list'">
+            <v-list-item v-for="item in group.items" :key="item.href" :href="item.href"
+              :disabled="item.href === currentPath" @click="isDrawer = false">
+              <v-list-item-icon><v-icon>{{ item.icon }}</v-icon></v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ item.text }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </template>
       </v-navigation-drawer>
+
       <v-main>
-        <section v-if="windowSize.x > 310 && windowSize.y > 350">
-          <v-row dense justify="center" class="my-1">
+        <div v-if="!isViewportTooSmall">
 
+          <!-- Hero -->
+          <header class="hero"
+            style="background-image: linear-gradient(to bottom, rgba(10, 10, 10,.6) 0%, rgba(10, 10, 10,.82) 70%, #0a0a0a 100%), url('/local/blog/images/banner.jpg')">
+            <v-icon class="watermark" aria-hidden="true">mdi-cog</v-icon>
+            <v-container>
+              <v-row>
+                <v-col cols="12" md="9" lg="8" v-reveal>
+                  <span class="eyebrow">Knowledge · Blog</span>
+                  <h1>瑜誠<span class="grad">刀具</span>部落格</h1>
+                  <p class="lead">
+                    分享刀具相關的知識與實用常識，為您打造一個便於交流與學習的知識分享平台。
+                  </p>
+                  <v-text-field class="search" v-model="keyword" solo flat rounded hide-details clearable
+                    prepend-inner-icon="mdi-magnify" placeholder="搜尋文章標題…" aria-label="搜尋文章"></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </header>
 
-
-          </v-row>
-
-          <section> <v-container fluid>
-              <v-row dense justify="center">
-                <v-col cols="12" xl="8" lg="9" md="12" sm="12" xs="12">
-                  <v-row dense>
-                    <v-col cols="12">
-                      <v-card>
-                        <v-img src="/local/blog/images/banner.jpg" :height="getWindowSizeX > 600 ? 400 : 150">
-                          <v-toolbar style="background: rgba(255,255,255,0.7)" flat dense>
-                            <v-toolbar-title class="blue--text text--darken-4">
-                              瑜誠 部落格
-                            </v-toolbar-title>
-                            <v-spacer></v-spacer>
-                            <v-toolbar-items>
-                              <v-btn href="/" text><v-icon left>mdi-home</v-icon>瑜誠首頁</v-btn>
-                            </v-toolbar-items>
-                          </v-toolbar>
-                        </v-img>
-                      </v-card>
-                    </v-col>
-                    <v-col cols="12">
-                      <v-card>
-                        <v-toolbar flat>
-                          <v-toolbar-title>文章列表</v-toolbar-title>
-                        </v-toolbar>
-                        <v-divider></v-divider>
-                        <v-list>
-                          <v-list-item v-for="(item, index) in articleItems" :key="index" :title="item.title"
-                            :href="`/blog/${item.id}`">
-                            <v-list-item-avatar color="blue darken-4 white--text">
-                              {{ index + 1 }}
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                              <v-list-item-title>{{item.title}}</v-list-item-title>
-                              <v-list-item-subtitle><v-icon
-                                  class="mr-1">mdi-calendar-month</v-icon>{{item.date}}</v-list-item-subtitle>
-                            </v-list-item-content>
-                            <v-list-item-actions>
-                              <v-icon color="red" v-if="item.isHot">mdi-fire</v-icon>
-                            </v-list-item-actions>
-                          </v-list-item>
-                        </v-list>
-                        <v-divider></v-divider>
-                        <v-card-text>
-                          <p class="text-right mb-0">共 {{ articleItems.length }} 筆資料</p>
-                        </v-card-text>
-                      </v-card>
-                    </v-col>
-                  </v-row>
+          <!-- 熱門文章 -->
+          <section id="hot" class="section" v-if="hotItems.length && !keyword">
+            <v-container>
+              <div class="section-head" v-reveal>
+                <div>
+                  <span class="eyebrow">Trending</span>
+                  <h2>熱門文章</h2>
+                </div>
+              </div>
+              <v-row>
+                <v-col cols="12" sm="6" lg="4" v-for="(item, i) in hotItems" :key="item.id" v-reveal="i * 80">
+                  <a class="panel hoverable hot-card" :href="'/blog/' + item.id" :title="item.title">
+                    <span class="hot-tag"><v-icon>mdi-fire</v-icon>HOT</span>
+                    <h3 class="white--text">{{ item.title }}</h3>
+                    <div class="meta"><v-icon>mdi-calendar-month</v-icon>{{ item.date }}</div>
+                  </a>
                 </v-col>
               </v-row>
             </v-container>
           </section>
 
-          <section class="hidden-md-and-down"></section>
+          <!-- 全部文章 -->
+          <section id="articles" class="section">
+            <v-container>
+              <div class="section-head" v-reveal>
+                <div>
+                  <span class="eyebrow">Articles</span>
+                  <h2>{{ keyword ? '搜尋結果' : '文章列表' }}</h2>
+                </div>
+                <span class="count" v-if="!isLoading && !isError">共 {{ filteredItems.length }} 筆資料</span>
+              </div>
 
-          <section class="hidden-lg-and-up hidden-xs-only"> <v-container fluid>
+              <v-progress-linear v-if="isLoading" indeterminate color="primary" class="mb-6"></v-progress-linear>
+
+              <div v-if="isError" class="panel state">
+                <v-icon>mdi-alert-circle-outline</v-icon>
+                <p class="mt-3 mb-4">文章資料載入失敗，請稍後再試。</p>
+                <v-btn rounded color="primary" class="btn-glow" @click="fetchArticleItems">
+                  <v-icon left>mdi-refresh</v-icon>重新載入
+                </v-btn>
+              </div>
+
+              <div v-else-if="!isLoading && !filteredItems.length" class="panel state">
+                <v-icon>mdi-text-search</v-icon>
+                <p class="mt-3 mb-0">{{ keyword ? '找不到符合的文章，換個關鍵字試試。' : '目前還沒有文章。' }}</p>
+              </div>
+
+              <div v-else>
+                <a class="panel hoverable post" v-for="(item, i) in filteredItems" :key="item.id"
+                  :href="'/blog/' + item.id" :title="item.title" v-reveal="Math.min(i, 6) * 60">
+                  <span class="no">{{ pad(item.no) }}</span>
+                  <div>
+                    <div class="title">{{ item.title }}</div>
+                    <div class="meta"><v-icon>mdi-calendar-month</v-icon>{{ item.date }} </div>
+                  </div>
+                  <v-spacer></v-spacer>
+                  <v-icon class="fire" v-if="item.isHot" title="熱門文章">mdi-fire</v-icon>
+                  <v-icon class="go">mdi-chevron-right</v-icon>
+                </a>
+              </div>
             </v-container>
           </section>
+        </div>
 
-          <section class="hidden-sm-and-up"> <v-container fluid>
-            </v-container>
-          </section>
-        </section>
+        <!-- 視窗過小提示 -->
         <v-container fluid fill-height v-else>
           <v-row dense justify="center" align="center">
-            <v-col cols="12" xl="10" lg="11" md="12" sm="12" xs="12">
+            <v-col cols="12" xl="10" lg="11">
               <v-card height="100" color="red darken-4">
                 <v-card-text class="title">
-                  <span v-if="windowSize.y < 350">
+                  <span v-if="windowSize.y <= 350">
                     此設備高不足 350px 無法顯示相關內容，請選擇適合的設備或調整視窗來觀看此網頁
                   </span>
-                  <span v-if="windowSize.x < 310">
+                  <span v-if="windowSize.x <= 310">
                     此設備寬不足 310px 無法顯示相關內容，請選擇適合的設備或調整視窗來觀看此網頁
                   </span>
                 </v-card-text>
@@ -199,174 +575,169 @@
         </v-container>
       </v-main>
 
-      <v-footer padless :fixed="windowSize.x >600 ? false : true" v-if="getIsFooterShow">
-        <v-card tile width="100%" :class="windowSize.x >600 ? 'footerBg text-center' : 'footerBgMobile text-center'">
-          <v-fade-transition>
-            <v-card-text v-if="getIsFooterShowLink">
-              <v-btn icon class="mx-3" dark v-for="(item, index) in linkItems" :href="item.href" :key="index">
-                <v-icon>{{item.icon}}</v-icon>
+      <!-- 頁尾 -->
+      <v-footer padless class="site-footer">
+        <v-container>
+          <v-row align="center" justify="space-between" class="text-center text-md-left">
+            <v-col cols="12" md="auto">
+              <v-img class="mx-auto" src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo"></v-img>
+            </v-col>
+            <v-col cols="12" md="auto">
+              <v-btn icon class="mx-1" v-for="item in socialItems" :key="item.href" :href="item.href" target="_blank"
+                rel="noopener" :title="item.text">
+                <v-icon>{{ item.icon }}</v-icon>
               </v-btn>
-            </v-card-text>
-          </v-fade-transition>
-          <v-divider></v-divider>
-          <v-card-text class="white--text">
-            © Copyright 2012-2024 瑜誠工業有限公司 版權所有
-          </v-card-text>
-        </v-card>
+            </v-col>
+          </v-row>
+          <v-divider class="my-4"></v-divider>
+          <div class="text-center muted" style="font-size: .85rem">
+            © Copyright 2012-{{ currentYear }} 瑜誠工業有限公司 版權所有
+          </div>
+        </v-container>
       </v-footer>
 
-      <v-fad-transition>
-        <v-btn fab dark fixed bottom right color="red darken-3" v-scroll="onScroll" v-show="isFab" v-on:click="toTop">
-          <v-icon>mdi-navigation</v-icon>
+      <!-- 回到頂端 -->
+      <v-fade-transition>
+        <v-btn fab dark fixed bottom right color="primary" class="btn-glow" v-show="isFab" @click="toTop"
+          aria-label="回到頂端">
+          <v-icon>mdi-chevron-up</v-icon>
         </v-btn>
-      </v-fad-transition>
+      </v-fade-transition>
     </v-app>
   </div>
+
+  <script src="/local/vue.min.js"></script>
+  <script src="/local/axios/dist/axios.min.js"></script>
+  <script src="/local/vuetify/vuetify.min.js"></script>
+  <script>
+    /** 捲動進場動畫：v-reveal 或 v-reveal="延遲毫秒" */
+    Vue.directive('reveal', {
+      inserted(el, binding) {
+        const delay = Number(binding.value) || 0
+        if (!('IntersectionObserver' in window)) return
+        el.classList.add('reveal')
+        el.style.transitionDelay = delay + 'ms'
+        const io = new IntersectionObserver(([entry]) => {
+          if (!entry.isIntersecting) return
+          io.disconnect()
+          el.classList.add('in')
+          // 動畫結束後移除，避免影響 hover 等效果
+          setTimeout(() => {
+            el.classList.remove('reveal', 'in')
+            el.style.transitionDelay = ''
+          }, 800 + delay)
+        }, { threshold: 0.12 })
+        io.observe(el)
+      },
+    })
+
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify({
+        theme: {
+          dark: true,
+          themes: { dark: { primary: '#932023' } },
+        },
+      }),
+      data: {
+        windowSize: { x: window.innerWidth, y: window.innerHeight },
+        scrollY: window.pageYOffset || 0,
+        isDrawer: false,
+        currentPath: location.pathname,
+        currentYear: new Date().getFullYear(),
+
+        keyword: '',
+        isLoading: false,
+        isError: false,
+        articleItems: [],
+
+        navItems: [
+          { icon: 'mdi-home', text: '瑜誠首頁', href: '/' },
+          { icon: 'mdi-fire', text: '熱門文章', href: '#hot' },
+          { icon: 'mdi-text-box-multiple-outline', text: '文章列表', href: '#articles' },
+          { icon: 'mdi-phone', text: '聯絡我們', href: '/#contact' },
+        ],
+        linkItems: [
+          { icon: 'mdi-facebook', text: 'Facebook', href: 'https://www.facebook.com/ychitool' },
+          { icon: 'mdi-instagram', text: 'Instagram', href: 'https://www.instagram.com/ychitool168/' },
+          { icon: 'mdi-youtube', text: 'Youtube', href: 'https://www.youtube.com/@ychi' },
+        ],
+        shoppingItems: [
+          { icon: 'mdi-shopping', text: '蝦皮賣場', href: 'https://shopee.tw/ychitool' },
+        ],
+      },
+      computed: {
+        isViewportTooSmall() {
+          return this.windowSize.x <= 310 || this.windowSize.y <= 350
+        },
+        isSolid() {
+          return this.scrollY > 40
+        },
+        isFab() {
+          return this.scrollY > 300
+        },
+        /** 加上原始順序編號 */
+        numberedItems() {
+          return this.articleItems.map((item, i) => Object.assign({}, item, { no: i + 1 }))
+        },
+        /** 依標題搜尋 */
+        filteredItems() {
+          const kw = (this.keyword || '').trim().toLowerCase()
+          if (!kw) return this.numberedItems
+          return this.numberedItems.filter(item => String(item.title).toLowerCase().includes(kw))
+        },
+        /** 熱門文章（最多 6 筆） */
+        hotItems() {
+          return this.articleItems.filter(item => item.isHot).slice(0, 6)
+        },
+        socialItems() {
+          return [...this.linkItems, ...this.shoppingItems]
+        },
+        drawerGroups() {
+          return [
+            {
+              title: '站內連結',
+              items: [{ icon: 'mdi-home', text: '部落格首頁', href: '/blog' }, ...this.navItems],
+            },
+            { title: '社群影音', items: this.linkItems },
+            { title: '賣場平台', items: this.shoppingItems },
+          ]
+        },
+      },
+      methods: {
+        onScroll() {
+          this.scrollY = window.pageYOffset || document.documentElement.scrollTop || 0
+        },
+        toTop() {
+          this.$vuetify.goTo(0)
+        },
+        onResize() {
+          this.windowSize = { x: window.innerWidth, y: window.innerHeight }
+        },
+        pad(n) {
+          return String(n).padStart(2, '0')
+        },
+        /** 取得文章資料 */
+        fetchArticleItems() {
+          this.isLoading = true
+          this.isError = false
+          axios.get('/local/blog/json/articles.json')
+            .then(response => {
+              this.articleItems = response.data.articleItems || []
+            })
+            .catch(() => {
+              this.isError = true
+            })
+            .finally(() => {
+              this.isLoading = false
+            })
+        },
+      },
+      mounted() {
+        this.fetchArticleItems()
+      },
+    })
+  </script>
 </body>
 
-<script>
-  new Vue({
-    el: '#app',
-    vuetify: new Vuetify(),
-    data: {
-      windowSize: { x: 0, y: 0 },
-      isFab: false,
-      yVal: 0,
-      menuItems: [
-        { icon: 'mdi-home', text: '首頁', href: '/', isShowHandheld: true },
-        { icon: 'mdi-package-variant', text: '產品介紹', href: '/product', isShowHandheld: false },
-        { icon: 'mdi-phone', text: '聯絡我們', href: '/contact', isShowHandheld: true },
-      ],
-      linkItems: [
-        { icon: 'mdi-facebook', text: 'FaceBook', tip: 'FB', href: 'https://www.facebook.com/ychitool' },
-        {
-          icon: 'mdi-instagram', text: 'Instagram', tip: 'IG',
-          href: 'https://www.instagram.com/ychitool168/'
-        },
-        { icon: 'mdi-youtube', text: 'Youtube', tip: 'YT', href: 'https://www.youtube.com/@ychi' },
-      ],
-      shoppingItems: [
-        { icon: 'mdi-shopping', text: '蝦皮賣場', tip: 'SP', href: 'https://shopee.tw/ychitool' }
-      ],
-      routePath: '',
-      routePathParam: '',
-      isDrawer: false,
-      isErrorNotGetData: false,
-      // articleClass
-      articleClassItems: [],
-      articleItems: [],
-    },
-    watch: {
-      getWindowSizeX(val) {
-        if (val < 600) {
-          this.isShowList = true
-        }
-      }
-    },
-    computed: {
-      getWindowSizeX() {
-        return this.windowSize.x
-      },
-      /** 基本容器高度 */
-      getDefHeight() {
-        return this.windowSize.y - 260
-      },
-      getIsFooterShowLink() {
-        if (this.getWindowSizeX < 600) {
-          if (this.yVal > 40) {
-            return false
-          } else {
-            return true
-          }
-        } else {
-          return true
-        }
-      },
-      getIsFooterShow() {
-        if (this.getWindowSizeX < 600) {
-          if (Number(this.yVal) > Number(this.windowSize.y - 40)) {
-            return false
-          } else {
-            return true
-          }
-        } else {
-          return true
-        }
-      },
-    },
-    methods: {
-      /** toTop 程式 */
-      onScroll() {
-        if (typeof window === 'undefined') return;
-        const top = window.pageYOffset || document.documentElement.offsetTop || 0;
-        this.isFab = top > 300
-        this.yVal = top
-      },
-      toTop() {
-        this.$vuetify.goTo(0);
-      },
-      /** 工作尺寸變更 */
-      onResize() {
-        this.windowSize = { x: window.innerWidth, y: window.innerHeight };
-      },
-      /** 取路徑 */
-      fetchPath() {
-        let path = window.location.pathname;   // 例如: /category/item/123
-        let pathParts = path.split('/');
-        // 取得第一個和第二個之間的值
-        let category = pathParts[1];
-        if (category === "") {
-          this.routePath = ''
-        } else {
-          this.routePath = category
-        }
-      },
-      fetchPathParam() {
-        let path = window.location.pathname;   // 例如: /category/item/123
-        let pathParts = path.split('/');
-        // 取得第一個和第二個之間的值
-        let param = pathParts[2];
-        if (param === "") {
-          this.routePathParam = 1
-        } else {
-          this.routePathParam = param
-        }
-      },
-      /** 取得類別資料 */
-      fetchArticleClassItems() {
-        this.isErrorNotGetData = false
-        axios.get(`/local/blog/json/articleClass.json`)
-          .then(response => {
-            console.log(response);
-            this.articleClassItems = response.data.articleClassItems
-          })
-          .catch(error => {
-            this.isErrorNotGetData = true
-            console.log(error);
-          })
-          .finally(() => {
-          });
-      },
-      fetchArticleItems() {
-        this.isErrorNotGetData = false
-        axios.get(`/local/blog/json/articles.json`)
-          .then(response => {
-            console.log(response);
-            this.articleItems = response.data.articleItems
-          })
-          .catch(error => {
-            this.isErrorNotGetData = true
-            console.log(error);
-          })
-          .finally(() => {
-          });
-      },
-    },
-    mounted() {
-      this.$vuetify.theme.dark = false;
-      this.fetchPath()
-      this.fetchArticleClassItems()
-      this.fetchArticleItems()
-    },
-  })
-</script>
+</html>
