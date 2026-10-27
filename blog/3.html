@@ -2,710 +2,458 @@
 <html lang="zh-TW">
 
 <head>
-  <title>容量單位換算表| 瑜誠工業-部落格</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <!-- Keyword -->
-  <meta name="Keywords" content="刀具部落格,瑜誠工業,木工刀具,尺寸試算">
-  <meta name="Description" content="瑜誠工業提供的「容量單位換算表」，旨在協助使用者輕鬆快速地進行各種尺寸單位的自動換算與試算，提升工作效率。 ">
-  <meta name="copyright" content="瑜誠工業刀具部落格 Ychi">
-  <!-- google robot -->
-  <meta name="robots" content="index,follow">
-  <meta name="googlebot" content="index,follow">
-  <!-- FB -->
-  <meta property="fb:app_id" content="104356957765552">
-  <meta property="og:title" content="容量單位換算表| 瑜誠工業-部落格">
-  <meta property="og:description" content="瑜誠工業提供的「容量單位換算表」，旨在協助使用者輕鬆快速地進行各種尺寸單位的自動換算與試算，提升工作效率。">
-  <meta property="og:image" content="http://www.ychi.com.tw/local/blog/images/20220823.jpg">
-  <meta property="og:url" content="http://www.ychi.com.tw/blog/3">
-  <meta property="og:type" content="website">
-  <!-- Twitter -->
-  <meta property="og:image:alt" content="瑜誠工業-工業切削刀具的專家">
-  <meta name="twitter:card" content="Ychi">
-  <!-- ICO -->
-  <link rel="icon" type="image/png" sizes="128x128" href="/local/images/faviconBlog.ico">
-  <!-- CSS -->
-  <link href="/local/MaterialDesign/css/materialdesignicons.min.css" rel="stylesheet">
-  <link href="/local/vuetify/vuetify.min.css" rel="stylesheet">
-  <script src="/local/vue.min.js"></script>
-  <script src="/local/axios/dist/axios.min.js"></script>
-  <script src="/local/vuetify/vuetify.min.js"></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>容量單位換算表 | 瑜誠工業-部落格</title>
 
-  <link rel="stylesheet" href="/local/blog/blog.css">
+  <meta name="keywords" content="刀具部落格,瑜誠工業,木工刀具,尺寸試算,容量單位換算,毫升,公升,加侖,品脫,蒲式耳" />
+  <meta name="description" content="瑜誠工業提供的「容量單位換算表」，旨在協助使用者輕鬆快速地進行毫升、公升、液量盎司、加侖、品脫、蒲式耳等單位的自動換算與試算，提升工作效率。" />
+  <meta name="copyright" content="瑜誠工業刀具部落格 Ychi" />
+  <meta name="robots" content="index,follow" />
+  <meta name="googlebot" content="index,follow" />
+  <link rel="canonical" href="https://www.ychi.com.tw/blog/3" />
+
+  <meta property="fb:app_id" content="104356957765552" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.ychi.com.tw/blog/3" />
+  <meta property="og:title" content="容量單位換算表 | 瑜誠工業-部落格" />
+  <meta property="og:description" content="瑜誠工業提供的「容量單位換算表」，旨在協助使用者輕鬆快速地進行毫升、公升、液量盎司、加侖、品脫、蒲式耳等單位的自動換算與試算，提升工作效率。" />
+  <meta property="og:image" content="https://www.ychi.com.tw/local/blog/images/20220823.jpg" />
+  <meta property="og:image:alt" content="瑜誠工業-工業切削刀具的專家" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/local/images/faviconBlog.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="/local/MaterialDesign/css/materialdesignicons.min.css" rel="stylesheet" />
+  <link href="/local/vuetify/vuetify.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface-2: #1c1c1c;
+      --line: rgba(255, 255, 255, .08);
+      --text: #ffffff;
+      --body: #e8e8e8;
+      --muted: #b3b3b3;
+      --accent: #932023;
+      --accent-2: #d64550;
+      --radius: 16px;
+      --nav-h: 68px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    .v-application {
+      background: var(--bg) !important;
+      color: var(--text);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif !important;
+    }
+    .v-application h1, .v-application h2, .v-application h3, .v-application p { font-family: inherit; }
+    .v-main { padding-top: 0 !important; }
+    section { scroll-margin-top: calc(var(--nav-h) + 8px); }
+
+    /* ---------- 導覽列 ---------- */
+    .nav {
+      background: transparent !important;
+      transition: background .3s ease, border-color .3s ease;
+      border-bottom: 1px solid transparent !important;
+    }
+    .nav.nav-solid {
+      background: rgba(10, 10, 10, .82) !important;
+      -webkit-backdrop-filter: saturate(1.4) blur(14px);
+      backdrop-filter: saturate(1.4) blur(14px);
+      border-bottom-color: var(--line) !important;
+    }
+    .nav-link { color: var(--body) !important; letter-spacing: .08em; font-weight: 500; }
+    .nav-link:hover { color: #fff !important; }
+    .drawer { background: rgba(14, 14, 14, .98) !important; }
+
+    /* ---------- 共用 ---------- */
+    .grad {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+    .section { padding: 72px 0; }
+    .section-head { margin-bottom: 28px; }
+    .section-head h2 {
+      margin-top: .6rem;
+      font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .section-desc { max-width: 760px; margin: 0 0 32px; line-height: 1.9; color: var(--body); }
+    .panel {
+      background: var(--surface) !important;
+      border: 1px solid var(--line);
+      border-radius: var(--radius) !important;
+      box-shadow: none !important;
+    }
+    .bg-surface { background: var(--surface); }
+    .btn-glow { box-shadow: 0 12px 30px -10px rgba(147, 32, 35, .7) !important; }
+    .muted { color: var(--muted); }
+    .tag {
+      display: inline-block;
+      padding: 2px 12px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      color: #fff;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      min-height: min(56vh, 480px);
+      padding: calc(var(--nav-h) + 40px) 0 72px;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero .watermark {
+      position: absolute;
+      right: -6%;
+      top: 50%;
+      font-size: clamp(280px, 40vw, 520px) !important;
+      color: rgba(255, 255, 255, .04) !important;
+      transform: translateY(-50%);
+      animation: spin 60s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+    .hero h1 {
+      margin: 1rem 0 1rem;
+      font-size: clamp(1.8rem, 4.8vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: .02em;
+    }
+    .hero .date { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+    .hero .date .v-icon { color: var(--muted) !important; font-size: 20px !important; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.6rem; }
+
+    /* ---------- 單位說明 ---------- */
+    .unit-card { height: 100%; padding: 22px 24px; }
+    .unit-card .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+    .unit-card h3 { font-size: 1.08rem; font-weight: 800; }
+    .unit-card .sym { font-size: .85rem; color: var(--muted); white-space: nowrap; }
+    .unit-card p { margin: 0; font-size: .93rem; line-height: 1.8; color: var(--body); }
+
+    /* ---------- 換算器 ---------- */
+    .group { height: 100%; padding: 24px; }
+    .group-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .group-head h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: .06em; }
+    .calc-input input { font-size: 1.4rem; font-weight: 700; text-align: right; color: #fff !important; }
+    .calc-input .v-label { font-size: 1rem; }
+    .calc-input .v-messages { font-size: .78rem; }
+    .calc-input .v-messages__message { color: var(--muted) !important; }
+    .calc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 28px; }
+
+    /* ---------- 比對表 / 對照表 ---------- */
+    .table-wrap { overflow: auto; }
+    .table-wrap.tall { max-height: 640px; }
+    .grid-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+    .grid-table th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      padding: 14px 16px;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-align: right;
+      white-space: nowrap;
+      color: var(--muted);
+      background: #1a1a1a;
+      border-bottom: 1px solid var(--line);
+    }
+    .grid-table td {
+      padding: 13px 16px;
+      font-size: .9rem;
+      text-align: right;
+      white-space: nowrap;
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+      border-bottom: 1px solid var(--line);
+    }
+    .grid-table th:first-child,
+    .grid-table td:first-child {
+      position: sticky;
+      left: 0;
+      text-align: left;
+      font-weight: 700;
+      background: #1a1a1a;
+      border-right: 1px solid var(--line);
+    }
+    .grid-table th:first-child { z-index: 3; }
+    .grid-table td:first-child { z-index: 1; color: #fff; }
+    .grid-table tbody tr:hover td { background: rgba(255, 255, 255, .03); }
+    .grid-table tbody tr:hover td:first-child { background: #222; }
+    .grid-table td.diag { color: var(--accent-2); font-weight: 800; background: rgba(147, 32, 35, .16); }
+    .grid-table tr:last-child td { border-bottom: 0; }
+    .grid-table.simple th, .grid-table.simple td { text-align: left; }
+    .grid-table.simple td.num, .grid-table.simple th.num { text-align: right; }
+    .note { margin-top: 16px; font-size: .88rem; line-height: 1.8; color: var(--muted); }
+
+    /* ---------- 頁尾 ---------- */
+    .site-footer { background: #050505 !important; border-top: 1px solid var(--line); }
+    .site-footer .v-btn { color: var(--muted) !important; }
+    .site-footer .v-btn:hover { color: #fff !important; }
+
+    /* ---------- 進場動畫 ---------- */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 599px) {
+      .section { padding: 48px 0; }
+      .hero { padding: calc(var(--nav-h) + 24px) 0 56px; }
+      .group, .unit-card { padding: 20px; }
+      .grid-table th, .grid-table td { padding: 12px 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero .watermark { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
 </head>
 
-<body style="background-color:#000">
+<body>
   <div id="app">
-    <v-app v-resize="onResize">
+    <v-app v-resize="onResize" v-scroll="onScroll">
 
-      <v-app-bar app clipped-right fixed dense flat class="appBarBg hidden-xs-only">
-        <a href="http://www.ychi.com.tw" title="首頁-瑜誠工業">
-          <v-img class="hidden-xs-only" src="/local/blog/images/logo.png" max-width="160" alt="瑜誠工業Logo"
-            title="瑜誠工業logo-small"></v-img>
+      <!-- 頂部列 -->
+      <v-app-bar app fixed flat :height="68" class="nav" :class="{ 'nav-solid': isSolid }">
+        <a href="/blog" title="瑜誠工業-部落格">
+          <v-img class="hidden-xs-only" src="/local/blog/images/logo.png" max-width="160" alt="瑜誠工業Logo"></v-img>
+          <v-img class="hidden-sm-and-up" src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo"></v-img>
         </a>
         <v-spacer></v-spacer>
-        <v-toolbar-items class="hidden-xs-only">
-          <v-btn dark :text="windowSize.x >= 960" :icon="windowSize.x < 960" v-for="(item, index) in linkItems"
-            :href="item.href" :key="index">
-            <v-icon :left="windowSize.x >= 960">{{item.icon}}</v-icon>
-            <span v-if="windowSize.x >= 960">
-              <span v-if="windowSize.x >= 1650">{{ item.text }}</span>
-              <span v-if="windowSize.x < 1650">{{ item.tip }}</span>
-            </span>
+
+        <v-toolbar-items class="hidden-sm-only hidden-xs-only align-center">
+          <v-btn text class="nav-link" v-for="item in navItems" :key="item.href" :href="item.href">{{ item.text }}</v-btn>
+          <v-btn icon small class="nav-link ml-2" v-for="item in linkItems" :key="item.href" :href="item.href"
+            target="_blank" rel="noopener" :title="item.text">
+            <v-icon>{{ item.icon }}</v-icon>
           </v-btn>
         </v-toolbar-items>
-        <v-app-bar-nav-icon class="hidden-xs-only white--text" @click="isDrawer = !isDrawer">
-        </v-app-bar-nav-icon>
-      </v-app-bar>
-      <v-app-bar app clipped-right fixed dense flat class="appBarBgMobile hidden-sm-and-up">
-        <v-btn icon color="white" href="/">
-          <v-icon>mdi-home</v-icon>
-        </v-btn>
-        <v-spacer></v-spacer>
-        <a href="http://www.ychi.com.tw" title="首頁-瑜誠工業" class="hidden-sm-and-up">
-          <v-img src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo" title="瑜誠工業logo-small"></v-img>
-        </a>
-        <v-spacer></v-spacer>
+
+        <v-app-bar-nav-icon class="hidden-md-and-up white--text" @click="isDrawer = !isDrawer"></v-app-bar-nav-icon>
       </v-app-bar>
 
-      <v-navigation-drawer app v-model="isDrawer" clipped class="drawerBg" right>
-        <v-sheet dark color="transparent" class="pa-4">YCHI 瑜誠工業
-        </v-sheet>
-        <v-divider dark></v-divider>
-        <v-subheader dark>站內連結</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item v-for="(item, index) in menuItems" :key="index" :href="item.href"
-            :disabled="item.href === ('/'+routePath) ? true : false">
-            <v-list-item-icon class="white--text">
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider dark></v-divider>
-        <v-subheader dark>社群影音</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item v-for="(item, index) in linkItems" :key="index" :href="item.href">
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider dark></v-divider>
-        <v-subheader dark>賣場平台</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item v-for="(item, index) in shoppingItems" :key="index" :href="item.href">
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
+      <!-- 側邊選單 -->
+      <v-navigation-drawer v-model="isDrawer" temporary fixed right width="280" class="drawer">
+        <v-sheet color="transparent" class="pa-4 font-weight-bold">YCHI 瑜誠工業</v-sheet>
+
+        <template v-for="group in drawerGroups">
+          <v-divider :key="group.title + '-divider'"></v-divider>
+          <v-subheader :key="group.title + '-header'">{{ group.title }}</v-subheader>
+          <v-list :key="group.title + '-list'">
+            <v-list-item v-for="item in group.items" :key="item.href" :href="item.href"
+              :disabled="item.href === currentPath" @click="isDrawer = false">
+              <v-list-item-icon><v-icon>{{ item.icon }}</v-icon></v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ item.text }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </template>
       </v-navigation-drawer>
+
       <v-main>
-        <section v-if="windowSize.x > 310 && windowSize.y > 350">
-          <v-row dense justify="center" class="my-1">
+        <div v-if="!isViewportTooSmall">
 
+          <!-- Hero -->
+          <header class="hero"
+            style="background-image: linear-gradient(to bottom, rgba(10,10,10,.6) 0%, rgba(10,10,10,.82) 70%, #0a0a0a 100%), url('/local/blog/images/20220823.jpg')">
+            <v-icon class="watermark" aria-hidden="true">mdi-cog</v-icon>
+            <v-container>
+              <v-row>
+                <v-col cols="12" md="10" lg="9" v-reveal>
+                  <span class="eyebrow">YCHI Blog · Tools</span>
+                  <h1>{{ pageTitle }}</h1>
+                  <div class="date" v-if="articleItem.date">
+                    <v-icon>mdi-calendar-month</v-icon>{{ articleItem.date }}
+                  </div>
+                  <div class="hero-actions">
+                    <v-btn rounded color="primary" class="btn-glow" href="#calculator">
+                      <v-icon left>mdi-calculator-variant</v-icon>開始換算
+                    </v-btn>
+                    <v-btn rounded outlined color="white" href="/blog">
+                      <v-icon left>mdi-format-list-bulleted</v-icon>文章列表
+                    </v-btn>
+                    <v-btn rounded outlined color="white" href="/">
+                      <v-icon left>mdi-home</v-icon>瑜誠首頁
+                    </v-btn>
+                  </div>
+                </v-col>
+              </v-row>
+            </v-container>
+          </header>
 
-
-          </v-row>
-
-          <section> <v-container fluid>
-              <v-row dense justify="center">
-                <v-col cols="12" xl="8" lg="9" md="12" sm="12" xs="12">
-                  <v-row dense>
-                    <v-col cols="12">
-                      <v-card>
-                        <v-toolbar style="background: rgba(255,255,255,0.5)" flat dense>
-                          <v-toolbar-title class="blue--text text--darken-4">YCHI BLOG</v-toolbar-title>
-                          <v-spacer></v-spacer>
-                          <v-btn text href="/"><v-icon left>mdi-home</v-icon>瑜誠首頁</v-btn>
-                          <v-btn text href="/blog"><v-icon left>mdi-reply</v-icon>文章列表</v-btn>
-                        </v-toolbar>
-                        <v-divider></v-divider>
-                        <v-card-title class="display-2 mb-2">
-                          {{ articleItem.title }}
-                        </v-card-title>
-                        <v-card-subtitle>
-                          <p class="mb-0">
-                            <v-icon class="mr-1">mdi-calendar-month</v-icon>
-                            {{ articleItem.date }}
-                          </p>
-                        </v-card-subtitle>
-                        <v-img src="/local/blog/images/20220823.jpg" height="300"></v-img>
-                        <v-card-text>
-                          <v-row dense>
-                            <v-col cols="12">
-                              <p class="title blue darken-3 white--text pa-4">● 說明</p>
-                              <p>下列可換算單位如下：</p>
-                              <ul>
-                                <li class="mb-1">毫升[mL]:是容量計量單位，符號為mL，又稱公撮</li>
-                                <li class="mb-1">公升[L]:通常簡稱為升，是容量計量單位，符號為l</li>
-                                <li class="mb-1">液量盎司(英)[fl oz]:英制、是通常用於測量液體的體積單位</li>
-                                <li class="mb-1">液量盎司(美)[fl oz]:美制、是通常用於測量液體的體積單位</li>
-                                <li class="mb-1">加侖(英)[gallon]:英制、是英美度量衡的容量單位，其同時是液體和乾量的容量單位</li>
-                                <li class="mb-1">加侖濕式(美)[gallon]:美制、濕式、是英美度量衡的容量單位，其同時是液體和乾量的容量單位
-                                </li>
-                                <li class="mb-1">加侖乾式(美)[gallon]:美制、乾式、是英美度量衡的容量單位，其同時是液體和乾量的容量單位
-                                </li>
-                                <li class="mb-1">品脫(英)[pint]:英制、是容量單位，主要於英國、美國及愛爾蘭使用</li>
-                                <li class="mb-1">品脫濕式(美)[pint]:美制、濕式、是容量單位，主要於英國、美國及愛爾蘭使用</li>
-                                <li class="mb-1">品脫乾式(美)[pint]:美制、乾式、是容量單位，主要於英國、美國及愛爾蘭使用</li>
-                                <li class="mb-1">蒲式耳(英)[bushel]:英制、又稱英斗，是英制的容量及重量單位，於英國及美國通用</li>
-                                <li class="mb-1">蒲式耳(美)[bushel]:美制、又稱英斗，是英制的容量及重量單位，於英國及美國通用</li>
-                              </ul>
-                            </v-col>
-                          </v-row>
-                          <v-row dense>
-                            <v-col cols="12">
-                              <p class="title blue darken-3 white--text pa-4">● 單位換算器：</p>
-                              <p>在表單內輸入數值，即可得到你要的相對數值</p>
-                            </v-col>
-                            <!-- 左側 -->
-                            <v-col cols="12" lg="5" md="12">
-                              <v-row dense>
-                                <!-- 毫升 -->
-                                <v-col cols="12">
-                                  <v-card color="orange lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="毫升" prepend-icon="mdi-alpha-l-box"
-                                        maxlength="6" color="orange" v-model="mLiter" :rules="rules"
-                                        @input="changeMLiter()" v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 公升 -->
-                                <v-col cols="12">
-                                  <v-card color="orange lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="公升" prepend-icon="mdi-alpha-l-box"
-                                        maxlength="6" color="orange" v-model="Liter" :rules="rules"
-                                        @input="changeLiter()" v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 液量盎司(英) -->
-                                <v-col cols="12">
-                                  <v-card color="green lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="液量盎司(英)"
-                                        prepend-icon="mdi-alpha-f-box" maxlength="6" color="green" v-model="flE"
-                                        :rules="rules" @input="changeFlE()"
-                                        v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 液量盎司(美) -->
-                                <v-col cols="12">
-                                  <v-card color="green lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="液量盎司(美)"
-                                        prepend-icon="mdi-alpha-f-box" maxlength="6" color="green" v-model="flA"
-                                        :rules="rules" @input="changeFlA()"
-                                        v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 加侖(英) -->
-                                <v-col cols="12">
-                                  <v-card color="blue lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="加侖(英)" prepend-icon="mdi-alpha-g-box"
-                                        maxlength="6" color="blue" v-model="gallonE" :rules="rules"
-                                        @input="changeGallonE()" v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 加侖濕式(美) -->
-                                <v-col cols="12">
-                                  <v-card color="blue lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="加侖濕式(美)"
-                                        prepend-icon="mdi-alpha-g-box" maxlength="6" color="blue" v-model="gallonAW"
-                                        :rules="rules" @input="changeGallonAW()"
-                                        v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 加侖乾式(美) -->
-                                <v-col cols="12">
-                                  <v-card color="blue lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="加侖乾式(美)"
-                                        prepend-icon="mdi-alpha-g-box" maxlength="6" color="blue" v-model="gallonAD"
-                                        :rules="rules" @input="changeGallonAD()"
-                                        v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 品脫(英) -->
-                                <v-col cols="12">
-                                  <v-card color="pink lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="品脫(英)" prepend-icon="mdi-alpha-p-box"
-                                        maxlength="6" color="pink" v-model="pintE" :rules="rules" @input="changePintE()"
-                                        v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 品脫濕式(美) -->
-                                <v-col cols="12">
-                                  <v-card color="pink lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="品脫濕式(美)"
-                                        prepend-icon="mdi-alpha-p-box" maxlength="6" color="pink" v-model="pintAW"
-                                        :rules="rules" @input="changePintAW()"
-                                        v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 品脫乾式(美) -->
-                                <v-col cols="12">
-                                  <v-card color="pink lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="品脫乾式(美)"
-                                        prepend-icon="mdi-alpha-p-box" maxlength="6" color="pink" v-model="pintAD"
-                                        :rules="rules" @input="changePintAD()"
-                                        v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-
-                                <!--  蒲式耳(英) -->
-                                <v-col cols="12">
-                                  <v-card color="purple lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label=" 蒲式耳(英)"
-                                        prepend-icon="mdi-alpha-b-box" maxlength="6" color="purple" v-model="bushelE"
-                                        :rules="rules" @input="changeBushelE()"
-                                        v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!--  蒲式耳(美) -->
-                                <v-col cols="12">
-                                  <v-card color="purple lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label=" 蒲式耳(美)"
-                                        prepend-icon="mdi-alpha-b-box" maxlength="6" color="purple" v-model="bushelA"
-                                        :rules="rules" @input="changeBushelA()"
-                                        v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                              </v-row>
-                            </v-col>
-                            <!-- 右側 -->
-                            <v-col cols="12" lg="7" md="12">
-                              <v-row dense>
-                                <!-- 毫升 -->
-                                <v-col cols="12">
-                                  <v-card dark color="orange darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">毫升</v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="mLiter">
-                                      {{mLiter}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 公升 -->
-                                <v-col cols="12">
-                                  <v-card dark color="orange darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">公升</v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="Liter">
-                                      {{Liter}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 液量盎司(英) -->
-                                <v-col cols="12">
-                                  <v-card dark color="green darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">液量盎司(英)
-                                    </v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="flE">
-                                      {{flE}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 液量盎司(美) -->
-                                <v-col cols="12">
-                                  <v-card dark color="green darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">液量盎司(美)
-                                    </v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="flA">
-                                      {{flA}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 加侖(英) -->
-                                <v-col cols="12">
-                                  <v-card dark color="blue darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">加侖(英)
-                                    </v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="gallonE">
-                                      {{gallonE}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 加侖濕式(美) -->
-                                <v-col cols="12">
-                                  <v-card dark color="blue darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">加侖濕式(美)
-                                    </v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="gallonAW">
-                                      {{gallonAW}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 加侖乾式(美) -->
-                                <v-col cols="12">
-                                  <v-card dark color="blue darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">加侖乾式(美)
-                                    </v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="gallonAD">
-                                      {{gallonAD}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-
-                                <!-- 品脫(英) -->
-                                <v-col cols="12">
-                                  <v-card dark color="pink darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">品脫(英)
-                                    </v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="pintE">
-                                      {{pintE}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 品脫濕式(美)  -->
-                                <v-col cols="12">
-                                  <v-card dark color="pink darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">品脫濕式(美)
-                                    </v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="pintAW">
-                                      {{pintAW}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 品脫乾式(美) -->
-                                <v-col cols="12">
-                                  <v-card dark color="pink darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">品脫乾式(美)
-                                    </v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="pintAD">
-                                      {{pintAD}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-
-                                <!-- 蒲式耳(英) -->
-                                <v-col cols="12">
-                                  <v-card dark color="purple darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">蒲式耳(英)
-                                    </v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="bushelE">
-                                      {{bushelE}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 蒲式耳(美) -->
-                                <v-col cols="12">
-                                  <v-card dark color="purple darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">蒲式耳(美)
-                                    </v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="bushelA">
-                                      {{bushelA}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-
-                              </v-row>
-                            </v-col>
-                          </v-row>
-                          <v-row dense>
-                            <v-col cols="12">
-                              <p class="title blue darken-3 white--text pa-4">● 比對表</p>
-                              <table style="width: 100%; border-collapse:collapse;border-spacing:0;" class="myTable">
-                                <thead>
-                                  <tr>
-                                    <th class="text-center caption"></th>
-                                    <th class="text-center caption">毫升</th>
-                                    <th class="text-center caption">公升</th>
-                                    <th class="text-center caption">液量盎司(英)</th>
-                                    <th class="text-center caption">液量盎司(美)</th>
-                                    <th class="text-center caption">加侖(英)</th>
-                                    <th class="text-center caption">加侖濕式(美)</th>
-                                    <th class="text-center caption">加侖乾式(美)</th>
-                                    <th class="text-center caption">品脫(英)</th>
-                                    <th class="text-center caption">品脫濕式(美)</th>
-                                    <th class="text-center caption">品脫乾式(美)</th>
-                                    <th class="text-center caption">蒲式耳(英)</th>
-                                    <th class="text-center caption">蒲式耳(美)</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td class="text-center caption">毫升</td>
-                                    <td class="text-center caption">1</td>
-                                    <td class="text-center caption">0.001</td>
-                                    <td class="text-center caption">0.0352</td>
-                                    <td class="text-center caption">0.03382</td>
-                                    <td class="text-center caption">0.00022</td>
-                                    <td class="text-center caption">0.00026</td>
-                                    <td class="text-center caption">0.00023</td>
-                                    <td class="text-center caption">0.00176</td>
-                                    <td class="text-center caption">0.00211</td>
-                                    <td class="text-center caption">0.00182</td>
-                                    <td class="text-center caption">0.00003</td>
-                                    <td class="text-center caption">0.00003</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-center caption">公升</td>
-                                    <td class="text-center caption">1000</td>
-                                    <td class="text-center caption">1</td>
-                                    <td class="text-center caption">35.198</td>
-                                    <td class="text-center caption">33.818</td>
-                                    <td class="text-center caption">0.21997</td>
-                                    <td class="text-center caption">0.26417</td>
-                                    <td class="text-center caption">0.22702</td>
-                                    <td class="text-center caption">1.75975</td>
-                                    <td class="text-center caption">2.11338</td>
-                                    <td class="text-center caption">1.81617</td>
-                                    <td class="text-center caption">0.0275</td>
-                                    <td class="text-center caption">0.02838</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-center caption">液量盎司(英)</td>
-                                    <td class="text-center caption">28.41</td>
-                                    <td class="text-center caption">0.02841</td>
-                                    <td class="text-center caption">1</td>
-                                    <td class="text-center caption">0.96077</td>
-                                    <td class="text-center caption">0.00625</td>
-                                    <td class="text-center caption">0.00751</td>
-                                    <td class="text-center caption">0.00645</td>
-                                    <td class="text-center caption">0.04999</td>
-                                    <td class="text-center caption">0.06004</td>
-                                    <td class="text-center caption">0.0516</td>
-                                    <td class="text-center caption">0.00078</td>
-                                    <td class="text-center caption">0.00081</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-center caption">液量盎司(美)</td>
-                                    <td class="text-center caption">29.57</td>
-                                    <td class="text-center caption">0.02957</td>
-                                    <td class="text-center caption">1.0408</td>
-                                    <td class="text-center caption">1</td>
-                                    <td class="text-center caption">0.0065</td>
-                                    <td class="text-center caption">0.00781</td>
-                                    <td class="text-center caption">0.00671</td>
-                                    <td class="text-center caption">0.05204</td>
-                                    <td class="text-center caption">0.06249</td>
-                                    <td class="text-center caption">0.0537</td>
-                                    <td class="text-center caption">0.00081</td>
-                                    <td class="text-center caption">0.00084</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-center caption">加侖(英)</td>
-                                    <td class="text-center caption">4546.09</td>
-                                    <td class="text-center caption">4.54609</td>
-                                    <td class="text-center caption">160.01328</td>
-                                    <td class="text-center caption">153.73967</td>
-                                    <td class="text-center caption">1</td>
-                                    <td class="text-center caption">1.20095</td>
-                                    <td class="text-center caption">1.03206</td>
-                                    <td class="text-center caption">8</td>
-                                    <td class="text-center caption">9.6076</td>
-                                    <td class="text-center caption">8.25645</td>
-                                    <td class="text-center caption">0.125</td>
-                                    <td class="text-center caption">0.12901</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-center caption">加侖濕式(美)</td>
-                                    <td class="text-center caption">3785.41178</td>
-                                    <td class="text-center caption">3.78541</td>
-                                    <td class="text-center caption">133.23892</td>
-                                    <td class="text-center caption">128.01506</td>
-                                    <td class="text-center caption">0.83267</td>
-                                    <td class="text-center caption">1</td>
-                                    <td class="text-center caption">0.85937</td>
-                                    <td class="text-center caption">6.66139</td>
-                                    <td class="text-center caption">8</td>
-                                    <td class="text-center caption">6.87494</td>
-                                    <td class="text-center caption">0.10408</td>
-                                    <td class="text-center caption">0.10742</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-center caption">加侖乾式(美)</td>
-                                    <td class="text-center caption">4404.88377</td>
-                                    <td class="text-center caption">4.40488</td>
-                                    <td class="text-center caption">155.0431</td>
-                                    <td class="text-center caption">148.96436</td>
-                                    <td class="text-center caption">0.96894</td>
-                                    <td class="text-center caption">1.16365</td>
-                                    <td class="text-center caption">1</td>
-                                    <td class="text-center caption">7.75151</td>
-                                    <td class="text-center caption">9.30918</td>
-                                    <td class="text-center caption">8</td>
-                                    <td class="text-center caption">0.12112</td>
-                                    <td class="text-center caption">0.125</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-center caption">品脫(英)</td>
-                                    <td class="text-center caption">568.26125</td>
-                                    <td class="text-center caption">0.56826</td>
-                                    <td class="text-center caption">20.00166</td>
-                                    <td class="text-center caption">19.21746</td>
-                                    <td class="text-center caption">0.125</td>
-                                    <td class="text-center caption">0.15012</td>
-                                    <td class="text-center caption">0.12901</td>
-                                    <td class="text-center caption">1</td>
-                                    <td class="text-center caption">1.20095</td>
-                                    <td class="text-center caption">1.03206</td>
-                                    <td class="text-center caption">0.01562</td>
-                                    <td class="text-center caption">0.01613</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-center caption">品脫濕式(美)</td>
-                                    <td class="text-center caption">473.17647</td>
-                                    <td class="text-center caption">0.47318</td>
-                                    <td class="text-center caption">16.65487</td>
-                                    <td class="text-center caption">16.00188</td>
-                                    <td class="text-center caption">0.10408</td>
-                                    <td class="text-center caption">0.125</td>
-                                    <td class="text-center caption">0.10742</td>
-                                    <td class="text-center caption">0.83267</td>
-                                    <td class="text-center caption">1</td>
-                                    <td class="text-center caption">0.85937</td>
-                                    <td class="text-center caption">0.01301</td>
-                                    <td class="text-center caption">0.01343</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-center caption">品脫乾式(美)</td>
-                                    <td class="text-center caption">550.61047</td>
-                                    <td class="text-center caption">0.55061</td>
-                                    <td class="text-center caption">19.38039</td>
-                                    <td class="text-center caption">18.62054</td>
-                                    <td class="text-center caption">0.12112</td>
-                                    <td class="text-center caption">0.14546</td>
-                                    <td class="text-center caption">0.125</td>
-                                    <td class="text-center caption">0.96894</td>
-                                    <td class="text-center caption">1.16365</td>
-                                    <td class="text-center caption">1</td>
-                                    <td class="text-center caption">0.01514</td>
-                                    <td class="text-center caption">0.01562</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-center caption">蒲式耳(英)</td>
-                                    <td class="text-center caption">36368.72</td>
-                                    <td class="text-center caption">36.36872</td>
-                                    <td class="text-center caption">1280.10621</td>
-                                    <td class="text-center caption">1229.91737</td>
-                                    <td class="text-center caption">8</td>
-                                    <td class="text-center caption">9.6076</td>
-                                    <td class="text-center caption">8.25645</td>
-                                    <td class="text-center caption">64</td>
-                                    <td class="text-center caption">76.8608</td>
-                                    <td class="text-center caption">66.05163</td>
-                                    <td class="text-center caption">1</td>
-                                    <td class="text-center caption">1.03206</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-center caption">蒲式耳(美)</td>
-                                    <td class="text-center caption">35239.1</td>
-                                    <td class="text-center caption">35.2391</td>
-                                    <td class="text-center caption">1240.34584</td>
-                                    <td class="text-center caption">1191.71588</td>
-                                    <td class="text-center caption">7.75152</td>
-                                    <td class="text-center caption">9.30919</td>
-                                    <td class="text-center caption">8.00001</td>
-                                    <td class="text-center caption">62.01215</td>
-                                    <td class="text-center caption">74.47348</td>
-                                    <td class="text-center caption">64.00005</td>
-                                    <td class="text-center caption">0.96894</td>
-                                    <td class="text-center caption">1</td>
-                                  </tr>
-                                </tbody>
-
-                              </table>
-                            </v-col>
-                          </v-row>
-                          <v-row>
-                            <v-col cols="12">
-                              <p class="title blue darken-3 white--text pa-4">● 各單位與毫升之關系</p>
-                              <v-simple-table class="mb-2">
-                                <template v-slot:default>
-                                  <thead>
-                                    <tr>
-                                      <th class="text-center">單位(1)</th>
-                                      <th class="text-center">毫升(ml)</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr v-for="item in rulerLists" :key="item.name">
-                                      <td class="text-center">{{ item.unit }}</td>
-                                      <td class="text-right">{{ item.mLiter }}</td>
-                                    </tr>
-                                  </tbody>
-                                </template>
-                              </v-simple-table>
-                            </v-col>
-                          </v-row>
-                        </v-card-text>
-                      </v-card>
-                    </v-col>
-                  </v-row>
+          <!-- 單位說明 -->
+          <section id="units" class="section">
+            <v-container>
+              <div class="section-head" v-reveal>
+                <span class="eyebrow">Units</span>
+                <h2>說明：可換算的單位</h2>
+              </div>
+              <p class="section-desc" v-reveal>
+                本頁可在下列 12 種容量單位之間自動換算。英制與美制的同名單位容量不同，美制的加侖、品脫另分「濕式」（液體）與「乾式」（乾貨）。
+              </p>
+              <v-row>
+                <v-col cols="12" sm="6" lg="4" v-for="(u, i) in units" :key="u.key" v-reveal="(i % 3) * 80">
+                  <v-card class="panel unit-card">
+                    <div class="top">
+                      <h3>{{ u.name }}</h3>
+                      <span class="sym">[{{ u.symbol }}]</span>
+                    </div>
+                    <p>{{ u.desc }}</p>
+                  </v-card>
                 </v-col>
               </v-row>
             </v-container>
           </section>
 
-          <section class="hidden-md-and-down"></section>
+          <!-- 單位換算器 -->
+          <section id="calculator" class="section bg-surface">
+            <v-container>
+              <div class="section-head" v-reveal>
+                <span class="eyebrow">Converter</span>
+                <h2>單位換算器</h2>
+              </div>
+              <p class="section-desc" v-reveal>
+                在任一欄位輸入數值，其他單位會自動換算並即時顯示。
+              </p>
 
-          <section class="hidden-lg-and-up hidden-xs-only"></section>
+              <v-row>
+                <v-col cols="12" md="6" lg="4" v-for="(group, i) in groups" :key="group.title" v-reveal="(i % 3) * 100">
+                  <v-card class="panel group">
+                    <div class="group-head">
+                      <h3>{{ group.title }}</h3>
+                      <span class="tag">{{ group.tag }}</span>
+                    </div>
+                    <v-text-field v-for="u in group.units" :key="u.key" class="calc-input" v-model="values[u.key]"
+                      :label="u.name" :hint="u.hint" :rules="rules" persistent-hint outlined dense
+                      inputmode="decimal" autocomplete="off" maxlength="14" color="primary"
+                      @input="convert(u.key, $event)" @focus="$event.target.select()"></v-text-field>
+                  </v-card>
+                </v-col>
+              </v-row>
 
-          <section class="hidden-sm-and-up"></section>
-        </section>
+              <div class="calc-actions" v-reveal>
+                <v-btn rounded outlined color="white" @click="clearAll">
+                  <v-icon left>mdi-eraser</v-icon>全部清除
+                </v-btn>
+                <span class="muted">換算結果取至小數點後 5 位。</span>
+              </div>
+            </v-container>
+          </section>
+
+          <!-- 比對表 -->
+          <section id="matrix" class="section">
+            <v-container>
+              <div class="section-head" v-reveal>
+                <span class="eyebrow">Comparison</span>
+                <h2>比對表</h2>
+              </div>
+              <p class="section-desc" v-reveal>
+                閱讀方式：<b>1 個「左側單位」等於多少「上方單位」</b>。例如「加侖(英)」列與「品脫(英)」欄交會處為 8，表示 1 英制加侖 = 8 英制品脫。
+              </p>
+              <v-card class="panel table-wrap tall" v-reveal>
+                <table class="grid-table">
+                  <thead>
+                    <tr>
+                      <th>1 單位 =</th>
+                      <th v-for="u in units" :key="u.key">{{ u.name }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="row in units" :key="row.key">
+                      <td>{{ row.name }}</td>
+                      <td v-for="col in units" :key="col.key" :class="{ diag: row.key === col.key }">
+                        {{ ratio(row, col) }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </v-card>
+              <p class="note">表中數值取至小數點後 5 位。</p>
+            </v-container>
+          </section>
+
+          <!-- 與毫升之關係 -->
+          <section id="reference" class="section bg-surface">
+            <v-container>
+              <div class="section-head" v-reveal>
+                <span class="eyebrow">Reference</span>
+                <h2>各單位與毫升之關係</h2>
+              </div>
+              <v-card class="panel table-wrap" v-reveal>
+                <table class="grid-table simple">
+                  <thead>
+                    <tr>
+                      <th>單位 (1)</th>
+                      <th>類別</th>
+                      <th class="num">毫升 (mL)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="u in units" :key="u.key">
+                      <td>1 {{ u.name }}</td>
+                      <td class="muted">{{ u.group }}</td>
+                      <td class="num">{{ fmt(u.ml) }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </v-card>
+              <p class="note">
+                換算以下列定義為準：1 英制加侖 = 4.54609 公升；1 美制濕式加侖 = 231 立方英吋 = 3.785411784 公升；
+                1 美制蒲式耳 = 2150.42 立方英吋，美制乾式加侖 = 1/8 蒲式耳；液量盎司 = 1/160 英制加侖（英）、1/128 美制濕式加侖（美）；品脫 = 1/8 加侖
+                （美制乾式品脫 = 1/64 蒲式耳）；英制蒲式耳 = 8 英制加侖。
+              </p>
+            </v-container>
+          </section>
+        </div>
+
+        <!-- 視窗過小提示 -->
         <v-container fluid fill-height v-else>
           <v-row dense justify="center" align="center">
-            <v-col cols="12" xl="10" lg="11" md="12" sm="12" xs="12">
+            <v-col cols="12" xl="10" lg="11">
               <v-card height="100" color="red darken-4">
                 <v-card-text class="title">
-                  <span v-if="windowSize.y < 350">
+                  <span v-if="windowSize.y <= 350">
                     此設備高不足 350px 無法顯示相關內容，請選擇適合的設備或調整視窗來觀看此網頁
                   </span>
-                  <span v-if="windowSize.x < 310">
+                  <span v-if="windowSize.x <= 310">
                     此設備寬不足 310px 無法顯示相關內容，請選擇適合的設備或調整視窗來觀看此網頁
                   </span>
                 </v-card-text>
@@ -715,280 +463,243 @@
         </v-container>
       </v-main>
 
-      <v-footer padless :fixed="windowSize.x >600 ? false : true" v-if="getIsFooterShow">
-        <v-card tile width="100%" :class="windowSize.x >600 ? 'footerBg text-center' : 'footerBgMobile text-center'">
-          <v-fade-transition>
-            <v-card-text v-if="getIsFooterShowLink">
-              <v-btn icon class="mx-3" dark v-for="(item, index) in linkItems" :href="item.href" :key="index">
-                <v-icon>{{item.icon}}</v-icon>
+      <!-- 頁尾 -->
+      <v-footer padless class="site-footer">
+        <v-container>
+          <v-row align="center" justify="space-between" class="text-center text-md-left">
+            <v-col cols="12" md="auto">
+              <v-img class="mx-auto" src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo"></v-img>
+            </v-col>
+            <v-col cols="12" md="auto">
+              <v-btn icon class="mx-1" v-for="item in socialItems" :key="item.href" :href="item.href" target="_blank"
+                rel="noopener" :title="item.text">
+                <v-icon>{{ item.icon }}</v-icon>
               </v-btn>
-            </v-card-text>
-          </v-fade-transition>
-          <v-divider></v-divider>
-          <v-card-text class="white--text">
-            © Copyright 2012-2024 瑜誠工業有限公司 版權所有
-          </v-card-text>
-        </v-card>
+            </v-col>
+          </v-row>
+          <v-divider class="my-4"></v-divider>
+          <div class="text-center muted" style="font-size: .85rem">
+            © Copyright 2012-{{ currentYear }} 瑜誠工業有限公司 版權所有
+          </div>
+        </v-container>
       </v-footer>
 
-      <v-fad-transition>
-        <v-btn fab dark fixed bottom right color="red darken-3" v-scroll="onScroll" v-show="isFab" v-on:click="toTop">
-          <v-icon>mdi-navigation</v-icon>
+      <!-- 回到頂端 -->
+      <v-fade-transition>
+        <v-btn fab dark fixed bottom right color="primary" class="btn-glow" v-show="isFab" @click="toTop"
+          aria-label="回到頂端">
+          <v-icon>mdi-chevron-up</v-icon>
         </v-btn>
-      </v-fad-transition>
+      </v-fade-transition>
     </v-app>
   </div>
+
+  <script src="/local/vue.min.js"></script>
+  <script src="/local/axios/dist/axios.min.js"></script>
+  <script src="/local/vuetify/vuetify.min.js"></script>
+  <script>
+    /** 捲動進場動畫：v-reveal 或 v-reveal="延遲毫秒" */
+    Vue.directive('reveal', {
+      inserted(el, binding) {
+        const delay = Number(binding.value) || 0
+        if (!('IntersectionObserver' in window)) return
+        el.classList.add('reveal')
+        el.style.transitionDelay = delay + 'ms'
+        const io = new IntersectionObserver(([entry]) => {
+          if (!entry.isIntersecting) return
+          io.disconnect()
+          el.classList.add('in')
+          // 動畫結束後移除，避免影響 hover 等效果
+          setTimeout(() => {
+            el.classList.remove('reveal', 'in')
+            el.style.transitionDelay = ''
+          }, 800 + delay)
+        }, { threshold: 0.12 })
+        io.observe(el)
+      },
+    })
+
+    /** 數值取至小數點後 5 位 */
+    const round5 = n => Math.round(n * 1e5) / 1e5
+
+    /** 精確定義（單位：毫升） */
+    const IN3 = 16.387064                  // 1 立方英吋 = 16.387064 毫升
+    const IMP_GALLON = 4546.09             // 英制加侖
+    const US_GALLON = 231 * IN3            // 美制濕式加侖 = 3785.411784
+    const US_BUSHEL = 2150.42 * IN3        // 美制蒲式耳 ≈ 35239.07
+    const US_DRY_GALLON = US_BUSHEL / 8    // 美制乾式加侖 ≈ 4404.88
+
+    const DEFAULT_TITLE = '容量單位換算表'
+
+    /** 單位定義：ml = 1 個該單位等於幾毫升 */
+    const UNITS = [
+      { key: 'ml', name: '毫升', symbol: 'mL', group: '公制', ml: 1,
+        desc: '公制容量單位，符號為 mL，1 毫升 = 1 立方公分，又稱公撮。' },
+      { key: 'l', name: '公升', symbol: 'L', group: '公制', ml: 1000,
+        desc: '公制容量單位，通常簡稱為升，符號為 L，1 公升 = 1000 毫升。' },
+      { key: 'flE', name: '液量盎司(英)', symbol: 'fl oz', group: '英制', ml: IMP_GALLON / 160,
+        desc: '英制，通常用於測量液體的體積單位，1 英制液量盎司約 28.413 毫升。' },
+      { key: 'flA', name: '液量盎司(美)', symbol: 'fl oz', group: '美制濕式', ml: US_GALLON / 128,
+        desc: '美制，通常用於測量液體的體積單位，1 美制液量盎司約 29.574 毫升。' },
+      { key: 'galE', name: '加侖(英)', symbol: 'gallon', group: '英制', ml: IMP_GALLON,
+        desc: '英制，英美度量衡的容量單位，液體與乾量皆可使用，1 英制加侖 = 4.54609 公升。' },
+      { key: 'galAW', name: '加侖濕式(美)', symbol: 'gallon', group: '美制濕式', ml: US_GALLON,
+        desc: '美制濕式，用於液體，1 加侖 = 231 立方英吋，約 3.785 公升。' },
+      { key: 'galAD', name: '加侖乾式(美)', symbol: 'gallon', group: '美制乾式', ml: US_DRY_GALLON,
+        desc: '美制乾式，用於乾量（穀物等乾貨），等於 1/8 美制蒲式耳，約 4.405 公升。' },
+      { key: 'pinE', name: '品脫(英)', symbol: 'pint', group: '英制', ml: IMP_GALLON / 8,
+        desc: '英制，容量單位，等於 1/8 英制加侖，約 568.26 毫升。' },
+      { key: 'pinAW', name: '品脫濕式(美)', symbol: 'pint', group: '美制濕式', ml: US_GALLON / 8,
+        desc: '美制濕式，用於液體，等於 1/8 美制濕式加侖，約 473.18 毫升。' },
+      { key: 'pinAD', name: '品脫乾式(美)', symbol: 'pint', group: '美制乾式', ml: US_BUSHEL / 64,
+        desc: '美制乾式，用於乾量，等於 1/64 美制蒲式耳，約 550.61 毫升。' },
+      { key: 'bushE', name: '蒲式耳(英)', symbol: 'bushel', group: '英制', ml: IMP_GALLON * 8,
+        desc: '英制，又稱英斗，主要用於穀物等乾貨，等於 8 英制加侖，約 36.369 公升。' },
+      { key: 'bushA', name: '蒲式耳(美)', symbol: 'bushel', group: '美制乾式', ml: US_BUSHEL,
+        desc: '美制，主要用於穀物等乾貨，1 蒲式耳 = 2150.42 立方英吋，約 35.239 公升。' },
+    ]
+    UNITS.forEach(u => { u.hint = '1 ' + u.name + ' = ' + round5(u.ml) + ' 毫升' })
+
+    /** 換算器分組 */
+    const GROUPS = [
+      { title: '公制', tag: 'METRIC', keys: ['ml', 'l'] },
+      { title: '液量盎司', tag: 'FL OZ', keys: ['flE', 'flA'] },
+      { title: '加侖', tag: 'GALLON', keys: ['galE', 'galAW', 'galAD'] },
+      { title: '品脫', tag: 'PINT', keys: ['pinE', 'pinAW', 'pinAD'] },
+      { title: '蒲式耳', tag: 'BUSHEL', keys: ['bushE', 'bushA'] },
+    ]
+
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify({
+        theme: {
+          dark: true,
+          themes: { dark: { primary: '#932023' } },
+        },
+      }),
+      data: {
+        windowSize: { x: window.innerWidth, y: window.innerHeight },
+        scrollY: window.pageYOffset || 0,
+        isDrawer: false,
+        currentPath: location.pathname,
+        currentYear: new Date().getFullYear(),
+
+        articleItem: {},
+
+        units: UNITS,
+        /** 各單位目前的數值 */
+        values: UNITS.reduce((obj, u) => { obj[u.key] = ''; return obj }, {}),
+        rules: [v => isFinite(Number(v)) || '請輸入數字'],
+
+        navItems: [
+          { icon: 'mdi-home', text: '瑜誠首頁', href: '/' },
+          { icon: 'mdi-format-list-bulleted', text: '文章列表', href: '/blog' },
+          { icon: 'mdi-information-outline', text: '單位說明', href: '#units' },
+          { icon: 'mdi-calculator-variant', text: '換算器', href: '#calculator' },
+          { icon: 'mdi-table-large', text: '比對表', href: '#matrix' },
+        ],
+        linkItems: [
+          { icon: 'mdi-facebook', text: 'Facebook', href: 'https://www.facebook.com/ychitool' },
+          { icon: 'mdi-instagram', text: 'Instagram', href: 'https://www.instagram.com/ychitool168/' },
+          { icon: 'mdi-youtube', text: 'Youtube', href: 'https://www.youtube.com/@ychi' },
+        ],
+        shoppingItems: [
+          { icon: 'mdi-shopping', text: '蝦皮賣場', href: 'https://shopee.tw/ychitool' },
+        ],
+      },
+      computed: {
+        isViewportTooSmall() {
+          return this.windowSize.x <= 310 || this.windowSize.y <= 350
+        },
+        isSolid() {
+          return this.scrollY > 40
+        },
+        isFab() {
+          return this.scrollY > 300
+        },
+        pageTitle() {
+          return this.articleItem.title || DEFAULT_TITLE
+        },
+        groups() {
+          return GROUPS.map(g => Object.assign({}, g, {
+            units: g.keys.map(key => UNITS.find(u => u.key === key)),
+          }))
+        },
+        socialItems() {
+          return [...this.linkItems, ...this.shoppingItems]
+        },
+        drawerGroups() {
+          return [
+            { title: '站內連結', items: this.navItems },
+            { title: '社群影音', items: this.linkItems },
+            { title: '賣場平台', items: this.shoppingItems },
+          ]
+        },
+      },
+      methods: {
+        onScroll() {
+          this.scrollY = window.pageYOffset || document.documentElement.scrollTop || 0
+        },
+        toTop() {
+          this.$vuetify.goTo(0)
+        },
+        onResize() {
+          this.windowSize = { x: window.innerWidth, y: window.innerHeight }
+        },
+
+        fmt: round5,
+        /** 1 個 row 單位等於幾個 col 單位 */
+        ratio(row, col) {
+          return round5(row.ml / col.ml)
+        },
+
+        /** 從網址取得文章編號，例如 /blog/3 → 3 */
+        getArticleId() {
+          const id = parseInt(location.pathname.split('/')[2], 10)
+          return isNaN(id) ? 3 : id
+        },
+        /** 取得文章資料（只用來顯示標題與日期，失敗不影響換算器） */
+        fetchArticleItem(id) {
+          axios.get('/local/blog/json/articles.json')
+            .then(response => {
+              const items = response.data.articleItems || []
+              this.articleItem = items.find(item => Number(item.id) === id) || {}
+              if (this.articleItem.title) {
+                document.title = this.articleItem.title + ' | 瑜誠工業-部落格'
+              }
+            })
+            .catch(() => { })
+        },
+
+        /** 以毫升為基準，將輸入的單位換算成其他所有單位 */
+        convert(key, raw) {
+          const text = String(raw == null ? '' : raw).trim()
+          if (text === '') {
+            this.clearOthers(key)
+            return
+          }
+          const num = Number(text)
+          if (!isFinite(num)) return // 輸入無效時保留原本結果，由欄位規則提示
+          const base = UNITS.find(u => u.key === key)
+          const ml = num * base.ml
+          UNITS.forEach(u => {
+            if (u.key !== key) this.values[u.key] = round5(ml / u.ml)
+          })
+        },
+        clearOthers(key) {
+          UNITS.forEach(u => {
+            if (u.key !== key) this.values[u.key] = ''
+          })
+        },
+        clearAll() {
+          this.clearOthers(null)
+        },
+      },
+      mounted() {
+        this.fetchArticleItem(this.getArticleId())
+      },
+    })
+  </script>
 </body>
 
-<script>
-  new Vue({
-    el: '#app',
-    vuetify: new Vuetify(),
-    data: {
-      windowSize: { x: 0, y: 0 },
-      isFab: false,
-      yVal: 0,
-      menuItems: [
-        { icon: 'mdi-home', text: '首頁', href: '/', isShowHandheld: true },
-        { icon: 'mdi-package-variant', text: '產品介紹', href: '/product', isShowHandheld: false },
-        { icon: 'mdi-phone', text: '聯絡我們', href: '/contact', isShowHandheld: true },
-      ],
-      linkItems: [
-        { icon: 'mdi-facebook', text: 'FaceBook', tip: 'FB', href: 'https://www.facebook.com/ychitool' },
-        {
-          icon: 'mdi-instagram', text: 'Instagram', tip: 'IG',
-          href: 'https://www.instagram.com/ychitool168/'
-        },
-        { icon: 'mdi-youtube', text: 'Youtube', tip: 'YT', href: 'https://www.youtube.com/@ychi' },
-      ],
-      shoppingItems: [
-        { icon: 'mdi-shopping', text: '蝦皮賣場', tip: 'SP', href: 'https://shopee.tw/ychitool' }
-      ],
-      routePath: '',
-      routePathParam: '',
-      isDrawer: false,
-      isErrorNotGetData: false,
-      // articleClass
-      articleClassItems: [],
-      articleItems: [],
-      articleItem: {},
-      /** 內容用資料 */
-      rules: [v => !isNaN(v) || '請輸入數字'],
-      mLiter: null, /** 毫升 */
-      Liter: null, /** 公升 */
-      flE: null, /** 液量盎司(英) */
-      flA: null, /** 液量盎司(美) */
-      gallonE: null, /** 加侖(英) */
-      gallonAW: null, /** 加侖濕式(美) */
-      gallonAD: null, /** 加侖乾式(美) */
-
-      pintE: null, /** 品脫(英) */
-      pintAW: null, /** 品脫濕式(美) */
-      pintAD: null, /** 品脫乾式(美) */
-
-      bushelE: null, /** 蒲式耳(英) */
-      bushelA: null, /** 蒲式耳(美) */
-
-      rulerLists: [
-        { unit: '1 毫升', mLiter: 1, },
-        { unit: '1 公升', mLiter: 1000, },
-        { unit: '1 液量盎司(英)', mLiter: 28.41, },
-        { unit: '1 液量盎司(美)', mLiter: 29.57, },
-        { unit: '1 加侖(英)', mLiter: 4546.09, },
-        { unit: '1 加侖濕式(美)', mLiter: 3785.41178, },
-        { unit: '1 加侖乾式(美)', mLiter: 4404.88377, },
-        { unit: '1 品脫(英)', mLiter: 568.26125, },
-        { unit: '1 品脫濕式(美)', mLiter: 473.17647, },
-        { unit: '1 品脫乾式(美)', mLiter: 550.61047, },
-        { unit: '1 蒲式耳(英)', mLiter: 36368.72, },
-        { unit: '1 蒲式耳(美)', mLiter: 35239.1, },
-      ],
-
-    },
-    watch: {
-      getWindowSizeX(val) {
-        if (val < 600) {
-          this.isShowList = true
-        }
-      }
-    },
-    computed: {
-      getWindowSizeX() {
-        return this.windowSize.x
-      },
-      /** 基本容器高度 */
-      getDefHeight() {
-        return this.windowSize.y - 260
-      },
-      getIsFooterShowLink() {
-        if (this.getWindowSizeX < 600) {
-          if (this.yVal > 40) {
-            return false
-          } else {
-            return true
-          }
-        } else {
-          return true
-        }
-      },
-      getIsFooterShow() {
-        if (this.getWindowSizeX < 600) {
-          if (Number(this.yVal) > Number(this.windowSize.y - 40)) {
-            return false
-          } else {
-            return true
-          }
-        } else {
-          return true
-        }
-      },
-    },
-    methods: {
-      /** toTop 程式 */
-      onScroll() {
-        if (typeof window === 'undefined') return;
-        const top = window.pageYOffset || document.documentElement.offsetTop || 0;
-        this.isFab = top > 300
-        this.yVal = top
-      },
-      toTop() {
-        this.$vuetify.goTo(0);
-      },
-      /** 工作尺寸變更 */
-      onResize() {
-        this.windowSize = { x: window.innerWidth, y: window.innerHeight };
-      },
-      /** 取路徑 */
-      fetchPath() {
-        let path = window.location.pathname;   // 例如: /category/item/123
-        let pathParts = path.split('/');
-        // 取得第一個和第二個之間的值
-        let category = pathParts[1];
-        if (category === "") {
-          this.routePath = ''
-        } else {
-          this.routePath = category
-        }
-      },
-      fetchPathParam() {
-        let path = window.location.pathname;   // 例如: /category/item/123
-        let pathParts = path.split('/');
-        // 取得第一個和第二個之間的值
-        let param = pathParts[2];
-        if (param === "") {
-          this.routePathParam = 1
-        } else {
-          this.routePathParam = param
-        }
-      },
-      /** 取得類別資料 */
-      fetchArticleClassItems() {
-        this.isErrorNotGetData = false
-        axios.get(`/local/blog/json/articleClass.json`)
-          .then(response => {
-            console.log(response);
-            this.articleClassItems = response.data.articleClassItems
-          })
-          .catch(error => {
-            this.isErrorNotGetData = true
-            console.log(error);
-          })
-          .finally(() => {
-          });
-      },
-      fetchArticleItem(id) {
-        this.isErrorNotGetData = false
-        axios.get(`/local/blog/json/articles.json`)
-          .then(response => {
-            console.log(response);
-            this.articleItems = response.data.articleItems
-            this.articleItem = this.articleItems.find(item => Number(item.id) === Number(id));
-          })
-          .catch(error => {
-            this.isErrorNotGetData = true
-            console.log(error);
-          })
-          .finally(() => {
-          });
-      },
-      changeMLiter() {
-        let mLiter = this.mLiter;
-        this.computedRuler(mLiter, 'mLiter');
-
-      },
-      changeLiter() {
-        let mLiter = this.Liter * 1000;
-        this.computedRuler(mLiter, 'liter');
-      },
-      changeFlE() {
-        let mLiter = Math.round(this.flE * 28.41 * 100000) / 100000;
-        this.computedRuler(mLiter, 'flE');
-      },
-      changeFlA() {
-        let mLiter = Math.round(this.flA * 29.57 * 100000) / 100000;
-        this.computedRuler(mLiter, 'flA');
-      },
-
-      changeGallonE() {
-        let mLiter = Math.round(this.gallonE * 4.54609 * 1000 * 100000) / 100000;
-        this.computedRuler(mLiter, 'gallonE');
-      },
-      changeGallonAW() {
-        let mLiter = Math.round(this.gallonAW * 3.785411784 * 1000 * 100000) / 100000;
-        this.computedRuler(mLiter, 'gallonAW');
-      },
-      changeGallonAD() {
-        let mLiter = Math.round(this.gallonAD * 4.40488377086 * 1000 * 100000) / 100000;
-        this.computedRuler(mLiter, 'gallonAD');
-      },
-
-      changePintE() {
-        let mLiter = Math.round(this.pintE * 568.26125 * 100000) / 100000;
-        this.computedRuler(mLiter, 'pintE');
-      },
-      changePintAW() {
-        let mLiter = Math.round(this.pintAW * 473.176473 * 100000) / 100000;
-        this.computedRuler(mLiter, 'pintAW');
-      },
-      changePintAD() {
-        let mLiter = Math.round(this.pintAD * 550.6104713575 * 100000) / 100000;
-        this.computedRuler(mLiter, 'pintAD');
-      },
-      changeBushelE() {
-        let mLiter = Math.round(this.bushelE * 36.36872 * 1000 * 100000) / 100000;
-        this.computedRuler(mLiter, 'bushelE');
-      },
-      changeBushelA() {
-        let mLiter = Math.round(this.bushelA * 35.2391 * 1000 * 100000) / 100000;
-        this.computedRuler(mLiter, 'bushelA');
-      },
-      computedRuler(mLiter, classType) {
-        if (!isNaN(mLiter)) {
-          this.mLiter = classType !== 'mLiter' ? Math.round(mLiter * 100000) / 100000 : this.mLiter;
-          this.Liter = classType !== 'liter' ? Math.round(mLiter * 0.001 * 100000) / 100000 : this.Liter;
-
-          this.flE = classType !== 'flE' ? Math.round(mLiter * 0.035198 * 100000) / 100000 : this.flE;
-          this.flA = classType !== 'flA' ? Math.round(mLiter * 0.033818 * 100000) / 100000 : this.flA;
-
-          this.pintE = classType !== 'pintE' ? Math.round(mLiter / 568.26125 * 100000) / 100000 : this.pintE;
-          this.pintAW = classType !== 'pintAW' ? Math.round(mLiter / 473.176473 * 100000) / 100000 : this.pintAW;
-          this.pintAD = classType !== 'pintAD' ? Math.round(mLiter / 550.6104713575 * 100000) / 100000 : this.pintAD;
-
-          this.gallonE = classType !== 'gallonE' ? Math.round(mLiter / 4.54609 / 1000 * 100000) / 100000 : this.gallonE;
-          this.gallonAW = classType !== 'gallonAW' ? Math.round(mLiter / 3.785411784 / 1000 * 100000) / 100000 : this.gallonAW;
-          this.gallonAD = classType !== 'gallonAD' ? Math.round(mLiter / 4.40488377086 / 1000 * 100000) / 100000 : this.gallonAD;
-
-          this.bushelE = classType !== 'bushelE' ? Math.round(mLiter / 36.36872 / 1000 * 100000) / 100000 : this.bushelE;
-          this.bushelA = classType !== 'bushelA' ? Math.round(mLiter / 35.2391 / 1000 * 100000) / 100000 : this.bushelA;
-        }
-      }
-    },
-    mounted() {
-      this.$vuetify.theme.dark = false;
-      this.fetchPath()
-      this.fetchPathParam()
-      this.fetchArticleClassItems()
-      this.fetchArticleItem(this.routePathParam)
-    },
-  })
-</script>
+</html>
