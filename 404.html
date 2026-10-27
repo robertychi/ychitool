@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0d10" />
+  <meta name="robots" content="noindex" />
+  <title>404 找不到頁面 | 瑜誠工業-工業切削刀具的專家</title>
+  <meta name="description" content="找不到您要的頁面，請回到瑜誠工業首頁或與我們聯絡。" />
+
+  <link rel="icon" href="/local/images/favicon.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="/local/MaterialDesign/css/materialdesignicons.min.css" rel="stylesheet" />
+  <link href="/local/vuetify/vuetify.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --surface: #13171c;
+      --line: rgba(255, 255, 255, .08);
+      --text: #e9edf2;
+      --muted: #98a3b0;
+      --accent: #932023;
+      --accent-2: #d64550;
+      --radius: 16px;
+      --nav-h: 68px;
+    }
+
+    .v-application {
+      background: var(--bg) !important;
+      color: var(--text);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif !important;
+    }
+    .v-application h1, .v-application h2, .v-application p { font-family: inherit; }
+    .v-main { padding-top: 0 !important; }
+
+    /* 導覽列 */
+    .nav {
+      background: rgba(11, 13, 16, .82) !important;
+      -webkit-backdrop-filter: saturate(1.4) blur(14px);
+      backdrop-filter: saturate(1.4) blur(14px);
+      border-bottom: 1px solid var(--line) !important;
+    }
+    .nav-link { color: #c4ccd6 !important; letter-spacing: .08em; font-weight: 500; }
+    .nav-link:hover { color: #fff !important; }
+
+    /* 共用 */
+    .grad {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+    .btn-glow { box-shadow: 0 12px 30px -10px rgba(147, 32, 35, .7) !important; }
+    .panel {
+      background: var(--surface) !important;
+      border: 1px solid var(--line);
+      border-radius: var(--radius) !important;
+      box-shadow: none !important;
+    }
+    .muted { color: var(--muted); }
+
+    /* 404 主視覺 */
+    .stage {
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+      padding: calc(var(--nav-h) + 32px) 0 64px;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+    }
+    .code {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(4px, 1.5vw, 16px);
+      font-size: clamp(5.5rem, 22vw, 12rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -.02em;
+    }
+    .code .v-icon {
+      font-size: 1em !important;
+      color: var(--accent-2) !important;
+      animation: spin 8s linear infinite;
+      filter: drop-shadow(0 10px 24px rgba(147, 32, 35, .7));
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    h1 { margin: 1.4rem 0 .8rem; font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 800; letter-spacing: .04em; }
+    .lead { max-width: 560px; margin: 0 auto; line-height: 1.9; color: #c4ccd6; }
+    .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 2rem; }
+
+    .quick { max-width: 720px; margin: 3rem auto 0; }
+    .quick a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 18px;
+      color: inherit;
+      text-decoration: none;
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+    .quick a:hover {
+      transform: translateY(-4px);
+      border-color: rgba(147, 32, 35, .8);
+      box-shadow: 0 18px 40px -18px rgba(147, 32, 35, .6) !important;
+    }
+    .quick .v-icon { color: var(--accent-2) !important; }
+
+    /* 頁尾 */
+    .site-footer { background: #07090b !important; border-top: 1px solid var(--line); }
+    .site-footer .v-btn { color: var(--muted) !important; }
+    .site-footer .v-btn:hover { color: #fff !important; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .code .v-icon { animation: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <v-app>
+
+      <v-app-bar app fixed flat :height="68" class="nav">
+        <a href="/" title="首頁-瑜誠工業">
+          <v-img class="hidden-xs-only" src="/local/landing/images/logo.png" max-width="180" alt="瑜誠工業Logo"></v-img>
+          <v-img class="hidden-sm-and-up" src="/local/landing/images/logo_small.png" max-width="90"
+            alt="瑜誠工業Logo"></v-img>
+        </a>
+        <v-spacer></v-spacer>
+        <v-btn text class="nav-link" href="/">
+          <v-icon left>mdi-home</v-icon>回首頁
+        </v-btn>
+      </v-app-bar>
+
+      <v-main>
+        <main class="stage"
+          style="background-image: linear-gradient(to bottom, rgba(11,13,16,.6) 0%, rgba(11,13,16,.85) 70%, #0b0d10 100%), url('/local/landing/images/indexBanner.png')">
+          <v-container>
+            <span class="eyebrow">Page Not Found</span>
+
+            <div class="code grad" aria-label="404">
+              <span>4</span>
+              <v-icon aria-hidden="true">mdi-cog</v-icon>
+              <span>4</span>
+            </div>
+
+            <h1>找不到您要的頁面</h1>
+            <p class="lead">
+              這個頁面可能已經移動、更名，或網址輸入有誤。<br />
+              請回到首頁，或直接與我們聯絡，我們會盡力協助您。
+            </p>
+
+            <div class="actions">
+              <v-btn x-large rounded color="primary" class="btn-glow" href="/">
+                <v-icon left>mdi-home</v-icon>回到首頁
+              </v-btn>
+              <v-btn x-large rounded outlined color="white" href="/#contact">
+                <v-icon left>mdi-phone</v-icon>聯絡我們
+              </v-btn>
+            </div>
+
+            <v-row dense class="quick">
+              <v-col cols="12" sm="4" v-for="item in quickLinks" :key="item.href">
+                <a :href="item.href" class="panel">
+                  <v-icon>{{ item.icon }}</v-icon>
+                  <span>{{ item.text }}</span>
+                  <v-icon class="ml-auto muted" small>mdi-chevron-right</v-icon>
+                </a>
+              </v-col>
+            </v-row>
+          </v-container>
+        </main>
+      </v-main>
+
+      <v-footer padless class="site-footer">
+        <v-container>
+          <div class="text-center">
+            <v-btn icon class="mx-1" v-for="item in socialItems" :key="item.href" :href="item.href" target="_blank"
+              rel="noopener" :title="item.text">
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-btn>
+          </div>
+          <v-divider class="my-4"></v-divider>
+          <div class="text-center muted" style="font-size: .85rem">
+            © Copyright 2012-{{ currentYear }} 瑜誠工業有限公司 版權所有
+          </div>
+        </v-container>
+      </v-footer>
+    </v-app>
+  </div>
+
+  <script src="/local/vue.min.js"></script>
+  <script src="/local/vuetify/vuetify.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify({
+        theme: {
+          dark: true,
+          themes: { dark: { primary: '#932023' } },
+        },
+      }),
+      data: {
+        currentYear: new Date().getFullYear(),
+        quickLinks: [
+          { icon: 'mdi-cog', text: '服務項目', href: '/#services' },
+          { icon: 'mdi-information-outline', text: '關於瑜誠', href: '/#about' },
+          { icon: 'mdi-newspaper', text: '最新消息', href: '/#news' },
+        ],
+        socialItems: [
+          { icon: 'mdi-facebook', text: 'Facebook', href: 'https://www.facebook.com/ychitool' },
+          { icon: 'mdi-instagram', text: 'Instagram', href: 'https://www.instagram.com/ychitool168/' },
+          { icon: 'mdi-youtube', text: 'Youtube', href: 'https://www.youtube.com/@ychi' },
+          { icon: 'mdi-shopping', text: '蝦皮賣場', href: 'https://shopee.tw/ychitool' },
+        ],
+      },
+    })
+  </script>
+</body>
+
+</html>
