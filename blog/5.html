@@ -2,304 +2,459 @@
 <html lang="zh-TW">
 
 <head>
-  <title>英制公制單位轉換| 瑜誠工業-部落格</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <!-- Keyword -->
-  <meta name="Keywords" content="刀具部落格,瑜誠工業,木工刀具,尺寸試算">
-  <meta name="Description" content="瑜誠工業提供的「英制公制單位轉換」，旨在協助使用者輕鬆快速地進行各種尺寸單位的自動換算與試算，提升工作效率。 ">
-  <meta name="copyright" content="瑜誠工業刀具部落格 Ychi">
-  <!-- google robot -->
-  <meta name="robots" content="index,follow">
-  <meta name="googlebot" content="index,follow">
-  <!-- FB -->
-  <meta property="fb:app_id" content="104356957765552">
-  <meta property="og:title" content="英制公制單位轉換| 瑜誠工業-部落格">
-  <meta property="og:description" content="瑜誠工業提供的「英制公制單位轉換」，旨在協助使用者輕鬆快速地進行各種尺寸單位的自動換算與試算，提升工作效率。">
-  <meta property="og:image" content="http://www.ychi.com.tw/local/blog/images/20241031.jpg">
-  <meta property="og:url" content="http://www.ychi.com.tw/blog/5">
-  <meta property="og:type" content="website">
-  <!-- Twitter -->
-  <meta property="og:image:alt" content="瑜誠工業-工業切削刀具的專家">
-  <meta name="twitter:card" content="Ychi">
-  <!-- ICO -->
-  <link rel="icon" type="image/png" sizes="128x128" href="/local/images/faviconBlog.ico">
-  <!-- CSS -->
-  <link href="/local/MaterialDesign/css/materialdesignicons.min.css" rel="stylesheet">
-  <link href="/local/vuetify/vuetify.min.css" rel="stylesheet">
-  <script src="/local/vue.min.js"></script>
-  <script src="/local/axios/dist/axios.min.js"></script>
-  <script src="/local/vuetify/vuetify.min.js"></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>英制公制單位轉換 | 瑜誠工業-部落格</title>
 
-  <link rel="stylesheet" href="/local/blog/blog.css">
+  <meta name="keywords" content="刀具部落格,瑜誠工業,木工刀具,英制公制轉換,英吋轉公厘,英分" />
+  <meta name="description" content="瑜誠工業提供的「英制公制單位轉換」，協助使用者輕鬆快速地將英吋、英呎換算成公厘、公尺，並附常用英制分數尺寸對照表，提升工作效率。" />
+  <meta name="copyright" content="瑜誠工業刀具部落格 Ychi" />
+  <meta name="robots" content="index,follow" />
+  <meta name="googlebot" content="index,follow" />
+  <link rel="canonical" href="https://www.ychi.com.tw/blog/5" />
+
+  <meta property="fb:app_id" content="104356957765552" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.ychi.com.tw/blog/5" />
+  <meta property="og:title" content="英制公制單位轉換 | 瑜誠工業-部落格" />
+  <meta property="og:description" content="瑜誠工業提供的「英制公制單位轉換」，協助使用者輕鬆快速地將英吋、英呎換算成公厘、公尺，並附常用英制分數尺寸對照表，提升工作效率。" />
+  <meta property="og:image" content="https://www.ychi.com.tw/local/blog/images/20241031.jpg" />
+  <meta property="og:image:alt" content="瑜誠工業-工業切削刀具的專家" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/local/images/faviconBlog.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="/local/MaterialDesign/css/materialdesignicons.min.css" rel="stylesheet" />
+  <link href="/local/vuetify/vuetify.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface-2: #1c1c1c;
+      --line: rgba(255, 255, 255, .08);
+      --text: #ffffff;
+      --body: #e8e8e8;
+      --muted: #b3b3b3;
+      --accent: #932023;
+      --accent-2: #d64550;
+      --radius: 16px;
+      --nav-h: 68px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    .v-application {
+      background: var(--bg) !important;
+      color: var(--text);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif !important;
+    }
+    .v-application h1, .v-application h2, .v-application h3, .v-application p { font-family: inherit; }
+    .v-main { padding-top: 0 !important; }
+    section { scroll-margin-top: calc(var(--nav-h) + 8px); }
+
+    /* ---------- 導覽列 ---------- */
+    .nav {
+      background: transparent !important;
+      transition: background .3s ease, border-color .3s ease;
+      border-bottom: 1px solid transparent !important;
+    }
+    .nav.nav-solid {
+      background: rgba(10, 10, 10, .82) !important;
+      -webkit-backdrop-filter: saturate(1.4) blur(14px);
+      backdrop-filter: saturate(1.4) blur(14px);
+      border-bottom-color: var(--line) !important;
+    }
+    .nav-link { color: var(--body) !important; letter-spacing: .08em; font-weight: 500; }
+    .nav-link:hover { color: #fff !important; }
+    .drawer { background: rgba(14, 14, 14, .98) !important; }
+
+    /* ---------- 共用 ---------- */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+    .section { padding: 72px 0; }
+    .section-head { margin-bottom: 28px; }
+    .section-head h2 {
+      margin-top: .6rem;
+      font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .section-desc { max-width: 720px; margin: 0 0 32px; line-height: 1.9; color: var(--body); }
+    .panel {
+      background: var(--surface) !important;
+      border: 1px solid var(--line);
+      border-radius: var(--radius) !important;
+      box-shadow: none !important;
+    }
+    .btn-glow { box-shadow: 0 12px 30px -10px rgba(147, 32, 35, .7) !important; }
+    .muted { color: var(--muted); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      min-height: min(56vh, 480px);
+      padding: calc(var(--nav-h) + 40px) 0 72px;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero .watermark {
+      position: absolute;
+      right: -6%;
+      top: 50%;
+      font-size: clamp(280px, 40vw, 520px) !important;
+      color: rgba(255, 255, 255, .04) !important;
+      transform: translateY(-50%);
+      animation: spin 60s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+    .hero h1 {
+      margin: 1rem 0 1rem;
+      font-size: clamp(1.8rem, 4.8vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: .02em;
+    }
+    .hero .date { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+    .hero .date .v-icon { color: var(--muted) !important; font-size: 20px !important; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.6rem; }
+
+    /* ---------- 換算器 ---------- */
+    .group { height: 100%; padding: 24px; }
+    .group-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+    .group-head h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: .06em; }
+    .group-tag {
+      padding: 2px 12px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      color: #fff;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+    .seg { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .calc-input input { font-size: 1.5rem; font-weight: 700; text-align: right; color: #fff !important; }
+    .calc-input .v-label { font-size: 1rem; }
+    .calc-input .v-messages { font-size: .78rem; }
+    .calc-input .v-messages__message { color: var(--muted) !important; }
+    .calc-hint { min-height: 1.6em; margin: 0; font-size: .9rem; color: var(--muted); text-align: right; }
+
+    .result-value {
+      margin: 8px 0 12px;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      word-break: break-all;
+    }
+    .result-value small { margin-left: 6px; font-size: 1rem; font-weight: 500; color: var(--muted); }
+    .result-formula { margin: 0; font-size: .95rem; text-align: right; color: var(--muted); }
+    .calc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 28px; }
+
+    /* ---------- 對照表 ---------- */
+    .table-wrap { overflow-x: auto; }
+    .ref-table { width: 100%; border-collapse: collapse; }
+    .ref-table th {
+      padding: 16px 24px;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-align: left;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .ref-table td { padding: 14px 24px; color: #fff; border-bottom: 1px solid var(--line); white-space: nowrap; }
+    .ref-table tr:last-child td { border-bottom: 0; }
+    .ref-table tbody tr { cursor: pointer; }
+    .ref-table tbody tr:hover td { background: rgba(255, 255, 255, .03); }
+    .ref-table tbody tr.active td { background: rgba(147, 32, 35, .28); }
+    .ref-table .num { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .ref-table th.num { text-align: right; }
+    .note { margin-top: 16px; font-size: .88rem; line-height: 1.8; color: var(--muted); }
+
+    .notice {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 18px 22px;
+      line-height: 1.8;
+      color: var(--body);
+      border: 1px solid rgba(214, 69, 80, .35);
+      border-radius: var(--radius);
+      background: rgba(147, 32, 35, .12);
+    }
+    .notice .v-icon { color: var(--accent-2) !important; margin-top: 2px; }
+
+    .promo { overflow: hidden; border-radius: var(--radius) !important; }
+    .promo .tag {
+      display: inline-block;
+      margin: 14px;
+      padding: 2px 14px;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      color: #fff;
+      border-radius: 999px;
+      background: rgba(10, 10, 10, .65);
+    }
+
+    /* ---------- 頁尾 ---------- */
+    .site-footer { background: #050505 !important; border-top: 1px solid var(--line); }
+    .site-footer .v-btn { color: var(--muted) !important; }
+    .site-footer .v-btn:hover { color: #fff !important; }
+
+    /* ---------- 進場動畫 ---------- */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 599px) {
+      .section { padding: 48px 0; }
+      .hero { padding: calc(var(--nav-h) + 24px) 0 56px; }
+      .group { padding: 20px; }
+      .ref-table th, .ref-table td { padding: 12px 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero .watermark { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
 </head>
 
-<body style="background-color:#000">
+<body>
   <div id="app">
-    <v-app v-resize="onResize">
+    <v-app v-resize="onResize" v-scroll="onScroll">
 
-      <v-app-bar app clipped-right fixed dense flat class="appBarBg hidden-xs-only">
-        <a href="http://www.ychi.com.tw" title="首頁-瑜誠工業">
-          <v-img class="hidden-xs-only" src="/local/blog/images/logo.png" max-width="160" alt="瑜誠工業Logo"
-            title="瑜誠工業logo-small"></v-img>
+      <!-- 頂部列 -->
+      <v-app-bar app fixed flat :height="68" class="nav" :class="{ 'nav-solid': isSolid }">
+        <a href="/blog" title="瑜誠工業-部落格">
+          <v-img class="hidden-xs-only" src="/local/blog/images/logo.png" max-width="160" alt="瑜誠工業Logo"></v-img>
+          <v-img class="hidden-sm-and-up" src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo"></v-img>
         </a>
         <v-spacer></v-spacer>
-        <v-toolbar-items class="hidden-xs-only">
-          <v-btn dark :text="windowSize.x >= 960" :icon="windowSize.x < 960" v-for="(item, index) in linkItems"
-            :href="item.href" :key="index">
-            <v-icon :left="windowSize.x >= 960">{{item.icon}}</v-icon>
-            <span v-if="windowSize.x >= 960">
-              <span v-if="windowSize.x >= 1650">{{ item.text }}</span>
-              <span v-if="windowSize.x < 1650">{{ item.tip }}</span>
-            </span>
+
+        <v-toolbar-items class="hidden-sm-only hidden-xs-only align-center">
+          <v-btn text class="nav-link" v-for="item in navItems" :key="item.href" :href="item.href">{{ item.text }}</v-btn>
+          <v-btn icon small class="nav-link ml-2" v-for="item in linkItems" :key="item.href" :href="item.href"
+            target="_blank" rel="noopener" :title="item.text">
+            <v-icon>{{ item.icon }}</v-icon>
           </v-btn>
         </v-toolbar-items>
-        <v-app-bar-nav-icon class="hidden-xs-only white--text" @click="isDrawer = !isDrawer">
-        </v-app-bar-nav-icon>
-      </v-app-bar>
-      <v-app-bar app clipped-right fixed dense flat class="appBarBgMobile hidden-sm-and-up">
-        <v-btn icon color="white" href="/">
-          <v-icon>mdi-home</v-icon>
-        </v-btn>
-        <v-spacer></v-spacer>
-        <a href="http://www.ychi.com.tw" title="首頁-瑜誠工業" class="hidden-sm-and-up">
-          <v-img src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo" title="瑜誠工業logo-small"></v-img>
-        </a>
-        <v-spacer></v-spacer>
+
+        <v-app-bar-nav-icon class="hidden-md-and-up white--text" @click="isDrawer = !isDrawer"></v-app-bar-nav-icon>
       </v-app-bar>
 
-      <v-navigation-drawer app v-model="isDrawer" clipped class="drawerBg" right>
-        <v-sheet dark color="transparent" class="pa-4">YCHI 瑜誠工業
-        </v-sheet>
-        <v-divider dark></v-divider>
-        <v-subheader dark>站內連結</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item v-for="(item, index) in menuItems" :key="index" :href="item.href"
-            :disabled="item.href === ('/'+routePath) ? true : false">
-            <v-list-item-icon class="white--text">
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider dark></v-divider>
-        <v-subheader dark>社群影音</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item v-for="(item, index) in linkItems" :key="index" :href="item.href">
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider dark></v-divider>
-        <v-subheader dark>賣場平台</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item v-for="(item, index) in shoppingItems" :key="index" :href="item.href">
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
+      <!-- 側邊選單 -->
+      <v-navigation-drawer v-model="isDrawer" temporary fixed right width="280" class="drawer">
+        <v-sheet color="transparent" class="pa-4 font-weight-bold">YCHI 瑜誠工業</v-sheet>
+
+        <template v-for="group in drawerGroups">
+          <v-divider :key="group.title + '-divider'"></v-divider>
+          <v-subheader :key="group.title + '-header'">{{ group.title }}</v-subheader>
+          <v-list :key="group.title + '-list'">
+            <v-list-item v-for="item in group.items" :key="item.href" :href="item.href"
+              :disabled="item.href === currentPath" @click="isDrawer = false">
+              <v-list-item-icon><v-icon>{{ item.icon }}</v-icon></v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ item.text }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </template>
       </v-navigation-drawer>
+
       <v-main>
-        <section v-if="windowSize.x > 310 && windowSize.y > 350">
-          <v-row dense justify="center" class="my-1">
+        <div v-if="!isViewportTooSmall">
 
-
-
-          </v-row>
-
-          <section> <v-container fluid>
-              <v-row dense justify="center">
-                <v-col cols="12" xl="8" lg="10" md="12" sm="12" xs="12">
-                  <v-row dense>
-                    <v-col cols="12">
-                      <v-card>
-                        <v-toolbar style="background: rgba(255,255,255,0.5)" flat dense>
-                          <v-toolbar-title class="blue--text text--darken-4 hidden-xs-only">YCHI BLOG
-                          </v-toolbar-title>
-                          <v-spacer></v-spacer>
-                          <v-btn text href="/">
-                            <v-icon left>mdi-home</v-icon>
-                            瑜誠首頁
-                          </v-btn>
-                          <v-btn text href="/blog">
-                            <v-icon left>mdi-reply</v-icon>
-                            文章列表
-                          </v-btn>
-                        </v-toolbar>
-                        <v-divider></v-divider>
-                        <v-card-title :class="getWindowSizeX > 600 ? 'display-2 mb-2' : 'title mb-1'">
-                          {{ articleItem.title }}
-                        </v-card-title>
-                        <v-card-subtitle>
-                          <p class="mb-0">
-                            <v-icon class="mr-1">mdi-calendar-month</v-icon>
-                            {{ articleItem.date }}
-                          </p>
-                        </v-card-subtitle>
-                        <v-divider></v-divider>
-                        <v-card-text>
-                          <v-row dense>
-
-                            <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12" v-if="!isSelected">
-                              <v-card height="180">
-                                <v-toolbar dense flat>
-                                  <v-toolbar-title>輸入：</v-toolbar-title>
-                                  <v-spacer></v-spacer>
-                                  <v-btn :disabled="isInches" class="mr-2" @click="changeInches()" outlined>吋(In)
-                                  </v-btn>
-                                  <v-btn :disabled="isFeet" class="mr-2" @click="changeFeet()" outlined>
-                                    呎(Ft)
-                                  </v-btn>
-                                  <v-divider vertical></v-divider>
-                                  <v-btn icon class="ml-1" @click="switchFormSelect()">
-                                    <v-icon>mdi-form-select</v-icon>
-                                  </v-btn>
-                                </v-toolbar>
-                                <v-divider></v-divider>
-                                <v-card-text>
-                                  <v-row dense>
-                                    <v-col cols="12">
-                                      <v-text-field v-model="inputValue" label="輸入英制數值" prepend-icon="mdi-ruler"
-                                        :hint="`目前輸入的值為${isInches ? ' 英吋(In) ' : ''}${isFeet? ' 英呎(Ft) ': ''}`"
-                                        persistent-hint clearable></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12" v-if="isInches">
-                                      <p class="body-2 mb-0 ml-8" v-if="matchingImperial">[{{ matchingImperial }}]</p>
-                                    </v-col>
-                                  </v-row>
-                                </v-card-text>
-                              </v-card>
-                            </v-col>
-
-                            <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12" v-if="isSelected">
-                              <v-card height="180">
-                                <v-toolbar dense flat>
-                                  <v-toolbar-title>輸入：</v-toolbar-title>
-                                  <v-spacer></v-spacer>
-                                  <v-btn outlined class="mr-2" disabled>吋(In)</v-btn>
-                                  <v-divider vertical></v-divider>
-                                  <v-btn icon class="ml-1" @click="switchFormSelect()">
-                                    <v-icon>mdi-form-textbox</v-icon>
-                                  </v-btn>
-                                </v-toolbar>
-                                <v-divider></v-divider>
-                                <v-card-text>
-                                  <v-row dense>
-                                    <v-col cols="12">
-                                      <v-select v-model="select" :items="rulerSimpleLists"
-                                        :item-text="item => `${item.imperial} [${item.tw}]`" label="選項" persistent-hint
-                                        return-object class="mb-2" prepend-icon="mdi-ruler"
-                                        :hint="`目前尺寸：${select.imperial} [${select.tw}]`"></v-select>
-                                    </v-col>
-                                  </v-row>
-                                </v-card-text>
-                              </v-card>
-                            </v-col>
-
-                            <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12">
-                              <v-card height="180">
-                                <v-toolbar dense flat>
-                                  <v-toolbar-title>結果：</v-toolbar-title>
-                                  <v-spacer></v-spacer>
-                                  <v-btn :disabled="isMillimeter" class="mr-2" @click="changeMillimeter" outlined>公厘(mm)
-                                  </v-btn>
-                                  <v-btn :disabled="isMeter" @click="changeMeter" outlined
-                                    v-if="!isSelected">公尺(m)</v-btn>
-                                </v-toolbar>
-                                <v-divider></v-divider>
-                                <v-card-text>
-                                  <p
-                                    :class="getWindowSizeX > 600 ? 'display-3 text-right mb-1' : 'display-1 text-right mb-1'">
-                                    {{ resultValue | commonFormat}}
-                                    <span class="body-1" v-if="isMillimeter">mm</span>
-                                    <span class="body-1" v-if="isMeter">m</span>
-                                  </p>
-
-                                  <p class="body-1 text-right mb-0" v-if="!isSelected">
-                                    <span>{{ inputValue | commonFormat}}</span>
-                                    <span v-if="isFeet">(Ft) x</span>
-                                    <span v-if="isInches">(In) x</span>
-                                    <span v-if="isInches">
-                                      <span v-if="isMillimeter">{{ inchesToMillimeter | commonFormat}}</span>
-                                      <span v-if="isMeter">{{ (inchesToMillimeter / meterToMillimeter) |
-                                        commonFormat}}</span>
-                                    </span>
-                                    <span v-if="isFeet">
-                                      <span v-if="isMillimeter">{{ (inchesToMillimeter * feetToInches) |
-                                        commonFormat}}</span>
-                                      <span v-if="isMeter">{{ (inchesToMillimeter * feetToInches / meterToMillimeter) |
-                                        commonFormat}}</span>
-                                    </span>
-                                  </p>
-
-
-                                  <p class="body-1 text-right" v-if="isSelected">
-                                    <span v-if="select.molecular === select.denominator">1</span>
-                                    <span v-else>{{ select.molecular }}/{{ select.denominator }}"</span>
-                                    <span>(In) x</span>
-                                    <span>
-                                      <span>{{ inchesToMillimeter | commonFormat}}</span>
-                                    </span>
-                                    <span class="ml-1">[{{ select.tw }}]</span>
-                                  </p>
-                                </v-card-text>
-                              </v-card>
-                            </v-col>
-                          </v-row>
-                        </v-card-text>
-                      </v-card>
-                    </v-col>
-                    <v-col cols="12">
-                      <v-card color="orange">
-                        <v-card-text class="white--text">
-                          <v-icon color="white">mdi-alert-octagon-outline</v-icon>
-                          注意：以上計算結果僅供參考，如您對上述計算結果有任何疑問或發現錯誤，建議您自行核實。我們無法對計算結果承擔責任，敬請諒解！
-                        </v-card-text>
-                      </v-card>
-                    </v-col>
-                    <v-col cols="12">
-                      <v-card>
-
-                        <v-img src="/local/blog/images/20241031CM.jpg" height="250">
-                          <p class="white--text ml-1 mt-2 pl-1 ">
-                            <v-icon color="white" class="mb-1">mdi-alert-circle-outline</v-icon>
-                            <span>瑜誠產品</span>
-                          </p>
-                        </v-img>
-                      </v-card>
-                    </v-col>
-                  </v-row>
+          <!-- Hero -->
+          <header class="hero"
+            style="background-image: linear-gradient(to bottom, rgba(10,10,10,.6) 0%, rgba(10,10,10,.82) 70%, #0a0a0a 100%), url('/local/blog/images/20241031.jpg')">
+            <v-icon class="watermark" aria-hidden="true">mdi-ruler</v-icon>
+            <v-container>
+              <v-row>
+                <v-col cols="12" md="10" lg="9" v-reveal>
+                  <span class="eyebrow">YCHI Blog · Tools</span>
+                  <h1>{{ pageTitle }}</h1>
+                  <div class="date" v-if="articleItem.date">
+                    <v-icon>mdi-calendar-month</v-icon>{{ articleItem.date }}
+                  </div>
+                  <div class="hero-actions">
+                    <v-btn rounded color="primary" class="btn-glow" href="#calculator">
+                      <v-icon left>mdi-calculator-variant</v-icon>開始換算
+                    </v-btn>
+                    <v-btn rounded outlined color="white" href="/blog">
+                      <v-icon left>mdi-format-list-bulleted</v-icon>文章列表
+                    </v-btn>
+                    <v-btn rounded outlined color="white" href="/">
+                      <v-icon left>mdi-home</v-icon>瑜誠首頁
+                    </v-btn>
+                  </div>
                 </v-col>
               </v-row>
             </v-container>
+          </header>
+
+          <!-- 單位換算器 -->
+          <section id="calculator" class="section">
+            <v-container>
+              <div class="section-head" v-reveal>
+                <span class="eyebrow">Converter</span>
+                <h2>英制 → 公制換算器</h2>
+              </div>
+              <p class="section-desc" v-reveal>
+                輸入英吋或英呎的數值（可用小數，例如 0.375），或切換成「常用分數」直接選擇 1/16″～1″ 的尺寸，結果即時顯示。
+              </p>
+
+              <v-row>
+                <!-- 輸入 -->
+                <v-col cols="12" md="6" v-reveal>
+                  <v-card class="panel group">
+                    <div class="group-head">
+                      <h3>輸入</h3>
+                      <span class="group-tag">IMPERIAL</span>
+                    </div>
+
+                    <div class="seg">
+                      <v-btn rounded small :outlined="mode !== 'input'" :color="mode === 'input' ? 'primary' : 'white'"
+                        @click="mode = 'input'">
+                        <v-icon left small>mdi-form-textbox</v-icon>輸入數值
+                      </v-btn>
+                      <v-btn rounded small :outlined="mode !== 'fraction'"
+                        :color="mode === 'fraction' ? 'primary' : 'white'" @click="mode = 'fraction'">
+                        <v-icon left small>mdi-format-list-bulleted</v-icon>常用分數
+                      </v-btn>
+                    </div>
+
+                    <template v-if="mode === 'input'">
+                      <div class="seg">
+                        <v-btn rounded small :outlined="inUnit !== 'in'" :color="inUnit === 'in' ? 'primary' : 'white'"
+                          @click="inUnit = 'in'">英吋 (in)</v-btn>
+                        <v-btn rounded small :outlined="inUnit !== 'ft'" :color="inUnit === 'ft' ? 'primary' : 'white'"
+                          @click="inUnit = 'ft'">英呎 (ft)</v-btn>
+                      </div>
+                      <v-text-field class="calc-input" v-model="inputText" :label="inUnit === 'in' ? '英吋 (in)' : '英呎 (ft)'"
+                        :rules="rules" outlined dense clearable inputmode="decimal" autocomplete="off" maxlength="14"
+                        color="primary" @focus="$event.target.select()"></v-text-field>
+                      <p class="calc-hint" v-if="matchedSize">≈ {{ matchedSize.label }}［{{ matchedSize.tw }}］</p>
+                      <p class="calc-hint" v-else>&nbsp;</p>
+                    </template>
+
+                    <template v-else>
+                      <v-select class="calc-input" v-model="selectedIdx" :items="sizeOptions" label="常用尺寸" outlined dense
+                        color="primary" hide-details></v-select>
+                      <p class="calc-hint mt-3">
+                        {{ currentSize.label }}［{{ currentSize.tw }}］= {{ currentSize.mmText }} mm
+                      </p>
+                    </template>
+                  </v-card>
+                </v-col>
+
+                <!-- 結果 -->
+                <v-col cols="12" md="6" v-reveal="100">
+                  <v-card class="panel group">
+                    <div class="group-head">
+                      <h3>結果</h3>
+                      <span class="group-tag">METRIC</span>
+                    </div>
+
+                    <div class="seg">
+                      <v-btn rounded small :outlined="outUnit !== 'mm'" :color="outUnit === 'mm' ? 'primary' : 'white'"
+                        @click="outUnit = 'mm'">公厘 (mm)</v-btn>
+                      <v-btn rounded small :outlined="outUnit !== 'm'" :color="outUnit === 'm' ? 'primary' : 'white'"
+                        @click="outUnit = 'm'">公尺 (m)</v-btn>
+                    </div>
+
+                    <p class="result-value">
+                      {{ resultText }}<small v-if="isValid">{{ outUnit }}</small>
+                    </p>
+                    <p class="result-formula" v-if="isValid">{{ formulaText }}</p>
+                  </v-card>
+                </v-col>
+              </v-row>
+
+              <div class="notice mt-6" v-reveal>
+                <v-icon>mdi-alert-octagon-outline</v-icon>
+                <span>注意：以上計算結果僅供參考，如您對上述計算結果有任何疑問或發現錯誤，建議您自行核實。我們無法對計算結果承擔責任，敬請諒解！</span>
+              </div>
+            </v-container>
           </section>
 
-          <section class="hidden-md-and-down"></section>
+          <!-- 對照表 -->
+          <section id="reference" class="section" style="background: var(--surface)">
+            <v-container>
+              <div class="section-head" v-reveal>
+                <span class="eyebrow">Reference</span>
+                <h2>常用英制分數尺寸對照</h2>
+              </div>
+              <v-card class="panel table-wrap" v-reveal>
+                <table class="ref-table">
+                  <thead>
+                    <tr>
+                      <th>英制 (in)</th>
+                      <th>俗稱（英分）</th>
+                      <th class="num">公厘 (mm)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(s, i) in sizes" :key="s.label" :class="{ active: mode === 'fraction' && selectedIdx === i }"
+                      @click="pickSize(i)">
+                      <td>{{ s.label }}</td>
+                      <td class="muted">{{ s.tw }}</td>
+                      <td class="num">{{ s.mmText }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </v-card>
+              <p class="note">
+                以 1 英吋 = 25.4 公厘、1 英呎 = 12 英吋為基準。點選表格任一列，可直接帶入上方換算器。
+                表中「分」指坊間慣用的英分（1 分 = 1/8 英吋 = 3.175 公厘），與台制長度單位「台分」（1 台分 = 3.03 公厘）不同，請勿混用。
+              </p>
 
-          <section class="hidden-lg-and-up hidden-xs-only"></section>
+              <v-card class="panel promo mt-8" v-reveal>
+                <v-img src="/local/blog/images/20241031CM.jpg" height="250" alt="瑜誠產品">
+                  <span class="tag">瑜誠產品</span>
+                </v-img>
+              </v-card>
+            </v-container>
+          </section>
+        </div>
 
-          <section class="hidden-sm-and-up"></section>
-        </section>
+        <!-- 視窗過小提示 -->
         <v-container fluid fill-height v-else>
           <v-row dense justify="center" align="center">
-            <v-col cols="12" xl="10" lg="11" md="12" sm="12" xs="12">
+            <v-col cols="12" xl="10" lg="11">
               <v-card height="100" color="red darken-4">
                 <v-card-text class="title">
-                  <span v-if="windowSize.y < 350">
+                  <span v-if="windowSize.y <= 350">
                     此設備高不足 350px 無法顯示相關內容，請選擇適合的設備或調整視窗來觀看此網頁
                   </span>
-                  <span v-if="windowSize.x < 310">
+                  <span v-if="windowSize.x <= 310">
                     此設備寬不足 310px 無法顯示相關內容，請選擇適合的設備或調整視窗來觀看此網頁
                   </span>
                 </v-card-text>
@@ -309,311 +464,238 @@
         </v-container>
       </v-main>
 
-      <v-footer padless :fixed="windowSize.x >600 ? false : true" v-if="getIsFooterShow">
-        <v-card tile width="100%" :class="windowSize.x >600 ? 'footerBg text-center' : 'footerBgMobile text-center'">
-          <v-fade-transition>
-            <v-card-text v-if="getIsFooterShowLink">
-              <v-btn icon class="mx-3" dark v-for="(item, index) in linkItems" :href="item.href" :key="index">
-                <v-icon>{{item.icon}}</v-icon>
+      <!-- 頁尾 -->
+      <v-footer padless class="site-footer">
+        <v-container>
+          <v-row align="center" justify="space-between" class="text-center text-md-left">
+            <v-col cols="12" md="auto">
+              <v-img class="mx-auto" src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo"></v-img>
+            </v-col>
+            <v-col cols="12" md="auto">
+              <v-btn icon class="mx-1" v-for="item in socialItems" :key="item.href" :href="item.href" target="_blank"
+                rel="noopener" :title="item.text">
+                <v-icon>{{ item.icon }}</v-icon>
               </v-btn>
-            </v-card-text>
-          </v-fade-transition>
-          <v-divider></v-divider>
-          <v-card-text class="white--text">
-            © Copyright 2012-2024 瑜誠工業有限公司 版權所有
-          </v-card-text>
-        </v-card>
+            </v-col>
+          </v-row>
+          <v-divider class="my-4"></v-divider>
+          <div class="text-center muted" style="font-size: .85rem">
+            © Copyright 2012-{{ currentYear }} 瑜誠工業有限公司 版權所有
+          </div>
+        </v-container>
       </v-footer>
 
-      <v-fad-transition>
-        <v-btn fab dark fixed bottom right color="red darken-3" v-scroll="onScroll" v-show="isFab" v-on:click="toTop">
-          <v-icon>mdi-navigation</v-icon>
+      <!-- 回到頂端 -->
+      <v-fade-transition>
+        <v-btn fab dark fixed bottom right color="primary" class="btn-glow" v-show="isFab" @click="toTop"
+          aria-label="回到頂端">
+          <v-icon>mdi-chevron-up</v-icon>
         </v-btn>
-      </v-fad-transition>
+      </v-fade-transition>
     </v-app>
   </div>
+
+  <script src="/local/vue.min.js"></script>
+  <script src="/local/axios/dist/axios.min.js"></script>
+  <script src="/local/vuetify/vuetify.min.js"></script>
+  <script>
+    /** 捲動進場動畫：v-reveal 或 v-reveal="延遲毫秒" */
+    Vue.directive('reveal', {
+      inserted(el, binding) {
+        const delay = Number(binding.value) || 0
+        if (!('IntersectionObserver' in window)) return
+        el.classList.add('reveal')
+        el.style.transitionDelay = delay + 'ms'
+        const io = new IntersectionObserver(([entry]) => {
+          if (!entry.isIntersecting) return
+          io.disconnect()
+          el.classList.add('in')
+          setTimeout(() => {
+            el.classList.remove('reveal', 'in')
+            el.style.transitionDelay = ''
+          }, 800 + delay)
+        }, { threshold: 0.12 })
+        io.observe(el)
+      },
+    })
+
+    const IN_TO_MM = 25.4      // 1 英吋 = 25.4 公厘
+    const FT_TO_IN = 12        // 1 英呎 = 12 英吋
+    const M_TO_MM = 1000       // 1 公尺 = 1000 公厘
+    const DECIMALS = 5         // 結果取至小數點後 5 位
+    const DEFAULT_TITLE = '英制公制單位轉換'
+    const ARTICLE_ID = 5
+
+    /** 千分位 + 最多 DECIMALS 位小數 */
+    function fmt(n) {
+      return Number(n.toFixed(DECIMALS)).toLocaleString('en-US', { maximumFractionDigits: DECIMALS })
+    }
+
+    /** 常用英制分數尺寸（tw = 坊間俗稱的英分，1 分 = 1/8 英吋） */
+    const SIZES = [
+      [1, 16, '半分'], [1, 8, '1分'], [3, 16, '1分半'], [1, 4, '2分'],
+      [5, 16, '2分半'], [3, 8, '3分'], [7, 16, '3分半'], [1, 2, '4分'],
+      [9, 16, '4分半'], [5, 8, '5分'], [11, 16, '5分半'], [3, 4, '6分'],
+      [13, 16, '6分半'], [7, 8, '7分'], [15, 16, '7分半'], [1, 1, '8分（1 吋）'],
+    ].map(([num, den, tw]) => ({
+      num, den, tw,
+      inches: num / den,
+      label: num === den ? '1″' : num + '/' + den + '″',
+      mmText: fmt(num / den * IN_TO_MM),
+    }))
+
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify({
+        theme: {
+          dark: true,
+          themes: { dark: { primary: '#932023' } },
+        },
+      }),
+      data: {
+        windowSize: { x: window.innerWidth, y: window.innerHeight },
+        scrollY: window.pageYOffset || 0,
+        isDrawer: false,
+        currentPath: location.pathname,
+        currentYear: new Date().getFullYear(),
+
+        articleItem: {},
+
+        mode: 'input',        // input：輸入數值 / fraction：常用分數
+        inUnit: 'in',         // in：英吋 / ft：英呎
+        outUnit: 'mm',        // mm：公厘 / m：公尺
+        inputText: '1',
+        selectedIdx: 5,       // 預設 3/8″
+        sizes: SIZES,
+        rules: [v => v === '' || v == null || isFinite(Number(v)) || '請輸入數字'],
+
+        navItems: [
+          { icon: 'mdi-home', text: '瑜誠首頁', href: '/' },
+          { icon: 'mdi-format-list-bulleted', text: '文章列表', href: '/blog' },
+          { icon: 'mdi-calculator-variant', text: '單位換算器', href: '#calculator' },
+          { icon: 'mdi-table', text: '對照表', href: '#reference' },
+        ],
+        linkItems: [
+          { icon: 'mdi-facebook', text: 'Facebook', href: 'https://www.facebook.com/ychitool' },
+          { icon: 'mdi-instagram', text: 'Instagram', href: 'https://www.instagram.com/ychitool168/' },
+          { icon: 'mdi-youtube', text: 'Youtube', href: 'https://www.youtube.com/@ychi' },
+        ],
+        shoppingItems: [
+          { icon: 'mdi-shopping', text: '蝦皮賣場', href: 'https://shopee.tw/ychitool' },
+        ],
+      },
+      computed: {
+        isViewportTooSmall() {
+          return this.windowSize.x <= 310 || this.windowSize.y <= 350
+        },
+        isSolid() {
+          return this.scrollY > 40
+        },
+        isFab() {
+          return this.scrollY > 300
+        },
+        pageTitle() {
+          return this.articleItem.title || DEFAULT_TITLE
+        },
+        socialItems() {
+          return [...this.linkItems, ...this.shoppingItems]
+        },
+        drawerGroups() {
+          return [
+            { title: '站內連結', items: this.navItems },
+            { title: '社群影音', items: this.linkItems },
+            { title: '賣場平台', items: this.shoppingItems },
+          ]
+        },
+
+        sizeOptions() {
+          return this.sizes.map((s, i) => ({ text: s.label + '［' + s.tw + '］', value: i }))
+        },
+        currentSize() {
+          return this.sizes[this.selectedIdx]
+        },
+
+        /** 實際輸入的數值（英吋或英呎），無效時為 null */
+        inputNumber() {
+          if (this.mode === 'fraction') return this.currentSize.inches
+          const t = String(this.inputText == null ? '' : this.inputText).trim()
+          if (t === '') return null
+          const n = Number(t)
+          return isFinite(n) ? n : null
+        },
+        /** 目前輸入的單位 */
+        activeUnit() {
+          return this.mode === 'fraction' ? 'in' : this.inUnit
+        },
+        isValid() {
+          return this.inputNumber !== null
+        },
+        /** 以公厘為基準的結果 */
+        resultMm() {
+          if (!this.isValid) return null
+          const inches = this.activeUnit === 'ft' ? this.inputNumber * FT_TO_IN : this.inputNumber
+          return inches * IN_TO_MM
+        },
+        resultValue() {
+          if (this.resultMm === null) return null
+          return this.outUnit === 'm' ? this.resultMm / M_TO_MM : this.resultMm
+        },
+        resultText() {
+          return this.isValid ? fmt(this.resultValue) : '---'
+        },
+        /** 算式說明，例如：0.375 in × 25.4 = 9.525 mm */
+        formulaText() {
+          if (!this.isValid) return ''
+          const factor = (this.activeUnit === 'ft' ? FT_TO_IN * IN_TO_MM : IN_TO_MM) / (this.outUnit === 'm' ? M_TO_MM : 1)
+          return fmt(this.inputNumber) + ' ' + this.activeUnit + ' × ' + fmt(factor) + ' = ' + this.resultText + ' ' + this.outUnit
+        },
+        /** 輸入英吋剛好等於某個常用分數時，提示其寫法與俗稱 */
+        matchedSize() {
+          if (this.mode !== 'input' || this.inUnit !== 'in' || !this.isValid) return null
+          return this.sizes.find(s => Math.abs(s.inches - this.inputNumber) < 1e-9) || null
+        },
+      },
+      methods: {
+        onScroll() {
+          this.scrollY = window.pageYOffset || document.documentElement.scrollTop || 0
+        },
+        toTop() {
+          this.$vuetify.goTo(0)
+        },
+        onResize() {
+          this.windowSize = { x: window.innerWidth, y: window.innerHeight }
+        },
+
+        /** 點選對照表：切到常用分數並帶入 */
+        pickSize(i) {
+          this.selectedIdx = i
+          this.mode = 'fraction'
+          this.$vuetify.goTo('#calculator', { offset: 80 })
+        },
+
+        /** 從網址取得文章編號，例如 /blog/5 → 5；取不到時使用本頁預設編號 */
+        getArticleId() {
+          const id = parseInt(location.pathname.split('/')[2], 10)
+          return isNaN(id) ? ARTICLE_ID : id
+        },
+        /** 取得文章資料（只用來顯示標題與日期，失敗不影響換算器） */
+        fetchArticleItem(id) {
+          axios.get('/local/blog/json/articles.json')
+            .then(response => {
+              const items = response.data.articleItems || []
+              this.articleItem = items.find(item => Number(item.id) === id) || {}
+              if (this.articleItem.title) {
+                document.title = this.articleItem.title + ' | 瑜誠工業-部落格'
+              }
+            })
+            .catch(() => { })
+        },
+      },
+      mounted() {
+        this.fetchArticleItem(this.getArticleId())
+      },
+    })
+  </script>
 </body>
 
-<script>
-  new Vue({
-    el: '#app',
-    vuetify: new Vuetify(),
-    data: {
-      windowSize: { x: 0, y: 0 },
-      isFab: false,
-      yVal: 0,
-      menuItems: [
-        { icon: 'mdi-home', text: '首頁', href: '/', isShowHandheld: true },
-        { icon: 'mdi-package-variant', text: '產品介紹', href: '/product', isShowHandheld: false },
-        { icon: 'mdi-phone', text: '聯絡我們', href: '/contact', isShowHandheld: true },
-      ],
-      linkItems: [
-        { icon: 'mdi-facebook', text: 'FaceBook', tip: 'FB', href: 'https://www.facebook.com/ychitool' },
-        {
-          icon: 'mdi-instagram', text: 'Instagram', tip: 'IG',
-          href: 'https://www.instagram.com/ychitool168/'
-        },
-        { icon: 'mdi-youtube', text: 'Youtube', tip: 'YT', href: 'https://www.youtube.com/@ychi' },
-      ],
-      shoppingItems: [
-        { icon: 'mdi-shopping', text: '蝦皮賣場', tip: 'SP', href: 'https://shopee.tw/ychitool' }
-      ],
-      routePath: '',
-      routePathParam: '',
-      isDrawer: false,
-      isErrorNotGetData: false,
-      // articleClass
-      articleClassItems: [],
-      articleItems: [],
-      articleItem: {},
-      /** 內容用資料 */
-      isMetricToImperialModel: false, // 公制轉英制模式
-      inputValue: 1, // 輸入值
-      resultValue: 25.4, // 結果值
-      isFeet: false,
-      isInches: true,
-      isMillimeter: true,
-      isMeter: false,
-      feetToInches: 12, // 呎 >>> 吋
-      inchesToMillimeter: 25.4, // 吋 >>> 毫米
-      meterToMillimeter: 1000, // 公尺 >>> 毫米
-      //
-      isSelected: false,
-      select: { imperial: '3/8″', metric: '9.525mm ', tw: '3分', molecular: 3, denominator: 8 },
-      rulerSimpleLists: [
-        { imperial: '1/16″', metric: '1.5875', tw: '半分', molecular: 1, denominator: 16 },
-        { imperial: '1/8″', metric: '3.175 ', tw: '1分', molecular: 1, denominator: 8 },
-        { imperial: '3/16″', metric: '4.7625 ', tw: '1分半', molecular: 3, denominator: 16 },
-        { imperial: '1/4″', metric: '6.35 ', tw: '2分', molecular: 1, denominator: 4 },
-        { imperial: '5/16″', metric: '7.9375 ', tw: '2分半', molecular: 5, denominator: 16 },
-        { imperial: '3/8″', metric: '9.525 ', tw: '3分', molecular: 3, denominator: 8 },
-        { imperial: '7/16″', metric: '11.1125 ', tw: '3分半', molecular: 7, denominator: 16 },
-        { imperial: '1/2″', metric: '12.7 ', tw: '4分', molecular: 1, denominator: 2 },
-        { imperial: '9/16″', metric: '14.2875 ', tw: '4分半', molecular: 9, denominator: 16 },
-        { imperial: '5/8″', metric: '15.875 ', tw: '5分', molecular: 5, denominator: 8 },
-        { imperial: '11/16″', metric: '17.4625 ', tw: '5分半', molecular: 11, denominator: 16 },
-        { imperial: '3/4″', metric: '19.05', tw: '6分', molecular: 3, denominator: 4 },
-        { imperial: '13/16″', metric: '20.6375 ', tw: '6分半', molecular: 13, denominator: 16 },
-        { imperial: '7/8″ ', metric: '22.225 ', tw: '7分', molecular: 7, denominator: 8 },
-        { imperial: '15/16″', metric: '23.8125 ', tw: '7分半', molecular: 15, denominator: 16 },
-        { imperial: '1” = 1吋', metric: '25.4', tw: '8分', molecular: 1, denominator: 1 },
-      ],
-    },
-    watch: {
-      getWindowSizeX(val) {
-        if (val < 600) {
-          this.isShowList = true
-        }
-      },
-      inputValue(val) {
-        // 吋
-        if (this.isInches) {
-          this.calInchesToMetric(val)
-        }
-        if (this.isFeet) {
-          this.calFeetToMetric(val)
-        }
-      },
-      select(val) {
-        console.log(val);
-        let valNew = val.molecular / val.denominator
-        this.calInchesToMetric(valNew)
-      }
-    },
-    computed: {
-      getWindowSizeX() {
-        return this.windowSize.x
-      },
-      /** 基本容器高度 */
-      getDefHeight() {
-        return this.windowSize.y - 260
-      },
-      getIsFooterShowLink() {
-        if (this.getWindowSizeX < 600) {
-          if (this.yVal > 40) {
-            return false
-          } else {
-            return true
-          }
-        } else {
-          return true
-        }
-      },
-      getIsFooterShow() {
-        if (this.getWindowSizeX < 600) {
-          if (Number(this.yVal) > Number(this.windowSize.y - 40)) {
-            return false
-          } else {
-            return true
-          }
-        } else {
-          return true
-        }
-      },
-      matchingImperial() {
-        // 尋找 metric 值等於 inputValue 的項目
-        const match = this.rulerSimpleLists.find(
-          item => parseFloat(item.molecular / item.denominator) === parseFloat(this.inputValue)
-        );
-        // 如果有匹配則返回 imperial 值，否則返回空字串
-        return match ? match.imperial : '';
-      },
-    },
-    methods: {
-      /** toTop 程式 */
-      onScroll() {
-        if (typeof window === 'undefined') return;
-        const top = window.pageYOffset || document.documentElement.offsetTop || 0;
-        this.isFab = top > 300
-        this.yVal = top
-      },
-      toTop() {
-        this.$vuetify.goTo(0);
-      },
-      /** 工作尺寸變更 */
-      onResize() {
-        this.windowSize = { x: window.innerWidth, y: window.innerHeight };
-      },
-      /** 取路徑 */
-      fetchPath() {
-        let path = window.location.pathname;   // 例如: /category/item/123
-        let pathParts = path.split('/');
-        // 取得第一個和第二個之間的值
-        let category = pathParts[1];
-        if (category === "") {
-          this.routePath = ''
-        } else {
-          this.routePath = category
-        }
-      },
-      fetchPathParam() {
-        let path = window.location.pathname;   // 例如: /category/item/123
-        let pathParts = path.split('/');
-        // 取得第一個和第二個之間的值
-        let param = pathParts[2];
-        if (param === "") {
-          this.routePathParam = 1
-        } else {
-          this.routePathParam = param
-        }
-      },
-      /** 取得類別資料 */
-      fetchArticleClassItems() {
-        this.isErrorNotGetData = false
-        axios.get(`/local/blog/json/articleClass.json`)
-          .then(response => {
-            console.log(response);
-            this.articleClassItems = response.data.articleClassItems
-          })
-          .catch(error => {
-            this.isErrorNotGetData = true
-            console.log(error);
-          })
-          .finally(() => {
-          });
-      },
-      fetchArticleItem(id) {
-        this.isErrorNotGetData = false
-        axios.get(`/local/blog/json/articles.json`)
-          .then(response => {
-            console.log(response);
-            this.articleItems = response.data.articleItems
-            this.articleItem = this.articleItems.find(item => Number(item.id) === Number(id));
-          })
-          .catch(error => {
-            this.isErrorNotGetData = true
-            console.log(error);
-          })
-          .finally(() => {
-          });
-      },
-      // 改成呎
-      changeFeet() {
-        this.isFeet = true
-        this.isInches = false
-        this.calFeetToMetric(this.inputValue)
-      },
-      // 改成吋
-      changeInches() {
-        this.isFeet = false
-        this.isInches = true
-        this.calInchesToMetric(this.inputValue)
-      },
-      // 改成公厘
-      changeMillimeter() {
-        this.isMillimeter = true
-        this.isMeter = false
-        this.resultValue = this.resultValue * this.meterToMillimeter
-      },
-      // 改成公尺
-      changeMeter() {
-        this.isMillimeter = false
-        this.isMeter = true
-        this.resultValue = this.resultValue / this.meterToMillimeter
-      },
-      // 計算從英吋變公制
-      calInchesToMetric(val) {
-        if (this.isMillimeter) this.resultValue = val * this.inchesToMillimeter
-        if (this.isMeter) this.resultValue = val * this.inchesToMillimeter / this.meterToMillimeter
-      },
-      // 計算從英呎變公制
-      calFeetToMetric(val) {
-        if (this.isMillimeter) this.resultValue = val * this.inchesToMillimeter * this.feetToInches
-        if (this.isMeter) this.resultValue = val * this.inchesToMillimeter * this.feetToInches / this.meterToMillimeter
-      },
-      switchFormSelect() {
-        this.isSelected = !this.isSelected
-        if (this.isSelected) {
-          this.isMeter = false
-          this.isMillimeter = true
-          let val = this.select.molecular / this.select.denominator
-          this.calInchesToMetric(val)
-        } else {
-          this.isInches = true
-          this.isFeet = false
-          this.inputValue = 1
-          this.calInchesToMetric(this.inputValue)
-        }
-      }
-    },
-    filters: {
-      commonFormat(value) {
-        let valueType = typeof (value);
-
-        if (valueType === 'string') {
-          return value;
-        } else if (valueType === 'number') {
-          if (!(value === null || value === 0 || value === undefined)) {
-
-            // 當數字絕對值超過1000萬時，使用科學記數法
-            if (Math.abs(value) >= 10_000_000) {
-              let exponent = Math.floor(Math.log10(Math.abs(value))); // 計算指數部分
-              let mantissa = (value / Math.pow(10, exponent)).toFixed(3); // 計算尾數並保留三位小數
-              return mantissa + " x 10^" + exponent;
-            } else {
-              // 如果小數點超過第三位，進行四捨五入
-              let roundedValue = value % 1 !== 0 ? parseFloat(value.toFixed(3)) : value;
-
-              // 格式化千分位
-              return String(roundedValue).replace(/^(-?\d+?)((?:\d{3})+)(?=\.\d+$|$)/, function (all, pre, groupOf3Digital) {
-                return pre + groupOf3Digital.replace(/\d{3}/g, ',$&');
-              });
-            }
-
-          } else {
-            return 0;
-          }
-        } else {
-          return value;
-        }
-      }
-    },
-    mounted() {
-      this.$vuetify.theme.dark = false;
-      this.fetchPath()
-      this.fetchPathParam()
-      this.fetchArticleClassItems()
-      this.fetchArticleItem(this.routePathParam)
-    },
-  })
-</script>
+</html>

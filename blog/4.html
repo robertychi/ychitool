@@ -2,406 +2,359 @@
 <html lang="zh-TW">
 
 <head>
-  <title>重量單位換算表| 瑜誠工業-部落格</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <!-- Keyword -->
-  <meta name="Keywords" content="刀具部落格,瑜誠工業,木工刀具,尺寸試算">
-  <meta name="Description" content="瑜誠工業提供的「重量單位換算表」，旨在協助使用者輕鬆快速地進行各種尺寸單位的自動換算與試算，提升工作效率。 ">
-  <meta name="copyright" content="瑜誠工業刀具部落格 Ychi">
-  <!-- google robot -->
-  <meta name="robots" content="index,follow">
-  <meta name="googlebot" content="index,follow">
-  <!-- FB -->
-  <meta property="fb:app_id" content="104356957765552">
-  <meta property="og:title" content="重量單位換算表| 瑜誠工業-部落格">
-  <meta property="og:description" content="瑜誠工業提供的「重量單位換算表」，旨在協助使用者輕鬆快速地進行各種尺寸單位的自動換算與試算，提升工作效率。">
-  <meta property="og:image" content="http://www.ychi.com.tw/local/blog/images/20220824.jpg">
-  <meta property="og:url" content="http://www.ychi.com.tw/blog/4">
-  <meta property="og:type" content="website">
-  <!-- Twitter -->
-  <meta property="og:image:alt" content="瑜誠工業-工業切削刀具的專家">
-  <meta name="twitter:card" content="Ychi">
-  <!-- ICO -->
-  <link rel="icon" type="image/png" sizes="128x128" href="/local/images/faviconBlog.ico">
-  <!-- CSS -->
-  <link href="/local/MaterialDesign/css/materialdesignicons.min.css" rel="stylesheet">
-  <link href="/local/vuetify/vuetify.min.css" rel="stylesheet">
-  <script src="/local/vue.min.js"></script>
-  <script src="/local/axios/dist/axios.min.js"></script>
-  <script src="/local/vuetify/vuetify.min.js"></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>重量單位換算表 | 瑜誠工業-部落格</title>
 
-  <link rel="stylesheet" href="/local/blog/blog.css">
+  <meta name="keywords" content="刀具部落格,瑜誠工業,木工刀具,重量換算,台斤,公斤,磅" />
+  <meta name="description" content="瑜誠工業提供的「重量單位換算表」，旨在協助使用者輕鬆快速地進行公制、台制、英制重量單位的自動換算，提升工作效率。" />
+  <meta name="copyright" content="瑜誠工業刀具部落格 Ychi" />
+  <meta name="robots" content="index,follow" />
+  <meta name="googlebot" content="index,follow" />
+  <link rel="canonical" href="https://www.ychi.com.tw/blog/4" />
+
+  <meta property="fb:app_id" content="104356957765552" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.ychi.com.tw/blog/4" />
+  <meta property="og:title" content="重量單位換算表 | 瑜誠工業-部落格" />
+  <meta property="og:description" content="瑜誠工業提供的「重量單位換算表」，旨在協助使用者輕鬆快速地進行公制、台制、英制重量單位的自動換算，提升工作效率。" />
+  <meta property="og:image" content="https://www.ychi.com.tw/local/blog/images/20220824.jpg" />
+  <meta property="og:image:alt" content="瑜誠工業-工業切削刀具的專家" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/local/images/faviconBlog.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="/local/MaterialDesign/css/materialdesignicons.min.css" rel="stylesheet" />
+  <link href="/local/vuetify/vuetify.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface-2: #1c1c1c;
+      --line: rgba(255, 255, 255, .08);
+      --text: #ffffff;
+      --body: #e8e8e8;
+      --muted: #b3b3b3;
+      --accent: #932023;
+      --accent-2: #d64550;
+      --radius: 16px;
+      --nav-h: 68px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    .v-application {
+      background: var(--bg) !important;
+      color: var(--text);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif !important;
+    }
+    .v-application h1, .v-application h2, .v-application h3, .v-application p { font-family: inherit; }
+    .v-main { padding-top: 0 !important; }
+    section { scroll-margin-top: calc(var(--nav-h) + 8px); }
+
+    /* ---------- 導覽列 ---------- */
+    .nav {
+      background: transparent !important;
+      transition: background .3s ease, border-color .3s ease;
+      border-bottom: 1px solid transparent !important;
+    }
+    .nav.nav-solid {
+      background: rgba(10, 10, 10, .82) !important;
+      -webkit-backdrop-filter: saturate(1.4) blur(14px);
+      backdrop-filter: saturate(1.4) blur(14px);
+      border-bottom-color: var(--line) !important;
+    }
+    .nav-link { color: var(--body) !important; letter-spacing: .08em; font-weight: 500; }
+    .nav-link:hover { color: #fff !important; }
+    .drawer { background: rgba(14, 14, 14, .98) !important; }
+
+    /* ---------- 共用 ---------- */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+    .section { padding: 72px 0; }
+    .section-head { margin-bottom: 28px; }
+    .section-head h2 {
+      margin-top: .6rem;
+      font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .section-desc { max-width: 720px; margin: 0 0 32px; line-height: 1.9; color: var(--body); }
+    .panel {
+      background: var(--surface) !important;
+      border: 1px solid var(--line);
+      border-radius: var(--radius) !important;
+      box-shadow: none !important;
+    }
+    .btn-glow { box-shadow: 0 12px 30px -10px rgba(147, 32, 35, .7) !important; }
+    .muted { color: var(--muted); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      min-height: min(56vh, 480px);
+      padding: calc(var(--nav-h) + 40px) 0 72px;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero .watermark {
+      position: absolute;
+      right: -6%;
+      top: 50%;
+      font-size: clamp(280px, 40vw, 520px) !important;
+      color: rgba(255, 255, 255, .04) !important;
+      transform: translateY(-50%);
+      animation: spin 60s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+    .hero h1 {
+      margin: 1rem 0 1rem;
+      font-size: clamp(1.8rem, 4.8vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: .02em;
+    }
+    .hero .date { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+    .hero .date .v-icon { color: var(--muted) !important; font-size: 20px !important; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.6rem; }
+
+    /* ---------- 換算器 ---------- */
+    .group { height: 100%; padding: 24px; }
+    .group-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .group-head h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: .06em; }
+    .group-tag {
+      padding: 2px 12px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      color: #fff;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+    .calc-input input { font-size: 1.5rem; font-weight: 700; text-align: right; color: #fff !important; }
+    .calc-input .v-label { font-size: 1rem; }
+    .calc-input .v-messages { font-size: .78rem; }
+    .calc-input .v-messages__message { color: var(--muted) !important; }
+    .calc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 28px; }
+
+    /* ---------- 對照表 ---------- */
+    .table-wrap { overflow-x: auto; }
+    .ref-table { width: 100%; border-collapse: collapse; }
+    .ref-table th {
+      padding: 16px 24px;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-align: left;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+    }
+    .ref-table td { padding: 16px 24px; color: #fff; border-bottom: 1px solid var(--line); }
+    .ref-table tr:last-child td { border-bottom: 0; }
+    .ref-table tbody tr:hover td { background: rgba(255, 255, 255, .03); }
+    .ref-table .num { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .ref-table th.num { text-align: right; }
+    .note { margin-top: 16px; font-size: .88rem; line-height: 1.8; color: var(--muted); }
+
+    /* ---------- 頁尾 ---------- */
+    .site-footer { background: #050505 !important; border-top: 1px solid var(--line); }
+    .site-footer .v-btn { color: var(--muted) !important; }
+    .site-footer .v-btn:hover { color: #fff !important; }
+
+    /* ---------- 進場動畫 ---------- */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 599px) {
+      .section { padding: 48px 0; }
+      .hero { padding: calc(var(--nav-h) + 24px) 0 56px; }
+      .group { padding: 20px; }
+      .ref-table th, .ref-table td { padding: 14px 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero .watermark { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
 </head>
 
-<body style="background-color:#000">
+<body>
   <div id="app">
-    <v-app v-resize="onResize">
+    <v-app v-resize="onResize" v-scroll="onScroll">
 
-      <v-app-bar app clipped-right fixed dense flat class="appBarBg hidden-xs-only">
-        <a href="http://www.ychi.com.tw" title="首頁-瑜誠工業">
-          <v-img class="hidden-xs-only" src="/local/blog/images/logo.png" max-width="160" alt="瑜誠工業Logo"
-            title="瑜誠工業logo-small"></v-img>
+      <!-- 頂部列 -->
+      <v-app-bar app fixed flat :height="68" class="nav" :class="{ 'nav-solid': isSolid }">
+        <a href="/blog" title="瑜誠工業-部落格">
+          <v-img class="hidden-xs-only" src="/local/blog/images/logo.png" max-width="160" alt="瑜誠工業Logo"></v-img>
+          <v-img class="hidden-sm-and-up" src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo"></v-img>
         </a>
         <v-spacer></v-spacer>
-        <v-toolbar-items class="hidden-xs-only">
-          <v-btn dark :text="windowSize.x >= 960" :icon="windowSize.x < 960" v-for="(item, index) in linkItems"
-            :href="item.href" :key="index">
-            <v-icon :left="windowSize.x >= 960">{{item.icon}}</v-icon>
-            <span v-if="windowSize.x >= 960">
-              <span v-if="windowSize.x >= 1650">{{ item.text }}</span>
-              <span v-if="windowSize.x < 1650">{{ item.tip }}</span>
-            </span>
+
+        <v-toolbar-items class="hidden-sm-only hidden-xs-only align-center">
+          <v-btn text class="nav-link" v-for="item in navItems" :key="item.href" :href="item.href">{{ item.text }}</v-btn>
+          <v-btn icon small class="nav-link ml-2" v-for="item in linkItems" :key="item.href" :href="item.href"
+            target="_blank" rel="noopener" :title="item.text">
+            <v-icon>{{ item.icon }}</v-icon>
           </v-btn>
         </v-toolbar-items>
-        <v-app-bar-nav-icon class="hidden-xs-only white--text" @click="isDrawer = !isDrawer">
-        </v-app-bar-nav-icon>
-      </v-app-bar>
-      <v-app-bar app clipped-right fixed dense flat class="appBarBgMobile hidden-sm-and-up">
-        <v-btn icon color="white" href="/">
-          <v-icon>mdi-home</v-icon>
-        </v-btn>
-        <v-spacer></v-spacer>
-        <a href="http://www.ychi.com.tw" title="首頁-瑜誠工業" class="hidden-sm-and-up">
-          <v-img src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo" title="瑜誠工業logo-small"></v-img>
-        </a>
-        <v-spacer></v-spacer>
+
+        <v-app-bar-nav-icon class="hidden-md-and-up white--text" @click="isDrawer = !isDrawer"></v-app-bar-nav-icon>
       </v-app-bar>
 
-      <v-navigation-drawer app v-model="isDrawer" clipped class="drawerBg" right>
-        <v-sheet dark color="transparent" class="pa-4">YCHI 瑜誠工業
-        </v-sheet>
-        <v-divider dark></v-divider>
-        <v-subheader dark>站內連結</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item v-for="(item, index) in menuItems" :key="index" :href="item.href"
-            :disabled="item.href === ('/'+routePath) ? true : false">
-            <v-list-item-icon class="white--text">
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider dark></v-divider>
-        <v-subheader dark>社群影音</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item v-for="(item, index) in linkItems" :key="index" :href="item.href">
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider dark></v-divider>
-        <v-subheader dark>賣場平台</v-subheader>
-        <v-list :dense="windowSize.x < 1264 ? true : false" dark>
-          <v-list-item v-for="(item, index) in shoppingItems" :key="index" :href="item.href">
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
+      <!-- 側邊選單 -->
+      <v-navigation-drawer v-model="isDrawer" temporary fixed right width="280" class="drawer">
+        <v-sheet color="transparent" class="pa-4 font-weight-bold">YCHI 瑜誠工業</v-sheet>
+
+        <template v-for="group in drawerGroups">
+          <v-divider :key="group.title + '-divider'"></v-divider>
+          <v-subheader :key="group.title + '-header'">{{ group.title }}</v-subheader>
+          <v-list :key="group.title + '-list'">
+            <v-list-item v-for="item in group.items" :key="item.href" :href="item.href"
+              :disabled="item.href === currentPath" @click="isDrawer = false">
+              <v-list-item-icon><v-icon>{{ item.icon }}</v-icon></v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ item.text }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </template>
       </v-navigation-drawer>
+
       <v-main>
-        <section v-if="windowSize.x > 310 && windowSize.y > 350">
-          <v-row dense justify="center" class="my-1">
+        <div v-if="!isViewportTooSmall">
 
-
-
-          </v-row>
-
-          <section> <v-container fluid>
-              <v-row dense justify="center">
-                <v-col cols="12" xl="8" lg="9" md="12" sm="12" xs="12">
-                  <v-row dense>
-                    <v-col cols="12">
-                      <v-card>
-                        <v-toolbar style="background: rgba(255,255,255,0.5)" flat dense>
-                          <v-toolbar-title class="blue--text text--darken-4">YCHI BLOG</v-toolbar-title>
-                          <v-spacer></v-spacer>
-                          <v-btn text href="/"><v-icon left>mdi-home</v-icon>瑜誠首頁</v-btn>
-                          <v-btn text href="/blog"><v-icon left>mdi-reply</v-icon>文章列表</v-btn>
-                        </v-toolbar>
-                        <v-divider></v-divider>
-                        <v-card-title class="display-2 mb-2">
-                          {{ articleItem.title }}
-                        </v-card-title>
-                        <v-card-subtitle>
-                          <p class="mb-0">
-                            <v-icon class="mr-1">mdi-calendar-month</v-icon>
-                            {{ articleItem.date }}
-                          </p>
-                        </v-card-subtitle>
-                        <v-img src="/local/blog/images/20220824.jpg" height="300"></v-img>
-                        <v-card-text>
-                          <v-row dense>
-                            <v-col cols="12">
-                              <p class="title blue darken-3 white--text pa-4">● 單位換算器：</p>
-                              <p>在表單內輸入數值，即可得到你要的相對數值</p>
-                            </v-col>
-                          </v-row>
-                          <v-row dense>
-                            <!-- 左側 -->
-                            <v-col cols="12" lg="5" md="12">
-                              <v-row dense>
-                                <!-- 公克 -->
-                                <v-col cols="12">
-                                  <v-card color="orange lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="公克" prepend-icon="mdi-alpha-g-box"
-                                        maxlength="6" color="orange" v-model="gram" :rules="rules" @input="changeGram()"
-                                        v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 公斤 -->
-                                <v-col cols="12">
-                                  <v-card color="orange lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="公斤" prepend-icon="mdi-alpha-g-box"
-                                        maxlength="6" color="orange" v-model="kiloGram" :rules="rules"
-                                        @input="changeKiloGram()" v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 公噸 -->
-                                <v-col cols="12">
-                                  <v-card color="orange lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="公噸" prepend-icon="mdi-alpha-g-box"
-                                        maxlength="6" color="orange" v-model="tonne" :rules="rules"
-                                        @input="changeTonne()" v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-
-                                <!-- 台斤 -->
-                                <v-col cols="12">
-                                  <v-card color="purple lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="台斤" prepend-icon="mdi-alpha-t-box"
-                                        maxlength="6" color="purple" v-model="tKi" :rules="rules" @input="changeTKi()"
-                                        v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 台兩 -->
-                                <v-col cols="12">
-                                  <v-card color="purple lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="台兩" prepend-icon="mdi-alpha-t-box"
-                                        maxlength="6" color="purple" v-model="tLi" :rules="rules" @input="changeTLi()"
-                                        v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 錢 -->
-                                <v-col cols="12">
-                                  <v-card color="purple lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="錢" prepend-icon="mdi-alpha-t-box"
-                                        maxlength="6" color="purple" v-model="tQi" :rules="rules" @input="changeTQi()"
-                                        v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-
-                                <!-- 盎司 -->
-                                <v-col cols="12">
-                                  <v-card color="indigo lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="盎司" prepend-icon="mdi-alpha-e-box"
-                                        maxlength="6" color="indigo" v-model="ounce" :rules="rules"
-                                        @input="changeOunce()" v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 磅 -->
-                                <v-col cols="12">
-                                  <v-card color="indigo lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="磅" prepend-icon="mdi-alpha-e-box"
-                                        maxlength="6" color="indigo" v-model="pound" :rules="rules"
-                                        @input="changePound()" v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 打蘭 -->
-                                <v-col cols="12">
-                                  <v-card color="indigo lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="打蘭" prepend-icon="mdi-alpha-e-box"
-                                        maxlength="6" color="indigo" v-model="dram" :rules="rules" @input="changeDram()"
-                                        v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 格林 -->
-                                <v-col cols="12">
-                                  <v-card color="indigo lighten-5">
-                                    <v-card-text>
-                                      <v-text-field counter persistent-hint label="格林" prepend-icon="mdi-alpha-e-box"
-                                        maxlength="6" color="indigo" v-model="grain" :rules="rules"
-                                        @input="changeGrain()" v-on:focus="$event.target.select()"></v-text-field>
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-
-                              </v-row>
-
-                            </v-col>
-                            <!-- 右側 -->
-                            <v-col cols="12" lg="7" md="12">
-                              <v-row dense>
-                                <!-- 公克 -->
-                                <v-col cols="12">
-                                  <v-card dark color="orange darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">公克</v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="gram">
-                                      {{gram}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 公斤 -->
-                                <v-col cols="12">
-                                  <v-card dark color="orange darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">公斤</v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="kiloGram">
-                                      {{kiloGram}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 公噸 -->
-                                <v-col cols="12">
-                                  <v-card dark color="orange darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">公噸</v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="tonne">
-                                      {{tonne}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-
-                                <!-- 台斤 -->
-                                <v-col cols="12">
-                                  <v-card dark color="purple darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">台斤</v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="tKi">
-                                      {{tKi}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 台兩 -->
-                                <v-col cols="12">
-                                  <v-card dark color="purple darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">台兩</v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="tLi">
-                                      {{tLi}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 錢 -->
-                                <v-col cols="12">
-                                  <v-card dark color="purple darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">錢</v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="tQi">
-                                      {{tQi}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-
-                                <!-- 盎司 -->
-                                <v-col cols="12">
-                                  <v-card dark color="indigo darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">盎司</v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="ounce">
-                                      {{ounce}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 磅 -->
-                                <v-col cols="12">
-                                  <v-card dark color="indigo darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">磅</v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="pound">
-                                      {{pound}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 打蘭 -->
-                                <v-col cols="12">
-                                  <v-card dark color="indigo darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">打蘭</v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="dram">
-                                      {{dram}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-                                <!-- 格林 -->
-                                <v-col cols="12">
-                                  <v-card dark color="indigo darken-2" height="102">
-                                    <v-card-subtitle class="headline pb-0">格林</v-card-subtitle>
-                                    <v-card-text class="display-2 text-right white--text" v-if="grain">
-                                      {{grain}}
-                                    </v-card-text>
-                                    <v-card-text class="display-2 text-right white--text" v-else>---
-                                    </v-card-text>
-                                  </v-card>
-                                </v-col>
-
-
-                              </v-row>
-                            </v-col>
-                          </v-row>
-                        </v-card-text>
-                      </v-card>
-                    </v-col>
-                  </v-row>
+          <!-- Hero -->
+          <header class="hero"
+            style="background-image: linear-gradient(to bottom, rgba(10,10,10,.6) 0%, rgba(10,10,10,.82) 70%, #0a0a0a 100%), url('/local/blog/images/20220824.jpg')">
+            <v-icon class="watermark" aria-hidden="true">mdi-scale-balance</v-icon>
+            <v-container>
+              <v-row>
+                <v-col cols="12" md="10" lg="9" v-reveal>
+                  <span class="eyebrow">YCHI Blog · Tools</span>
+                  <h1>{{ pageTitle }}</h1>
+                  <div class="date" v-if="articleItem.date">
+                    <v-icon>mdi-calendar-month</v-icon>{{ articleItem.date }}
+                  </div>
+                  <div class="hero-actions">
+                    <v-btn rounded color="primary" class="btn-glow" href="#calculator">
+                      <v-icon left>mdi-calculator-variant</v-icon>開始換算
+                    </v-btn>
+                    <v-btn rounded outlined color="white" href="/blog">
+                      <v-icon left>mdi-format-list-bulleted</v-icon>文章列表
+                    </v-btn>
+                    <v-btn rounded outlined color="white" href="/">
+                      <v-icon left>mdi-home</v-icon>瑜誠首頁
+                    </v-btn>
+                  </div>
                 </v-col>
               </v-row>
             </v-container>
+          </header>
+
+          <!-- 單位換算器 -->
+          <section id="calculator" class="section">
+            <v-container>
+              <div class="section-head" v-reveal>
+                <span class="eyebrow">Converter</span>
+                <h2>單位換算器</h2>
+              </div>
+              <p class="section-desc" v-reveal>
+                在任一欄位輸入數值，其他單位會自動換算並即時顯示。
+              </p>
+
+              <v-row>
+                <v-col cols="12" md="6" lg="4" v-for="(group, i) in groups" :key="group.title" v-reveal="i * 100">
+                  <v-card class="panel group">
+                    <div class="group-head">
+                      <h3>{{ group.title }}</h3>
+                      <span class="group-tag">{{ group.tag }}</span>
+                    </div>
+                    <v-text-field v-for="u in group.units" :key="u.key" class="calc-input" v-model="values[u.key]"
+                      :label="u.label" :hint="u.hint" :rules="rules" persistent-hint outlined dense
+                      inputmode="decimal" autocomplete="off" maxlength="14" color="primary"
+                      @input="convert(u.key, $event)" @focus="$event.target.select()"></v-text-field>
+                  </v-card>
+                </v-col>
+              </v-row>
+
+              <div class="calc-actions" v-reveal>
+                <v-btn rounded outlined color="white" @click="clearAll">
+                  <v-icon left>mdi-eraser</v-icon>全部清除
+                </v-btn>
+                <span class="muted">換算結果取至小數點後 5 位。</span>
+              </div>
+            </v-container>
           </section>
 
-          <section class="hidden-md-and-down"></section>
+          <!-- 對照表 -->
+          <section id="reference" class="section" style="background: var(--surface)">
+            <v-container>
+              <div class="section-head" v-reveal>
+                <span class="eyebrow">Reference</span>
+                <h2>各單位與公克之關係</h2>
+              </div>
+              <v-card class="panel table-wrap" v-reveal>
+                <table class="ref-table">
+                  <thead>
+                    <tr>
+                      <th>單位 (1)</th>
+                      <th>制式</th>
+                      <th class="num">公克 (g)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="item in refLists" :key="item.key">
+                      <td>1 {{ item.name }}</td>
+                      <td class="muted">{{ item.group }}</td>
+                      <td class="num">{{ item.g }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </v-card>
+              <p class="note">
+                換算以 1 台斤 = 600 公克（16 台兩）、1 台兩 = 37.5 公克（10 錢）、1 盎司 ≈ 28.3495 公克、1 磅 = 16 盎司 = 453.59237 公克為基準；
+                1 打蘭 = 1/16 盎司、1 格林（格令）= 1/7000 磅。此處英制為常衡（avoirdupois）制，金銀珠寶所用的金衡（troy）制數值不同。
+              </p>
+            </v-container>
+          </section>
+        </div>
 
-          <section class="hidden-lg-and-up hidden-xs-only"></section>
-
-          <section class="hidden-sm-and-up"></section>
-        </section>
+        <!-- 視窗過小提示 -->
         <v-container fluid fill-height v-else>
           <v-row dense justify="center" align="center">
-            <v-col cols="12" xl="10" lg="11" md="12" sm="12" xs="12">
+            <v-col cols="12" xl="10" lg="11">
               <v-card height="100" color="red darken-4">
                 <v-card-text class="title">
-                  <span v-if="windowSize.y < 350">
+                  <span v-if="windowSize.y <= 350">
                     此設備高不足 350px 無法顯示相關內容，請選擇適合的設備或調整視窗來觀看此網頁
                   </span>
-                  <span v-if="windowSize.x < 310">
+                  <span v-if="windowSize.x <= 310">
                     此設備寬不足 310px 無法顯示相關內容，請選擇適合的設備或調整視窗來觀看此網頁
                   </span>
                 </v-card-text>
@@ -411,250 +364,218 @@
         </v-container>
       </v-main>
 
-      <v-footer padless :fixed="windowSize.x >600 ? false : true" v-if="getIsFooterShow">
-        <v-card tile width="100%" :class="windowSize.x >600 ? 'footerBg text-center' : 'footerBgMobile text-center'">
-          <v-fade-transition>
-            <v-card-text v-if="getIsFooterShowLink">
-              <v-btn icon class="mx-3" dark v-for="(item, index) in linkItems" :href="item.href" :key="index">
-                <v-icon>{{item.icon}}</v-icon>
+      <!-- 頁尾 -->
+      <v-footer padless class="site-footer">
+        <v-container>
+          <v-row align="center" justify="space-between" class="text-center text-md-left">
+            <v-col cols="12" md="auto">
+              <v-img class="mx-auto" src="/local/blog/images/logo.png" max-width="90" alt="瑜誠工業Logo"></v-img>
+            </v-col>
+            <v-col cols="12" md="auto">
+              <v-btn icon class="mx-1" v-for="item in socialItems" :key="item.href" :href="item.href" target="_blank"
+                rel="noopener" :title="item.text">
+                <v-icon>{{ item.icon }}</v-icon>
               </v-btn>
-            </v-card-text>
-          </v-fade-transition>
-          <v-divider></v-divider>
-          <v-card-text class="white--text">
-            © Copyright 2012-2024 瑜誠工業有限公司 版權所有
-          </v-card-text>
-        </v-card>
+            </v-col>
+          </v-row>
+          <v-divider class="my-4"></v-divider>
+          <div class="text-center muted" style="font-size: .85rem">
+            © Copyright 2012-{{ currentYear }} 瑜誠工業有限公司 版權所有
+          </div>
+        </v-container>
       </v-footer>
 
-      <v-fad-transition>
-        <v-btn fab dark fixed bottom right color="red darken-3" v-scroll="onScroll" v-show="isFab" v-on:click="toTop">
-          <v-icon>mdi-navigation</v-icon>
+      <!-- 回到頂端 -->
+      <v-fade-transition>
+        <v-btn fab dark fixed bottom right color="primary" class="btn-glow" v-show="isFab" @click="toTop"
+          aria-label="回到頂端">
+          <v-icon>mdi-chevron-up</v-icon>
         </v-btn>
-      </v-fad-transition>
+      </v-fade-transition>
     </v-app>
   </div>
+
+  <script src="/local/vue.min.js"></script>
+  <script src="/local/axios/dist/axios.min.js"></script>
+  <script src="/local/vuetify/vuetify.min.js"></script>
+  <script>
+    /** 捲動進場動畫：v-reveal 或 v-reveal="延遲毫秒" */
+    Vue.directive('reveal', {
+      inserted(el, binding) {
+        const delay = Number(binding.value) || 0
+        if (!('IntersectionObserver' in window)) return
+        el.classList.add('reveal')
+        el.style.transitionDelay = delay + 'ms'
+        const io = new IntersectionObserver(([entry]) => {
+          if (!entry.isIntersecting) return
+          io.disconnect()
+          el.classList.add('in')
+          setTimeout(() => {
+            el.classList.remove('reveal', 'in')
+            el.style.transitionDelay = ''
+          }, 800 + delay)
+        }, { threshold: 0.12 })
+        io.observe(el)
+      },
+    })
+
+    /** 單位定義：g = 1 個該單位等於幾公克 */
+    const OZ = 28.349523125 // 1 常衡盎司 = 28.349523125 公克（1 磅 = 453.59237 公克 ÷ 16）
+    const UNITS = [
+      { key: 'g', name: '公克', label: '公克 (g)', group: '公制', g: 1, hint: '1 公克 = 0.001 公斤' },
+      { key: 'kg', name: '公斤', label: '公斤 (kg)', group: '公制', g: 1000, hint: '1 公斤 = 1,000 公克' },
+      { key: 't', name: '公噸', label: '公噸 (t)', group: '公制', g: 1000000, hint: '1 公噸 = 1,000 公斤 = 1,000,000 公克' },
+      { key: 'tkin', name: '台斤', label: '台斤', group: '台制', g: 600, hint: '1 台斤 = 16 台兩 = 600 公克' },
+      { key: 'tliang', name: '台兩', label: '台兩', group: '台制', g: 37.5, hint: '1 台兩 = 10 錢 = 37.5 公克' },
+      { key: 'qian', name: '錢', label: '錢', group: '台制', g: 3.75, hint: '1 錢 = 3.75 公克' },
+      { key: 'oz', name: '盎司', label: '盎司 (oz)', group: '英制', g: OZ, hint: '1 盎司 ≈ 28.3495 公克' },
+      { key: 'lb', name: '磅', label: '磅 (lb)', group: '英制', g: OZ * 16, hint: '1 磅 = 16 盎司 ≈ 453.592 公克' },
+      { key: 'dram', name: '打蘭', label: '打蘭 (dr)', group: '英制', g: OZ / 16, hint: '1 打蘭 = 1/16 盎司 ≈ 1.77185 公克' },
+      { key: 'grain', name: '格林', label: '格林 (gr)', group: '英制', g: OZ / 437.5, hint: '1 格林 = 1/437.5 盎司 ≈ 0.06480 公克' },
+    ]
+    const GROUP_TAGS = { '公制': 'METRIC', '台制': 'TAIWAN', '英制': 'IMPERIAL' }
+    const DEFAULT_TITLE = '重量單位換算表'
+    const ARTICLE_ID = 4
+
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify({
+        theme: {
+          dark: true,
+          themes: { dark: { primary: '#932023' } },
+        },
+      }),
+      data: {
+        windowSize: { x: window.innerWidth, y: window.innerHeight },
+        scrollY: window.pageYOffset || 0,
+        isDrawer: false,
+        currentPath: location.pathname,
+        currentYear: new Date().getFullYear(),
+
+        articleItem: {},
+
+        /** 各單位目前的數值 */
+        values: UNITS.reduce((obj, u) => { obj[u.key] = ''; return obj }, {}),
+        rules: [v => v === '' || v == null || isFinite(Number(v)) || '請輸入數字'],
+
+        navItems: [
+          { icon: 'mdi-home', text: '瑜誠首頁', href: '/' },
+          { icon: 'mdi-format-list-bulleted', text: '文章列表', href: '/blog' },
+          { icon: 'mdi-calculator-variant', text: '單位換算器', href: '#calculator' },
+          { icon: 'mdi-table', text: '對照表', href: '#reference' },
+        ],
+        linkItems: [
+          { icon: 'mdi-facebook', text: 'Facebook', href: 'https://www.facebook.com/ychitool' },
+          { icon: 'mdi-instagram', text: 'Instagram', href: 'https://www.instagram.com/ychitool168/' },
+          { icon: 'mdi-youtube', text: 'Youtube', href: 'https://www.youtube.com/@ychi' },
+        ],
+        shoppingItems: [
+          { icon: 'mdi-shopping', text: '蝦皮賣場', href: 'https://shopee.tw/ychitool' },
+        ],
+      },
+      computed: {
+        isViewportTooSmall() {
+          return this.windowSize.x <= 310 || this.windowSize.y <= 350
+        },
+        isSolid() {
+          return this.scrollY > 40
+        },
+        isFab() {
+          return this.scrollY > 300
+        },
+        pageTitle() {
+          return this.articleItem.title || DEFAULT_TITLE
+        },
+        /** 依制式分組 */
+        groups() {
+          return ['公制', '台制', '英制'].map(title => ({
+            title,
+            tag: GROUP_TAGS[title],
+            units: UNITS.filter(u => u.group === title),
+          }))
+        },
+        /** 各單位與公克對照 */
+        refLists() {
+          return UNITS.map(u => ({
+            key: u.key,
+            name: u.name,
+            group: u.group,
+            g: Number(u.g.toFixed(5)).toLocaleString('en-US', { maximumFractionDigits: 5 }),
+          }))
+        },
+        socialItems() {
+          return [...this.linkItems, ...this.shoppingItems]
+        },
+        drawerGroups() {
+          return [
+            { title: '站內連結', items: this.navItems },
+            { title: '社群影音', items: this.linkItems },
+            { title: '賣場平台', items: this.shoppingItems },
+          ]
+        },
+      },
+      methods: {
+        onScroll() {
+          this.scrollY = window.pageYOffset || document.documentElement.scrollTop || 0
+        },
+        toTop() {
+          this.$vuetify.goTo(0)
+        },
+        onResize() {
+          this.windowSize = { x: window.innerWidth, y: window.innerHeight }
+        },
+
+        /** 從網址取得文章編號，例如 /blog/4 → 4；取不到時使用本頁預設編號 */
+        getArticleId() {
+          const id = parseInt(location.pathname.split('/')[2], 10)
+          return isNaN(id) ? ARTICLE_ID : id
+        },
+        /** 取得文章資料（只用來顯示標題與日期，失敗不影響換算器） */
+        fetchArticleItem(id) {
+          axios.get('/local/blog/json/articles.json')
+            .then(response => {
+              const items = response.data.articleItems || []
+              this.articleItem = items.find(item => Number(item.id) === id) || {}
+              if (this.articleItem.title) {
+                document.title = this.articleItem.title + ' | 瑜誠工業-部落格'
+              }
+            })
+            .catch(() => { })
+        },
+
+        /** 數值取至小數點後 5 位 */
+        round(n) {
+          return Math.round(n * 1e5) / 1e5
+        },
+        /** 以公克為基準，將輸入的單位換算成其他所有單位 */
+        convert(key, raw) {
+          const text = String(raw == null ? '' : raw).trim()
+          if (text === '') {
+            this.clearOthers(key)
+            return
+          }
+          const num = Number(text)
+          if (!isFinite(num)) return // 輸入無效時保留原本結果，由欄位規則提示
+          const base = UNITS.find(u => u.key === key)
+          const g = num * base.g
+          UNITS.forEach(u => {
+            if (u.key !== key) this.values[u.key] = this.round(g / u.g)
+          })
+        },
+        clearOthers(key) {
+          UNITS.forEach(u => {
+            if (u.key !== key) this.values[u.key] = ''
+          })
+        },
+        clearAll() {
+          this.clearOthers(null)
+        },
+      },
+      mounted() {
+        this.fetchArticleItem(this.getArticleId())
+      },
+    })
+  </script>
 </body>
 
-<script>
-  new Vue({
-    el: '#app',
-    vuetify: new Vuetify(),
-    data: {
-      windowSize: { x: 0, y: 0 },
-      isFab: false,
-      yVal: 0,
-      menuItems: [
-        { icon: 'mdi-home', text: '首頁', href: '/', isShowHandheld: true },
-        { icon: 'mdi-package-variant', text: '產品介紹', href: '/product', isShowHandheld: false },
-        { icon: 'mdi-phone', text: '聯絡我們', href: '/contact', isShowHandheld: true },
-      ],
-      linkItems: [
-        { icon: 'mdi-facebook', text: 'FaceBook', tip: 'FB', href: 'https://www.facebook.com/ychitool' },
-        {
-          icon: 'mdi-instagram', text: 'Instagram', tip: 'IG',
-          href: 'https://www.instagram.com/ychitool168/'
-        },
-        { icon: 'mdi-youtube', text: 'Youtube', tip: 'YT', href: 'https://www.youtube.com/@ychi' },
-      ],
-      shoppingItems: [
-        { icon: 'mdi-shopping', text: '蝦皮賣場', tip: 'SP', href: 'https://shopee.tw/ychitool' }
-      ],
-      routePath: '',
-      routePathParam: '',
-      isDrawer: false,
-      isErrorNotGetData: false,
-      // articleClass
-      articleClassItems: [],
-      articleItems: [],
-      articleItem: {},
-      /** 內容用資料 */
-      rules: [v => !isNaN(v) || '請輸入數字'],
-      gram: null, /** 公克 */
-      kiloGram: null, /** 公斤 */
-      tonne: null, /** 公噸 */
-
-      tKi: null, /** 台斤 */
-      tLi: null, /** 台兩 */
-      tQi: null, /** 錢 */
-
-      ounce: null, /** 盎司 */
-      pound: null, /** 磅 */
-      dram: null, /** 打蘭 */
-      grain: null, /** 格林 */
-    },
-    watch: {
-      getWindowSizeX(val) {
-        if (val < 600) {
-          this.isShowList = true
-        }
-      }
-    },
-    computed: {
-      getWindowSizeX() {
-        return this.windowSize.x
-      },
-      /** 基本容器高度 */
-      getDefHeight() {
-        return this.windowSize.y - 260
-      },
-      getIsFooterShowLink() {
-        if (this.getWindowSizeX < 600) {
-          if (this.yVal > 40) {
-            return false
-          } else {
-            return true
-          }
-        } else {
-          return true
-        }
-      },
-      getIsFooterShow() {
-        if (this.getWindowSizeX < 600) {
-          if (Number(this.yVal) > Number(this.windowSize.y - 40)) {
-            return false
-          } else {
-            return true
-          }
-        } else {
-          return true
-        }
-      },
-    },
-    methods: {
-      /** toTop 程式 */
-      onScroll() {
-        if (typeof window === 'undefined') return;
-        const top = window.pageYOffset || document.documentElement.offsetTop || 0;
-        this.isFab = top > 300
-        this.yVal = top
-      },
-      toTop() {
-        this.$vuetify.goTo(0);
-      },
-      /** 工作尺寸變更 */
-      onResize() {
-        this.windowSize = { x: window.innerWidth, y: window.innerHeight };
-      },
-      /** 取路徑 */
-      fetchPath() {
-        let path = window.location.pathname;   // 例如: /category/item/123
-        let pathParts = path.split('/');
-        // 取得第一個和第二個之間的值
-        let category = pathParts[1];
-        if (category === "") {
-          this.routePath = ''
-        } else {
-          this.routePath = category
-        }
-      },
-      fetchPathParam() {
-        let path = window.location.pathname;   // 例如: /category/item/123
-        let pathParts = path.split('/');
-        // 取得第一個和第二個之間的值
-        let param = pathParts[2];
-        if (param === "") {
-          this.routePathParam = 1
-        } else {
-          this.routePathParam = param
-        }
-      },
-      /** 取得類別資料 */
-      fetchArticleClassItems() {
-        this.isErrorNotGetData = false
-        axios.get(`/local/blog/json/articleClass.json`)
-          .then(response => {
-            console.log(response);
-            this.articleClassItems = response.data.articleClassItems
-          })
-          .catch(error => {
-            this.isErrorNotGetData = true
-            console.log(error);
-          })
-          .finally(() => {
-          });
-      },
-      fetchArticleItem(id) {
-        this.isErrorNotGetData = false
-        axios.get(`/local/blog/json/articles.json`)
-          .then(response => {
-            console.log(response);
-            this.articleItems = response.data.articleItems
-            this.articleItem = this.articleItems.find(item => Number(item.id) === Number(id));
-          })
-          .catch(error => {
-            this.isErrorNotGetData = true
-            console.log(error);
-          })
-          .finally(() => {
-          });
-      },
-      changeGram() {
-        let gram = this.gram;
-        this.computedRuler(gram, 'gram');
-      },
-      changeKiloGram() {
-        let gram = this.kiloGram * 1000;
-        this.computedRuler(gram, 'kiloGram');
-      },
-      changeTonne() {
-        let gram = this.tonne * 1000 * 1000;
-        this.computedRuler(gram, 'tonne');
-      },
-
-      changeTKi() {
-        let gram = this.tKi * 600;
-        this.computedRuler(gram, 'tKi');
-      },
-      changeTLi() {
-        let gram = this.tLi * 37.5;
-        this.computedRuler(gram, 'tLi');
-      },
-      changeTQi() {
-        let gram = this.tQi * 3.75;
-        this.computedRuler(gram, 'tQi');
-      },
-
-      changeOunce() {
-        let gram = this.ounce * 28.3495231;
-        this.computedRuler(gram, 'ounce');
-      },
-      changePound() {
-        let gram = this.pound * 16 * 28.3495231;
-        this.computedRuler(gram, 'pound');
-      },
-      changeDram() {
-        let gram = this.dram / 16 * 28.3495231;
-        this.computedRuler(gram, 'dram');
-      },
-      changeGrain() {
-        let gram = this.grain / 437.5 * 28.3495231;
-        this.computedRuler(gram, 'grain');
-      },
-
-      computedRuler(gram, classType) {
-        if (!isNaN(gram)) {
-          this.gram = classType !== 'gram' ? Math.round(gram * 100000) / 100000 : this.gram;
-          this.kiloGram = classType !== 'kiloGram' ? Math.round(gram / 1000 * 100000) / 100000 : this.kiloGram;
-          this.tonne = classType !== 'tonne' ? Math.round(gram / 1000 / 1000 * 100000) / 100000 : this.tonne;
-
-          this.tKi = classType !== 'tKi' ? Math.round(gram / 600 * 100000) / 100000 : this.tKi;
-          this.tLi = classType !== 'tLi' ? Math.round(gram / 37.5 * 100000) / 100000 : this.tLi;
-          this.tQi = classType !== 'tQi' ? Math.round(gram / 3.75 * 100000) / 100000 : this.tQi;
-
-          this.ounce = classType !== 'ounce' ? Math.round(gram / 28.3495231 * 100000) / 100000 : this.ounce;
-          this.pound = classType !== 'pound' ? Math.round(gram / 16 / 28.3495231 * 100000) / 100000 : this.pound;
-          this.dram = classType !== 'dram' ? Math.round(gram * 16 / 28.3495231 * 100000) / 100000 : this.dram;
-          this.grain = classType !== 'grain' ? Math.round(gram * 437.5 / 28.3495231 * 100000) / 100000 : this.grain;
-        }
-      }
-    },
-    mounted() {
-      this.$vuetify.theme.dark = false;
-      this.fetchPath()
-      this.fetchPathParam()
-      this.fetchArticleClassItems()
-      this.fetchArticleItem(this.routePathParam)
-    },
-  })
-</script>
+</html>
